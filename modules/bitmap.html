@@ -1,0 +1,2472 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>bitmap | allegro.ts</title>
+	<meta name="description" content="Documentation for allegro.ts">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../assets/css/main.css">
+	<script async src="../assets/js/search.js" id="search-script"></script>
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.json" data-base="..">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="../index.html" class="title">allegro.ts</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="../modules.html">allegro.ts</a>
+				</li>
+				<li>
+					<a href="bitmap.html">bitmap</a>
+				</li>
+			</ul>
+			<h1>Module bitmap</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<section class="tsd-panel-group tsd-index-group">
+				<h2>Index</h2>
+				<section class="tsd-panel tsd-index-panel">
+					<div class="tsd-index-content">
+						<section class="tsd-index-section ">
+							<h3>Variables</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-variable tsd-parent-kind-module"><a href="bitmap.html#screen" class="tsd-kind-icon">screen</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Functions</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="bitmap.html#acquire_bitmap" class="tsd-kind-icon">acquire_<wbr>bitmap</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="bitmap.html#acquire_screen" class="tsd-kind-icon">acquire_<wbr>screen</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="bitmap.html#add_clip_rect" class="tsd-kind-icon">add_<wbr>clip_<wbr>rect</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="bitmap.html#bitmap_color_depth" class="tsd-kind-icon">bitmap_<wbr>color_<wbr>depth</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="bitmap.html#bitmap_mask_color" class="tsd-kind-icon">bitmap_<wbr>mask_<wbr>color</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="bitmap.html#create_bitmap" class="tsd-kind-icon">create_<wbr>bitmap</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="bitmap.html#create_bitmap_ex" class="tsd-kind-icon">create_<wbr>bitmap_<wbr>ex</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="bitmap.html#create_sub_bitmap" class="tsd-kind-icon">create_<wbr>sub_<wbr>bitmap</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="bitmap.html#create_system_bitmap" class="tsd-kind-icon">create_<wbr>system_<wbr>bitmap</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="bitmap.html#create_video_bitmap" class="tsd-kind-icon">create_<wbr>video_<wbr>bitmap</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="bitmap.html#destroy_bitmap" class="tsd-kind-icon">destroy_<wbr>bitmap</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="bitmap.html#get_clip_rect" class="tsd-kind-icon">get_<wbr>clip_<wbr>rect</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="bitmap.html#get_clip_state" class="tsd-kind-icon">get_<wbr>clip_<wbr>state</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="bitmap.html#is_inside_bitmap" class="tsd-kind-icon">is_<wbr>inside_<wbr>bitmap</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="bitmap.html#is_linear_bitmap" class="tsd-kind-icon">is_<wbr>linear_<wbr>bitmap</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="bitmap.html#is_memory_bitmap" class="tsd-kind-icon">is_<wbr>memory_<wbr>bitmap</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="bitmap.html#is_planar_bitmap" class="tsd-kind-icon">is_<wbr>planar_<wbr>bitmap</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="bitmap.html#is_same_bitmap" class="tsd-kind-icon">is_<wbr>same_<wbr>bitmap</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="bitmap.html#is_screen_bitmap" class="tsd-kind-icon">is_<wbr>screen_<wbr>bitmap</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="bitmap.html#is_sub_bitmap" class="tsd-kind-icon">is_<wbr>sub_<wbr>bitmap</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="bitmap.html#is_system_bitmap" class="tsd-kind-icon">is_<wbr>system_<wbr>bitmap</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="bitmap.html#is_video_bitmap" class="tsd-kind-icon">is_<wbr>video_<wbr>bitmap</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="bitmap.html#load_bitmap" class="tsd-kind-icon">load_<wbr>bitmap</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="bitmap.html#load_bmp" class="tsd-kind-icon">load_<wbr>bmp</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="bitmap.html#load_bmp_pf" class="tsd-kind-icon">load_<wbr>bmp_<wbr>pf</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="bitmap.html#load_lbm" class="tsd-kind-icon">load_<wbr>lbm</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="bitmap.html#load_pcx" class="tsd-kind-icon">load_<wbr>pcx</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="bitmap.html#load_pcx_pf" class="tsd-kind-icon">load_<wbr>pcx_<wbr>pf</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="bitmap.html#load_tga" class="tsd-kind-icon">load_<wbr>tga</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="bitmap.html#load_tga_pf" class="tsd-kind-icon">load_<wbr>tga_<wbr>pf</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="bitmap.html#loadpng_init" class="tsd-kind-icon">loadpng_<wbr>init</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="bitmap.html#lock_bitmap" class="tsd-kind-icon">lock_<wbr>bitmap</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="bitmap.html#register_bitmap_file_type" class="tsd-kind-icon">register_<wbr>bitmap_<wbr>file_<wbr>type</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="bitmap.html#release_bitmap" class="tsd-kind-icon">release_<wbr>bitmap</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="bitmap.html#release_screen" class="tsd-kind-icon">release_<wbr>screen</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="bitmap.html#save_bitmap" class="tsd-kind-icon">save_<wbr>bitmap</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="bitmap.html#save_bmp" class="tsd-kind-icon">save_<wbr>bmp</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="bitmap.html#save_bmp_pf" class="tsd-kind-icon">save_<wbr>bmp_<wbr>pf</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="bitmap.html#save_pcx" class="tsd-kind-icon">save_<wbr>pcx</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="bitmap.html#save_pcx_pf" class="tsd-kind-icon">save_<wbr>pcx_<wbr>pf</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="bitmap.html#save_tga" class="tsd-kind-icon">save_<wbr>tga</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="bitmap.html#save_tga_pf" class="tsd-kind-icon">save_<wbr>tga_<wbr>pf</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="bitmap.html#set_clip_rect" class="tsd-kind-icon">set_<wbr>clip_<wbr>rect</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="bitmap.html#set_clip_state" class="tsd-kind-icon">set_<wbr>clip_<wbr>state</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="bitmap.html#set_color_conversion" class="tsd-kind-icon">set_<wbr>color_<wbr>conversion</a></li>
+							</ul>
+						</section>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Variables</h2>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module">
+					<a name="screen" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> screen</h3>
+					<div class="tsd-signature tsd-kind-icon">screen<span class="tsd-signature-symbol">:</span> <a href="../interfaces/types.bitmap.html" class="tsd-signature-type" data-tsd-kind="Interface">BITMAP</a><span class="tsd-signature-symbol"> = ...</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/alegemaate/allegro-ts/blob/3f912bd/src/bitmap.ts#L15">bitmap.ts:15</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Global screen poiner</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>remarks</dt>
+							<dd><p>Stores the canvas bitmap object for drawing to screen</p>
+							</dd>
+							<dt>allegro</dt>
+							<dd><p>1.10.1</p>
+							</dd>
+						</dl>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Functions</h2>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="acquire_bitmap" class="tsd-anchor"></a>
+					<h3>acquire_<wbr>bitmap</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">acquire_<wbr>bitmap<span class="tsd-signature-symbol">(</span>bmp<span class="tsd-signature-symbol">: </span><a href="../interfaces/types.bitmap.html" class="tsd-signature-type" data-tsd-kind="Interface">BITMAP</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/alegemaate/allegro-ts/blob/3f912bd/src/bitmap.ts#L376">bitmap.ts:376</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Acquire video bitmap</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>remarks</dt>
+									<dd><p>NOOP since this is not needed in browser</p>
+									</dd>
+									<dt>allegro</dt>
+									<dd><p>1.10.21</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>bmp: <a href="../interfaces/types.bitmap.html" class="tsd-signature-type" data-tsd-kind="Interface">BITMAP</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>BITMAP to acquire</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="acquire_screen" class="tsd-anchor"></a>
+					<h3>acquire_<wbr>screen</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">acquire_<wbr>screen<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/alegemaate/allegro-ts/blob/3f912bd/src/bitmap.ts#L402">bitmap.ts:402</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Acquire screen</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>remarks</dt>
+									<dd><p>Calls acquire_bitmap on global screen object</p>
+									</dd>
+									<dt>allegro</dt>
+									<dd><p>1.10.23</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="add_clip_rect" class="tsd-anchor"></a>
+					<h3>add_<wbr>clip_<wbr>rect</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">add_<wbr>clip_<wbr>rect<span class="tsd-signature-symbol">(</span>bitmap<span class="tsd-signature-symbol">: </span><a href="../interfaces/types.bitmap.html" class="tsd-signature-type" data-tsd-kind="Interface">BITMAP</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span>, x1<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, y1<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, x2<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, y2<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/alegemaate/allegro-ts/blob/3f912bd/src/bitmap.ts#L488">bitmap.ts:488</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Add clip rect</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>remarks</dt>
+									<dd><p>Sets the clipping rectangle of the specified bitmap as the intersection
+										of its current clipping rectangle and the rectangle described by the four coordinates.</p>
+										<p>Currently just sets it</p>
+									</dd>
+									<dt>allegro</dt>
+									<dd><p>1.10.27</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>bitmap: <a href="../interfaces/types.bitmap.html" class="tsd-signature-type" data-tsd-kind="Interface">BITMAP</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>BITMAP to add clipping</p>
+									</div>
+								</li>
+								<li>
+									<h5>x1: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>left bound</p>
+									</div>
+								</li>
+								<li>
+									<h5>y1: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>top bound</p>
+									</div>
+								</li>
+								<li>
+									<h5>x2: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>right bound</p>
+									</div>
+								</li>
+								<li>
+									<h5>y2: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>bottom bound</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="bitmap_color_depth" class="tsd-anchor"></a>
+					<h3>bitmap_<wbr>color_<wbr>depth</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">bitmap_<wbr>color_<wbr>depth<span class="tsd-signature-symbol">(</span>bmp<span class="tsd-signature-symbol">: </span><a href="../interfaces/types.bitmap.html" class="tsd-signature-type" data-tsd-kind="Interface">BITMAP</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/alegemaate/allegro-ts/blob/3f912bd/src/bitmap.ts#L207">bitmap.ts:207</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get bitmap color depth</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>remarks</dt>
+									<dd><p>This just returns 32 since we only support 32 bit color depth</p>
+									</dd>
+									<dt>allegro</dt>
+									<dd><p>1.10.11</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>bmp: <a href="../interfaces/types.bitmap.html" class="tsd-signature-type" data-tsd-kind="Interface">BITMAP</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="bitmap_mask_color" class="tsd-anchor"></a>
+					<h3>bitmap_<wbr>mask_<wbr>color</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">bitmap_<wbr>mask_<wbr>color<span class="tsd-signature-symbol">(</span>bmp<span class="tsd-signature-symbol">: </span><a href="../interfaces/types.bitmap.html" class="tsd-signature-type" data-tsd-kind="Interface">BITMAP</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/alegemaate/allegro-ts/blob/3f912bd/src/bitmap.ts#L222">bitmap.ts:222</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get bitmap mask depth</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>remarks</dt>
+									<dd><p>Returns magic pink</p>
+									</dd>
+									<dt>allegro</dt>
+									<dd><p>1.10.12</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>bmp: <a href="../interfaces/types.bitmap.html" class="tsd-signature-type" data-tsd-kind="Interface">BITMAP</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="create_bitmap" class="tsd-anchor"></a>
+					<h3>create_<wbr>bitmap</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">create_<wbr>bitmap<span class="tsd-signature-symbol">(</span>width<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, height<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/types.bitmap.html" class="tsd-signature-type" data-tsd-kind="Interface">BITMAP</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/alegemaate/allegro-ts/blob/3f912bd/src/bitmap.ts#L41">bitmap.ts:41</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Creates empty bitmap</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>remarks</dt>
+									<dd><p>Creates a bitmap object of given dimensions and returns it.</p>
+									</dd>
+									<dt>allegro</dt>
+									<dd><p>1.10.4</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>width: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<ul>
+											<li>bitmap width</li>
+										</ul>
+									</div>
+								</li>
+								<li>
+									<h5>height: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<ul>
+											<li>bitmap height</li>
+										</ul>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/types.bitmap.html" class="tsd-signature-type" data-tsd-kind="Interface">BITMAP</a></h4>
+							<p>bitmap object</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="create_bitmap_ex" class="tsd-anchor"></a>
+					<h3>create_<wbr>bitmap_<wbr>ex</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">create_<wbr>bitmap_<wbr>ex<span class="tsd-signature-symbol">(</span>color_depth<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, width<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, height<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/types.bitmap.html" class="tsd-signature-type" data-tsd-kind="Interface">BITMAP</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/alegemaate/allegro-ts/blob/3f912bd/src/bitmap.ts#L87">bitmap.ts:87</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Creates empty bitmap</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>remarks</dt>
+									<dd><p>Creates a bitmap object of given dimensions and color depth and returns it.
+										Note: We only support 32 bit color depth, color_depth does nothing</p>
+									</dd>
+									<dt>allegro</dt>
+									<dd><p>1.10.5</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>color_depth: <span class="tsd-signature-type">number</span></h5>
+								</li>
+								<li>
+									<h5>width: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>bitmap width</p>
+									</div>
+								</li>
+								<li>
+									<h5>height: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>bitmap height</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/types.bitmap.html" class="tsd-signature-type" data-tsd-kind="Interface">BITMAP</a></h4>
+							<p>bitmap object</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="create_sub_bitmap" class="tsd-anchor"></a>
+					<h3>create_<wbr>sub_<wbr>bitmap</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">create_<wbr>sub_<wbr>bitmap<span class="tsd-signature-symbol">(</span>parent<span class="tsd-signature-symbol">: </span><a href="../interfaces/types.bitmap.html" class="tsd-signature-type" data-tsd-kind="Interface">BITMAP</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span>, x<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, y<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, width<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, height<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/types.bitmap.html" class="tsd-signature-type" data-tsd-kind="Interface">BITMAP</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/alegemaate/allegro-ts/blob/3f912bd/src/bitmap.ts#L111">bitmap.ts:111</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Creates a sub bitmap</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>remarks</dt>
+									<dd><p>Creates a sub bitmap object from an existing bitmap.</p>
+									</dd>
+									<dt>allegro</dt>
+									<dd><p>1.10.6</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>parent: <a href="../interfaces/types.bitmap.html" class="tsd-signature-type" data-tsd-kind="Interface">BITMAP</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>BITMAP object to create sub bitmap from</p>
+									</div>
+								</li>
+								<li>
+									<h5>x: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>leftmost bound to create bitmap from</p>
+									</div>
+								</li>
+								<li>
+									<h5>y: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>topmost bound to create bitmap from</p>
+									</div>
+								</li>
+								<li>
+									<h5>width: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>bitmap width</p>
+									</div>
+								</li>
+								<li>
+									<h5>height: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>bitmap height</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/types.bitmap.html" class="tsd-signature-type" data-tsd-kind="Interface">BITMAP</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></h4>
+							<p>bitmap object</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="create_system_bitmap" class="tsd-anchor"></a>
+					<h3>create_<wbr>system_<wbr>bitmap</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">create_<wbr>system_<wbr>bitmap<span class="tsd-signature-symbol">(</span>width<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, height<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/types.bitmap.html" class="tsd-signature-type" data-tsd-kind="Interface">BITMAP</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/alegemaate/allegro-ts/blob/3f912bd/src/bitmap.ts#L159">bitmap.ts:159</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Creates empty system bitmap</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>remarks</dt>
+									<dd><p>Creates a bitmap object of given dimensions and returns it.
+										This just maps to create_bitmap since.</p>
+									</dd>
+									<dt>allegro</dt>
+									<dd><p>1.10.8</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>width: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>bitmap width</p>
+									</div>
+								</li>
+								<li>
+									<h5>height: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>bitmap height</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/types.bitmap.html" class="tsd-signature-type" data-tsd-kind="Interface">BITMAP</a></h4>
+							<p>bitmap object</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="create_video_bitmap" class="tsd-anchor"></a>
+					<h3>create_<wbr>video_<wbr>bitmap</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">create_<wbr>video_<wbr>bitmap<span class="tsd-signature-symbol">(</span>width<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, height<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/types.bitmap.html" class="tsd-signature-type" data-tsd-kind="Interface">BITMAP</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/alegemaate/allegro-ts/blob/3f912bd/src/bitmap.ts#L140">bitmap.ts:140</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Creates empty video bitmap</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>remarks</dt>
+									<dd><p>Creates a bitmap object of given dimensions and returns it.
+										Since all bitmaps are video bitmaps, this just maps to create_bitmap</p>
+									</dd>
+									<dt>allegro</dt>
+									<dd><p>1.10.7</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>width: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>bitmap width</p>
+									</div>
+								</li>
+								<li>
+									<h5>height: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>bitmap height</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/types.bitmap.html" class="tsd-signature-type" data-tsd-kind="Interface">BITMAP</a></h4>
+							<p>bitmap object</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="destroy_bitmap" class="tsd-anchor"></a>
+					<h3>destroy_<wbr>bitmap</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">destroy_<wbr>bitmap<span class="tsd-signature-symbol">(</span>bitmap<span class="tsd-signature-symbol">: </span><a href="../interfaces/types.bitmap.html" class="tsd-signature-type" data-tsd-kind="Interface">BITMAP</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/alegemaate/allegro-ts/blob/3f912bd/src/bitmap.ts#L175">bitmap.ts:175</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Destroys a bitmap</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>remarks</dt>
+									<dd><p>Removes the canvas and removes ready state</p>
+									</dd>
+									<dt>allegro</dt>
+									<dd><p>1.10.9</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>bitmap: <a href="../interfaces/types.bitmap.html" class="tsd-signature-type" data-tsd-kind="Interface">BITMAP</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>BITMAP to delete</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="get_clip_rect" class="tsd-anchor"></a>
+					<h3>get_<wbr>clip_<wbr>rect</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">get_<wbr>clip_<wbr>rect<span class="tsd-signature-symbol">(</span>bitmap<span class="tsd-signature-symbol">: </span><a href="../interfaces/types.bitmap.html" class="tsd-signature-type" data-tsd-kind="Interface">BITMAP</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/types.clipping_rectangle.html" class="tsd-signature-type" data-tsd-kind="Interface">CLIPPING_RECTANGLE</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/alegemaate/allegro-ts/blob/3f912bd/src/bitmap.ts#L462">bitmap.ts:462</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get clip rect</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>remarks</dt>
+									<dd><p>Returns clipping rectangle or null.
+											Since we can not assign parameter pointers, this differs from actual allegro
+										behaviour in that it returns an object.</p>
+									</dd>
+									<dt>allegro</dt>
+									<dd><p>1.10.26</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>bitmap: <a href="../interfaces/types.bitmap.html" class="tsd-signature-type" data-tsd-kind="Interface">BITMAP</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>BITMAP to get clipping</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/types.clipping_rectangle.html" class="tsd-signature-type" data-tsd-kind="Interface">CLIPPING_RECTANGLE</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="get_clip_state" class="tsd-anchor"></a>
+					<h3>get_<wbr>clip_<wbr>state</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">get_<wbr>clip_<wbr>state<span class="tsd-signature-symbol">(</span>bitmap<span class="tsd-signature-symbol">: </span><a href="../interfaces/types.bitmap.html" class="tsd-signature-type" data-tsd-kind="Interface">BITMAP</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/alegemaate/allegro-ts/blob/3f912bd/src/bitmap.ts#L538">bitmap.ts:538</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get clip state</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>remarks</dt>
+									<dd><p>Simply checks bitmaps clipping rectangles</p>
+									</dd>
+									<dt>allegro</dt>
+									<dd><p>1.10.29</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>bitmap: <a href="../interfaces/types.bitmap.html" class="tsd-signature-type" data-tsd-kind="Interface">BITMAP</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>BITMAP to check clip state of</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+							<p>non zero if clipping enabled, otherwise zero</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="is_inside_bitmap" class="tsd-anchor"></a>
+					<h3>is_<wbr>inside_<wbr>bitmap</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">is_<wbr>inside_<wbr>bitmap<span class="tsd-signature-symbol">(</span>bmp<span class="tsd-signature-symbol">: </span><a href="../interfaces/types.bitmap.html" class="tsd-signature-type" data-tsd-kind="Interface">BITMAP</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span>, x<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, y<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, clip<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/alegemaate/allegro-ts/blob/3f912bd/src/bitmap.ts#L564">bitmap.ts:564</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Check if inside bitmap</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>remarks</dt>
+									<dd><p>Returns non-zero if point (x, y) lies inside the bitmap.
+											If ‘clip’ is non-zero, the function compares the coordinates with the
+											clipping rectangle, that is it returns non-zero if the point lies
+											inside the clipping rectangle or if clipping is disabled for the bitmap.
+											If ‘clip’ is zero, the function compares the coordinates with the actual
+										dimensions of the bitmap.</p>
+									</dd>
+									<dt>allegro</dt>
+									<dd><p>1.10.30</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>bmp: <a href="../interfaces/types.bitmap.html" class="tsd-signature-type" data-tsd-kind="Interface">BITMAP</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>BITMAP to check if point is inside</p>
+									</div>
+								</li>
+								<li>
+									<h5>x: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>x position of point</p>
+									</div>
+								</li>
+								<li>
+									<h5>y: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>y position of point</p>
+									</div>
+								</li>
+								<li>
+									<h5>clip: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Bitmap clipping</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+							<p>true if inside bitmap, otherwise false</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="is_linear_bitmap" class="tsd-anchor"></a>
+					<h3>is_<wbr>linear_<wbr>bitmap</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">is_<wbr>linear_<wbr>bitmap<span class="tsd-signature-symbol">(</span>bmp<span class="tsd-signature-symbol">: </span><a href="../interfaces/types.bitmap.html" class="tsd-signature-type" data-tsd-kind="Interface">BITMAP</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/alegemaate/allegro-ts/blob/3f912bd/src/bitmap.ts#L276">bitmap.ts:276</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Check if bitmap is linear</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>remarks</dt>
+									<dd><p>All bitmaps can be treated as linear bitmaps, so we reutrn true</p>
+									</dd>
+									<dt>allegro</dt>
+									<dd><p>1.10.15</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>bmp: <a href="../interfaces/types.bitmap.html" class="tsd-signature-type" data-tsd-kind="Interface">BITMAP</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>BITMAP to check linear-ness</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="is_memory_bitmap" class="tsd-anchor"></a>
+					<h3>is_<wbr>memory_<wbr>bitmap</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">is_<wbr>memory_<wbr>bitmap<span class="tsd-signature-symbol">(</span>bmp<span class="tsd-signature-symbol">: </span><a href="../interfaces/types.bitmap.html" class="tsd-signature-type" data-tsd-kind="Interface">BITMAP</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/alegemaate/allegro-ts/blob/3f912bd/src/bitmap.ts#L291">bitmap.ts:291</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Check if bitmap is memory bitmap</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>remarks</dt>
+									<dd><p>Checks if is screen flag is set</p>
+									</dd>
+									<dt>allegro</dt>
+									<dd><p>1.10.16</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>bmp: <a href="../interfaces/types.bitmap.html" class="tsd-signature-type" data-tsd-kind="Interface">BITMAP</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>BITMAP to check if memory</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="is_planar_bitmap" class="tsd-anchor"></a>
+					<h3>is_<wbr>planar_<wbr>bitmap</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">is_<wbr>planar_<wbr>bitmap<span class="tsd-signature-symbol">(</span>bmp<span class="tsd-signature-symbol">: </span><a href="../interfaces/types.bitmap.html" class="tsd-signature-type" data-tsd-kind="Interface">BITMAP</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/alegemaate/allegro-ts/blob/3f912bd/src/bitmap.ts#L261">bitmap.ts:261</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Check if bitmap is planar</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>remarks</dt>
+									<dd><p>We dont support planar bitmaps, return false</p>
+									</dd>
+									<dt>allegro</dt>
+									<dd><p>1.10.14</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>bmp: <a href="../interfaces/types.bitmap.html" class="tsd-signature-type" data-tsd-kind="Interface">BITMAP</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>BITMAP to check planar-ness</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="is_same_bitmap" class="tsd-anchor"></a>
+					<h3>is_<wbr>same_<wbr>bitmap</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">is_<wbr>same_<wbr>bitmap<span class="tsd-signature-symbol">(</span>bmp1<span class="tsd-signature-symbol">: </span><a href="../interfaces/types.bitmap.html" class="tsd-signature-type" data-tsd-kind="Interface">BITMAP</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span>, bmp2<span class="tsd-signature-symbol">: </span><a href="../interfaces/types.bitmap.html" class="tsd-signature-type" data-tsd-kind="Interface">BITMAP</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/alegemaate/allegro-ts/blob/3f912bd/src/bitmap.ts#L238">bitmap.ts:238</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Checks if bitmaps are the same</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>remarks</dt>
+									<dd><p>Simply returns bitmap equality. Should also find out if they are sub bitmaps...</p>
+									</dd>
+									<dt>allegro</dt>
+									<dd><p>1.10.13</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>bmp1: <a href="../interfaces/types.bitmap.html" class="tsd-signature-type" data-tsd-kind="Interface">BITMAP</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>first BITMAP</p>
+									</div>
+								</li>
+								<li>
+									<h5>bmp2: <a href="../interfaces/types.bitmap.html" class="tsd-signature-type" data-tsd-kind="Interface">BITMAP</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>second BITMAP</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="is_screen_bitmap" class="tsd-anchor"></a>
+					<h3>is_<wbr>screen_<wbr>bitmap</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">is_<wbr>screen_<wbr>bitmap<span class="tsd-signature-symbol">(</span>bmp<span class="tsd-signature-symbol">: </span><a href="../interfaces/types.bitmap.html" class="tsd-signature-type" data-tsd-kind="Interface">BITMAP</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/alegemaate/allegro-ts/blob/3f912bd/src/bitmap.ts#L308">bitmap.ts:308</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Check if bitmap is screen bitmap</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>remarks</dt>
+									<dd><p>Checks if screen flag is set</p>
+									</dd>
+									<dt>allegro</dt>
+									<dd><p>1.10.17</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>bmp: <a href="../interfaces/types.bitmap.html" class="tsd-signature-type" data-tsd-kind="Interface">BITMAP</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>BITMAP to check if screen</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="is_sub_bitmap" class="tsd-anchor"></a>
+					<h3>is_<wbr>sub_<wbr>bitmap</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">is_<wbr>sub_<wbr>bitmap<span class="tsd-signature-symbol">(</span>bmp<span class="tsd-signature-symbol">: </span><a href="../interfaces/types.bitmap.html" class="tsd-signature-type" data-tsd-kind="Interface">BITMAP</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/alegemaate/allegro-ts/blob/3f912bd/src/bitmap.ts#L359">bitmap.ts:359</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Check if bitmap is sub bitmap</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>remarks</dt>
+									<dd><p>Check if created using create_sub_bitmap</p>
+									</dd>
+									<dt>allegro</dt>
+									<dd><p>1.10.20</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>bmp: <a href="../interfaces/types.bitmap.html" class="tsd-signature-type" data-tsd-kind="Interface">BITMAP</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>BITMAP to check if sub bitmap</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="is_system_bitmap" class="tsd-anchor"></a>
+					<h3>is_<wbr>system_<wbr>bitmap</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">is_<wbr>system_<wbr>bitmap<span class="tsd-signature-symbol">(</span>bmp<span class="tsd-signature-symbol">: </span><a href="../interfaces/types.bitmap.html" class="tsd-signature-type" data-tsd-kind="Interface">BITMAP</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/alegemaate/allegro-ts/blob/3f912bd/src/bitmap.ts#L342">bitmap.ts:342</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Check if bitmap is system bitmap</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>remarks</dt>
+									<dd><p>Checks if bitmap was created using create_system_bitmap</p>
+									</dd>
+									<dt>allegro</dt>
+									<dd><p>1.10.19</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>bmp: <a href="../interfaces/types.bitmap.html" class="tsd-signature-type" data-tsd-kind="Interface">BITMAP</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>BITMAP to check if system bitmap</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="is_video_bitmap" class="tsd-anchor"></a>
+					<h3>is_<wbr>video_<wbr>bitmap</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">is_<wbr>video_<wbr>bitmap<span class="tsd-signature-symbol">(</span>bmp<span class="tsd-signature-symbol">: </span><a href="../interfaces/types.bitmap.html" class="tsd-signature-type" data-tsd-kind="Interface">BITMAP</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/alegemaate/allegro-ts/blob/3f912bd/src/bitmap.ts#L325">bitmap.ts:325</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Check if bitmap is video bitmap</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>remarks</dt>
+									<dd><p>Checks if screen or created with create_video_bitmap</p>
+									</dd>
+									<dt>allegro</dt>
+									<dd><p>1.10.18</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>bmp: <a href="../interfaces/types.bitmap.html" class="tsd-signature-type" data-tsd-kind="Interface">BITMAP</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>BITMAP to check if video bitmap</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="load_bitmap" class="tsd-anchor"></a>
+					<h3>load_<wbr>bitmap</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">load_<wbr>bitmap<span class="tsd-signature-symbol">(</span>filename<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, pal<span class="tsd-signature-symbol">?: </span><a href="../interfaces/types.rgb.html" class="tsd-signature-type" data-tsd-kind="Interface">RGB</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/types.bitmap.html" class="tsd-signature-type" data-tsd-kind="Interface">BITMAP</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/alegemaate/allegro-ts/blob/3f912bd/src/bitmap.ts#L601">bitmap.ts:601</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Loads bitmap from file</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>remarks</dt>
+									<dd><p>Loads image from file asynchronously. This means that the execution won&#39;t stall for the image,
+											and it&#39;s data won&#39;t be accessible right off the start. You can check for bitmap object&#39;s &#39;ready&#39;
+											member to see if it has loaded, but you probably should avoid stalling execution for that,
+										as JS doesn&#39;t really like that.</p>
+									</dd>
+									<dt>allegro</dt>
+									<dd><p>1.11.1</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>filename: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>URL of image</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> pal: <a href="../interfaces/types.rgb.html" class="tsd-signature-type" data-tsd-kind="Interface">RGB</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/types.bitmap.html" class="tsd-signature-type" data-tsd-kind="Interface">BITMAP</a></h4>
+							<p>bitmap object, or -1 on error</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="load_bmp" class="tsd-anchor"></a>
+					<h3>load_<wbr>bmp</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">load_<wbr>bmp<span class="tsd-signature-symbol">(</span>filename<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/types.bitmap.html" class="tsd-signature-type" data-tsd-kind="Interface">BITMAP</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/alegemaate/allegro-ts/blob/3f912bd/src/bitmap.ts#L682">bitmap.ts:682</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Load Bitmap Alias</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>remarks</dt>
+									<dd><p>See load_bitmap</p>
+									</dd>
+									<dt>allegro</dt>
+									<dd><p>1.11.2</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>filename: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Path to file to load</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/types.bitmap.html" class="tsd-signature-type" data-tsd-kind="Interface">BITMAP</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="load_bmp_pf" class="tsd-anchor"></a>
+					<h3>load_<wbr>bmp_<wbr>pf</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">load_<wbr>bmp_<wbr>pf<span class="tsd-signature-symbol">(</span>f<span class="tsd-signature-symbol">: </span><a href="../interfaces/types.packfile.html" class="tsd-signature-type" data-tsd-kind="Interface">PACKFILE</a>, pal<span class="tsd-signature-symbol">?: </span><a href="../interfaces/types.rgb.html" class="tsd-signature-type" data-tsd-kind="Interface">RGB</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/alegemaate/allegro-ts/blob/3f912bd/src/bitmap.ts#L697">bitmap.ts:697</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Load BMP from packfile</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>remarks</dt>
+									<dd><p>Not implemented</p>
+									</dd>
+									<dt>allegro</dt>
+									<dd><p>1.11.3</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>f: <a href="../interfaces/types.packfile.html" class="tsd-signature-type" data-tsd-kind="Interface">PACKFILE</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>PACKFILE to load from</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> pal: <a href="../interfaces/types.rgb.html" class="tsd-signature-type" data-tsd-kind="Interface">RGB</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>PALETTE to use when loading</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="load_lbm" class="tsd-anchor"></a>
+					<h3>load_<wbr>lbm</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">load_<wbr>lbm<span class="tsd-signature-symbol">(</span>filename<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, pal<span class="tsd-signature-symbol">?: </span><a href="../interfaces/types.rgb.html" class="tsd-signature-type" data-tsd-kind="Interface">RGB</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/types.bitmap.html" class="tsd-signature-type" data-tsd-kind="Interface">BITMAP</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/alegemaate/allegro-ts/blob/3f912bd/src/bitmap.ts#L713">bitmap.ts:713</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Load LBM from file</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>remarks</dt>
+									<dd><p>Not implemented</p>
+									</dd>
+									<dt>allegro</dt>
+									<dd><p>1.11.4</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>filename: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>File to load from</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> pal: <a href="../interfaces/types.rgb.html" class="tsd-signature-type" data-tsd-kind="Interface">RGB</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>PALETTE to use when loading</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/types.bitmap.html" class="tsd-signature-type" data-tsd-kind="Interface">BITMAP</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="load_pcx" class="tsd-anchor"></a>
+					<h3>load_<wbr>pcx</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">load_<wbr>pcx<span class="tsd-signature-symbol">(</span>filename<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, pal<span class="tsd-signature-symbol">?: </span><a href="../interfaces/types.rgb.html" class="tsd-signature-type" data-tsd-kind="Interface">RGB</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/types.bitmap.html" class="tsd-signature-type" data-tsd-kind="Interface">BITMAP</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/alegemaate/allegro-ts/blob/3f912bd/src/bitmap.ts#L728">bitmap.ts:728</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Load PCX from file</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>remarks</dt>
+									<dd><p>Not implemented</p>
+									</dd>
+									<dt>allegro</dt>
+									<dd><p>1.11.5</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>filename: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>File to load from</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> pal: <a href="../interfaces/types.rgb.html" class="tsd-signature-type" data-tsd-kind="Interface">RGB</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>PALETTE to use when loading</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/types.bitmap.html" class="tsd-signature-type" data-tsd-kind="Interface">BITMAP</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="load_pcx_pf" class="tsd-anchor"></a>
+					<h3>load_<wbr>pcx_<wbr>pf</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">load_<wbr>pcx_<wbr>pf<span class="tsd-signature-symbol">(</span>f<span class="tsd-signature-symbol">: </span><a href="../interfaces/types.packfile.html" class="tsd-signature-type" data-tsd-kind="Interface">PACKFILE</a>, pal<span class="tsd-signature-symbol">?: </span><a href="../interfaces/types.rgb.html" class="tsd-signature-type" data-tsd-kind="Interface">RGB</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/alegemaate/allegro-ts/blob/3f912bd/src/bitmap.ts#L743">bitmap.ts:743</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Load PCX from packfile</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>remarks</dt>
+									<dd><p>Not implemented</p>
+									</dd>
+									<dt>allegro</dt>
+									<dd><p>1.11.6</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>f: <a href="../interfaces/types.packfile.html" class="tsd-signature-type" data-tsd-kind="Interface">PACKFILE</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>PACKFILE to load from</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> pal: <a href="../interfaces/types.rgb.html" class="tsd-signature-type" data-tsd-kind="Interface">RGB</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>PALETTE to use when loading</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="load_tga" class="tsd-anchor"></a>
+					<h3>load_<wbr>tga</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">load_<wbr>tga<span class="tsd-signature-symbol">(</span>filename<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, pal<span class="tsd-signature-symbol">?: </span><a href="../interfaces/types.rgb.html" class="tsd-signature-type" data-tsd-kind="Interface">RGB</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/types.bitmap.html" class="tsd-signature-type" data-tsd-kind="Interface">BITMAP</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/alegemaate/allegro-ts/blob/3f912bd/src/bitmap.ts#L759">bitmap.ts:759</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Load TGA from file</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>remarks</dt>
+									<dd><p>Not implemented</p>
+									</dd>
+									<dt>allegro</dt>
+									<dd><p>1.11.7</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>filename: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>File to load from</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> pal: <a href="../interfaces/types.rgb.html" class="tsd-signature-type" data-tsd-kind="Interface">RGB</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>PALETTE to use when loading</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/types.bitmap.html" class="tsd-signature-type" data-tsd-kind="Interface">BITMAP</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="load_tga_pf" class="tsd-anchor"></a>
+					<h3>load_<wbr>tga_<wbr>pf</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">load_<wbr>tga_<wbr>pf<span class="tsd-signature-symbol">(</span>f<span class="tsd-signature-symbol">: </span><a href="../interfaces/types.packfile.html" class="tsd-signature-type" data-tsd-kind="Interface">PACKFILE</a>, pal<span class="tsd-signature-symbol">?: </span><a href="../interfaces/types.rgb.html" class="tsd-signature-type" data-tsd-kind="Interface">RGB</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/alegemaate/allegro-ts/blob/3f912bd/src/bitmap.ts#L774">bitmap.ts:774</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Load TGA from packfile</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>remarks</dt>
+									<dd><p>Not implemented</p>
+									</dd>
+									<dt>allegro</dt>
+									<dd><p>1.11.8</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>f: <a href="../interfaces/types.packfile.html" class="tsd-signature-type" data-tsd-kind="Interface">PACKFILE</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>PACKFILE to load from</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> pal: <a href="../interfaces/types.rgb.html" class="tsd-signature-type" data-tsd-kind="Interface">RGB</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>PALETTE to use when loading</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="loadpng_init" class="tsd-anchor"></a>
+					<h3>loadpng_<wbr>init</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">loadpng_<wbr>init<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/alegemaate/allegro-ts/blob/3f912bd/src/bitmap.ts#L986">bitmap.ts:986</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Stub for compatibility with libloadpng</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>remarks</dt>
+									<dd><p>Does nothing since we have png support</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="lock_bitmap" class="tsd-anchor"></a>
+					<h3>lock_<wbr>bitmap</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">lock_<wbr>bitmap<span class="tsd-signature-symbol">(</span>bitmap<span class="tsd-signature-symbol">: </span><a href="../interfaces/types.bitmap.html" class="tsd-signature-type" data-tsd-kind="Interface">BITMAP</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/alegemaate/allegro-ts/blob/3f912bd/src/bitmap.ts#L193">bitmap.ts:193</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Lock a bitmap</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>remarks</dt>
+									<dd><p>This is a NOOP since locking bitmaps is not neccisary</p>
+									</dd>
+									<dt>allegro</dt>
+									<dd><p>1.10.10</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>bitmap: <a href="../interfaces/types.bitmap.html" class="tsd-signature-type" data-tsd-kind="Interface">BITMAP</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>BITMAP to lock</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="register_bitmap_file_type" class="tsd-anchor"></a>
+					<h3>register_<wbr>bitmap_<wbr>file_<wbr>type</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">register_<wbr>bitmap_<wbr>file_<wbr>type<span class="tsd-signature-symbol">(</span>ext<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, load<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>filename<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, pal<span class="tsd-signature-symbol">?: </span><a href="../interfaces/types.rgb.html" class="tsd-signature-type" data-tsd-kind="Interface">RGB</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="../interfaces/types.bitmap.html" class="tsd-signature-type" data-tsd-kind="Interface">BITMAP</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span>, save<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>filename<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, pal<span class="tsd-signature-symbol">?: </span><a href="../interfaces/types.rgb.html" class="tsd-signature-type" data-tsd-kind="Interface">RGB</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/alegemaate/allegro-ts/blob/3f912bd/src/bitmap.ts#L954">bitmap.ts:954</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Register Bitmap File Type</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>remarks</dt>
+									<dd><p>Not implemented</p>
+									</dd>
+									<dt>allegro</dt>
+									<dd><p>1.11.16</p>
+									</dd>
+									<dt>alpha</dt>
+									<dd></dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>ext: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>String containg file extension</p>
+									</div>
+								</li>
+								<li>
+									<h5>load: <span class="tsd-signature-symbol">(</span>filename<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, pal<span class="tsd-signature-symbol">?: </span><a href="../interfaces/types.rgb.html" class="tsd-signature-type" data-tsd-kind="Interface">RGB</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="../interfaces/types.bitmap.html" class="tsd-signature-type" data-tsd-kind="Interface">BITMAP</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Callback for handling loading of file</p>
+									</div>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter-signature">
+											<ul class="tsd-signatures tsd-kind-type-literal">
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>filename<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, pal<span class="tsd-signature-symbol">?: </span><a href="../interfaces/types.rgb.html" class="tsd-signature-type" data-tsd-kind="Interface">RGB</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/types.bitmap.html" class="tsd-signature-type" data-tsd-kind="Interface">BITMAP</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
+											</ul>
+											<ul class="tsd-descriptions">
+												<li class="tsd-description">
+													<h4 class="tsd-parameters-title">Parameters</h4>
+													<ul class="tsd-parameters">
+														<li>
+															<h5>filename: <span class="tsd-signature-type">string</span></h5>
+														</li>
+														<li>
+															<h5><span class="tsd-flag ts-flagOptional">Optional</span> pal: <a href="../interfaces/types.rgb.html" class="tsd-signature-type" data-tsd-kind="Interface">RGB</a></h5>
+														</li>
+													</ul>
+													<h4 class="tsd-returns-title">Returns <a href="../interfaces/types.bitmap.html" class="tsd-signature-type" data-tsd-kind="Interface">BITMAP</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h4>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+								<li>
+									<h5>save: <span class="tsd-signature-symbol">(</span>filename<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, pal<span class="tsd-signature-symbol">?: </span><a href="../interfaces/types.rgb.html" class="tsd-signature-type" data-tsd-kind="Interface">RGB</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Callback for saving file</p>
+									</div>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter-signature">
+											<ul class="tsd-signatures tsd-kind-type-literal">
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>filename<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, pal<span class="tsd-signature-symbol">?: </span><a href="../interfaces/types.rgb.html" class="tsd-signature-type" data-tsd-kind="Interface">RGB</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+											</ul>
+											<ul class="tsd-descriptions">
+												<li class="tsd-description">
+													<h4 class="tsd-parameters-title">Parameters</h4>
+													<ul class="tsd-parameters">
+														<li>
+															<h5>filename: <span class="tsd-signature-type">string</span></h5>
+														</li>
+														<li>
+															<h5><span class="tsd-flag ts-flagOptional">Optional</span> pal: <a href="../interfaces/types.rgb.html" class="tsd-signature-type" data-tsd-kind="Interface">RGB</a></h5>
+														</li>
+													</ul>
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="release_bitmap" class="tsd-anchor"></a>
+					<h3>release_<wbr>bitmap</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">release_<wbr>bitmap<span class="tsd-signature-symbol">(</span>bmp<span class="tsd-signature-symbol">: </span><a href="../interfaces/types.bitmap.html" class="tsd-signature-type" data-tsd-kind="Interface">BITMAP</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/alegemaate/allegro-ts/blob/3f912bd/src/bitmap.ts#L390">bitmap.ts:390</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Release video bitmap</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>remarks</dt>
+									<dd><p>NOOP since this is not needed in browser</p>
+									</dd>
+									<dt>allegro</dt>
+									<dd><p>1.10.22</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>bmp: <a href="../interfaces/types.bitmap.html" class="tsd-signature-type" data-tsd-kind="Interface">BITMAP</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>BITMAP to release</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="release_screen" class="tsd-anchor"></a>
+					<h3>release_<wbr>screen</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">release_<wbr>screen<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/alegemaate/allegro-ts/blob/3f912bd/src/bitmap.ts#L414">bitmap.ts:414</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Release screen</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>remarks</dt>
+									<dd><p>Calls release_bitmap on global screen object</p>
+									</dd>
+									<dt>allegro</dt>
+									<dd><p>1.10.24</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="save_bitmap" class="tsd-anchor"></a>
+					<h3>save_<wbr>bitmap</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">save_<wbr>bitmap<span class="tsd-signature-symbol">(</span>filename<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, bmp<span class="tsd-signature-symbol">: </span><a href="../interfaces/types.bitmap.html" class="tsd-signature-type" data-tsd-kind="Interface">BITMAP</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span>, pal<span class="tsd-signature-symbol">?: </span><a href="../interfaces/types.rgb.html" class="tsd-signature-type" data-tsd-kind="Interface">RGB</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/alegemaate/allegro-ts/blob/3f912bd/src/bitmap.ts#L791">bitmap.ts:791</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Save BITMAP to file</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>remarks</dt>
+									<dd><p>Save a bitmap by simulating a click on a dataurl link</p>
+									</dd>
+									<dt>allegro</dt>
+									<dd><p>1.11.9</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>filename: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>File to save to</p>
+									</div>
+								</li>
+								<li>
+									<h5>bmp: <a href="../interfaces/types.bitmap.html" class="tsd-signature-type" data-tsd-kind="Interface">BITMAP</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>BITMAP to save</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> pal: <a href="../interfaces/types.rgb.html" class="tsd-signature-type" data-tsd-kind="Interface">RGB</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>PALETTE to use when saving</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="save_bmp" class="tsd-anchor"></a>
+					<h3>save_<wbr>bmp</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">save_<wbr>bmp<span class="tsd-signature-symbol">(</span>filename<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, bmp<span class="tsd-signature-symbol">: </span><a href="../interfaces/types.bitmap.html" class="tsd-signature-type" data-tsd-kind="Interface">BITMAP</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span>, pal<span class="tsd-signature-symbol">?: </span><a href="../interfaces/types.rgb.html" class="tsd-signature-type" data-tsd-kind="Interface">RGB</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/alegemaate/allegro-ts/blob/3f912bd/src/bitmap.ts#L820">bitmap.ts:820</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Save BITMAP to file</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>remarks</dt>
+									<dd><p>Alias for save_bitmap</p>
+									</dd>
+									<dt>allegro</dt>
+									<dd><p>1.11.10</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>filename: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>File to save to</p>
+									</div>
+								</li>
+								<li>
+									<h5>bmp: <a href="../interfaces/types.bitmap.html" class="tsd-signature-type" data-tsd-kind="Interface">BITMAP</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>BITMAP to save</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> pal: <a href="../interfaces/types.rgb.html" class="tsd-signature-type" data-tsd-kind="Interface">RGB</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>PALETTE to use when saving</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="save_bmp_pf" class="tsd-anchor"></a>
+					<h3>save_<wbr>bmp_<wbr>pf</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">save_<wbr>bmp_<wbr>pf<span class="tsd-signature-symbol">(</span>f<span class="tsd-signature-symbol">: </span><a href="../interfaces/types.packfile.html" class="tsd-signature-type" data-tsd-kind="Interface">PACKFILE</a>, bmp<span class="tsd-signature-symbol">: </span><a href="../interfaces/types.bitmap.html" class="tsd-signature-type" data-tsd-kind="Interface">BITMAP</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span>, pal<span class="tsd-signature-symbol">?: </span><a href="../interfaces/types.rgb.html" class="tsd-signature-type" data-tsd-kind="Interface">RGB</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/alegemaate/allegro-ts/blob/3f912bd/src/bitmap.ts#L842">bitmap.ts:842</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Save BITMAP to packfile</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>remarks</dt>
+									<dd><p>Not implemented</p>
+									</dd>
+									<dt>allegro</dt>
+									<dd><p>1.11.11</p>
+									</dd>
+									<dt>alpha</dt>
+									<dd></dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>f: <a href="../interfaces/types.packfile.html" class="tsd-signature-type" data-tsd-kind="Interface">PACKFILE</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>PACKFILE to save to</p>
+									</div>
+								</li>
+								<li>
+									<h5>bmp: <a href="../interfaces/types.bitmap.html" class="tsd-signature-type" data-tsd-kind="Interface">BITMAP</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>BITMAP to save</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> pal: <a href="../interfaces/types.rgb.html" class="tsd-signature-type" data-tsd-kind="Interface">RGB</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>PALETTE to use when saving</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="save_pcx" class="tsd-anchor"></a>
+					<h3>save_<wbr>pcx</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">save_<wbr>pcx<span class="tsd-signature-symbol">(</span>filename<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, bmp<span class="tsd-signature-symbol">: </span><a href="../interfaces/types.bitmap.html" class="tsd-signature-type" data-tsd-kind="Interface">BITMAP</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span>, pal<span class="tsd-signature-symbol">?: </span><a href="../interfaces/types.rgb.html" class="tsd-signature-type" data-tsd-kind="Interface">RGB</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/alegemaate/allegro-ts/blob/3f912bd/src/bitmap.ts#L864">bitmap.ts:864</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Save PCX to file</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>remarks</dt>
+									<dd><p>Alias of save_bitmap</p>
+									</dd>
+									<dt>allegro</dt>
+									<dd><p>1.11.12</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>filename: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>File to save to</p>
+									</div>
+								</li>
+								<li>
+									<h5>bmp: <a href="../interfaces/types.bitmap.html" class="tsd-signature-type" data-tsd-kind="Interface">BITMAP</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>BITMAP to save</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> pal: <a href="../interfaces/types.rgb.html" class="tsd-signature-type" data-tsd-kind="Interface">RGB</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>PALETTE to use when saving</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="save_pcx_pf" class="tsd-anchor"></a>
+					<h3>save_<wbr>pcx_<wbr>pf</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">save_<wbr>pcx_<wbr>pf<span class="tsd-signature-symbol">(</span>f<span class="tsd-signature-symbol">: </span><a href="../interfaces/types.packfile.html" class="tsd-signature-type" data-tsd-kind="Interface">PACKFILE</a>, bmp<span class="tsd-signature-symbol">: </span><a href="../interfaces/types.bitmap.html" class="tsd-signature-type" data-tsd-kind="Interface">BITMAP</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span>, pal<span class="tsd-signature-symbol">?: </span><a href="../interfaces/types.rgb.html" class="tsd-signature-type" data-tsd-kind="Interface">RGB</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/alegemaate/allegro-ts/blob/3f912bd/src/bitmap.ts#L886">bitmap.ts:886</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Save PCX to packfile</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>remarks</dt>
+									<dd><p>Not implemented</p>
+									</dd>
+									<dt>allegro</dt>
+									<dd><p>1.11.13</p>
+									</dd>
+									<dt>alpha</dt>
+									<dd></dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>f: <a href="../interfaces/types.packfile.html" class="tsd-signature-type" data-tsd-kind="Interface">PACKFILE</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>PACKFILE to save to</p>
+									</div>
+								</li>
+								<li>
+									<h5>bmp: <a href="../interfaces/types.bitmap.html" class="tsd-signature-type" data-tsd-kind="Interface">BITMAP</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>BITMAP to save</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> pal: <a href="../interfaces/types.rgb.html" class="tsd-signature-type" data-tsd-kind="Interface">RGB</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>PALETTE to use when saving</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="save_tga" class="tsd-anchor"></a>
+					<h3>save_<wbr>tga</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">save_<wbr>tga<span class="tsd-signature-symbol">(</span>filename<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, bmp<span class="tsd-signature-symbol">: </span><a href="../interfaces/types.bitmap.html" class="tsd-signature-type" data-tsd-kind="Interface">BITMAP</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span>, pal<span class="tsd-signature-symbol">?: </span><a href="../interfaces/types.rgb.html" class="tsd-signature-type" data-tsd-kind="Interface">RGB</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/alegemaate/allegro-ts/blob/3f912bd/src/bitmap.ts#L908">bitmap.ts:908</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Save TGA to file</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>remarks</dt>
+									<dd><p>Alias of save_bitmap</p>
+									</dd>
+									<dt>allegro</dt>
+									<dd><p>1.11.14</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>filename: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>bmp: <a href="../interfaces/types.bitmap.html" class="tsd-signature-type" data-tsd-kind="Interface">BITMAP</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>BITMAP to save</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> pal: <a href="../interfaces/types.rgb.html" class="tsd-signature-type" data-tsd-kind="Interface">RGB</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>PALETTE to use when saving</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="save_tga_pf" class="tsd-anchor"></a>
+					<h3>save_<wbr>tga_<wbr>pf</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">save_<wbr>tga_<wbr>pf<span class="tsd-signature-symbol">(</span>f<span class="tsd-signature-symbol">: </span><a href="../interfaces/types.packfile.html" class="tsd-signature-type" data-tsd-kind="Interface">PACKFILE</a>, bmp<span class="tsd-signature-symbol">: </span><a href="../interfaces/types.bitmap.html" class="tsd-signature-type" data-tsd-kind="Interface">BITMAP</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span>, pal<span class="tsd-signature-symbol">?: </span><a href="../interfaces/types.rgb.html" class="tsd-signature-type" data-tsd-kind="Interface">RGB</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/alegemaate/allegro-ts/blob/3f912bd/src/bitmap.ts#L930">bitmap.ts:930</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Save TGA to Packfile</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>remarks</dt>
+									<dd><p>Not implemented</p>
+									</dd>
+									<dt>allegro</dt>
+									<dd><p>1.11.15</p>
+									</dd>
+									<dt>alpha</dt>
+									<dd></dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>f: <a href="../interfaces/types.packfile.html" class="tsd-signature-type" data-tsd-kind="Interface">PACKFILE</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>PACKFILE to save to</p>
+									</div>
+								</li>
+								<li>
+									<h5>bmp: <a href="../interfaces/types.bitmap.html" class="tsd-signature-type" data-tsd-kind="Interface">BITMAP</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>BITMAP to save</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> pal: <a href="../interfaces/types.rgb.html" class="tsd-signature-type" data-tsd-kind="Interface">RGB</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>PALETTE to use when saving</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="set_clip_rect" class="tsd-anchor"></a>
+					<h3>set_<wbr>clip_<wbr>rect</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">set_<wbr>clip_<wbr>rect<span class="tsd-signature-symbol">(</span>bitmap<span class="tsd-signature-symbol">: </span><a href="../interfaces/types.bitmap.html" class="tsd-signature-type" data-tsd-kind="Interface">BITMAP</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span>, x1<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, y1<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, x2<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, y2<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/alegemaate/allegro-ts/blob/3f912bd/src/bitmap.ts#L432">bitmap.ts:432</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Set clip rect</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>remarks</dt>
+									<dd><p>Overrite bitmap clipping rectangle</p>
+									</dd>
+									<dt>allegro</dt>
+									<dd><p>1.10.25</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>bitmap: <a href="../interfaces/types.bitmap.html" class="tsd-signature-type" data-tsd-kind="Interface">BITMAP</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>BITMAP to set clip on</p>
+									</div>
+								</li>
+								<li>
+									<h5>x1: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>left bound</p>
+									</div>
+								</li>
+								<li>
+									<h5>y1: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>top bound</p>
+									</div>
+								</li>
+								<li>
+									<h5>x2: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>right bound</p>
+									</div>
+								</li>
+								<li>
+									<h5>y2: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>bottom bound</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="set_clip_state" class="tsd-anchor"></a>
+					<h3>set_<wbr>clip_<wbr>state</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">set_<wbr>clip_<wbr>state<span class="tsd-signature-symbol">(</span>bitmap<span class="tsd-signature-symbol">: </span><a href="../interfaces/types.bitmap.html" class="tsd-signature-type" data-tsd-kind="Interface">BITMAP</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span>, state<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/alegemaate/allegro-ts/blob/3f912bd/src/bitmap.ts#L517">bitmap.ts:517</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Set clip state</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>remarks</dt>
+									<dd><p>Enables or disables clipping</p>
+									</dd>
+									<dt>allegro</dt>
+									<dd><p>1.10.28</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>bitmap: <a href="../interfaces/types.bitmap.html" class="tsd-signature-type" data-tsd-kind="Interface">BITMAP</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>BITMAP to modify clip state</p>
+									</div>
+								</li>
+								<li>
+									<h5>state: <span class="tsd-signature-type">boolean</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>clip state</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="set_color_conversion" class="tsd-anchor"></a>
+					<h3>set_<wbr>color_<wbr>conversion</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">set_<wbr>color_<wbr>conversion<span class="tsd-signature-symbol">(</span>mode<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/alegemaate/allegro-ts/blob/3f912bd/src/bitmap.ts#L976">bitmap.ts:976</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Set Color Conversion</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>remarks</dt>
+									<dd><p>Not implemented</p>
+									</dd>
+									<dt>allegro</dt>
+									<dd><p>1.11.17</p>
+									</dd>
+									<dt>alpha</dt>
+									<dd></dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>mode: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Set color conversion mode</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class=" ">
+						<a href="../modules.html">Exports</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="fileparser.html">File<wbr>Parser</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="allegro.html">allegro</a>
+					</li>
+					<li class="current tsd-kind-module">
+						<a href="bitmap.html">bitmap</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="color.html">color</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="config.html">config</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="configuration.html">configuration</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="core.html">core</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="debug.html">debug</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="font.html">font</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="gmplayer.html">gm<wbr>Player</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="graphics.html">graphics</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="keyboard.html">keyboard</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="math.html">math</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="midi.html">midi</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="midiparser.html">midi<wbr>Parser</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="mouse.html">mouse</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="palette.html">palette</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="primitives.html">primitives</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="sample.html">sample</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="sprintf.html">sprintf</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="sprites.html">sprites</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="timer.html">timer</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="touch.html">touch</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="types.html">types</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="unicode.html">unicode</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+					<li class=" tsd-kind-variable tsd-parent-kind-module">
+						<a href="bitmap.html#screen" class="tsd-kind-icon">screen</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="bitmap.html#acquire_bitmap" class="tsd-kind-icon">acquire_<wbr>bitmap</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="bitmap.html#acquire_screen" class="tsd-kind-icon">acquire_<wbr>screen</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="bitmap.html#add_clip_rect" class="tsd-kind-icon">add_<wbr>clip_<wbr>rect</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="bitmap.html#bitmap_color_depth" class="tsd-kind-icon">bitmap_<wbr>color_<wbr>depth</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="bitmap.html#bitmap_mask_color" class="tsd-kind-icon">bitmap_<wbr>mask_<wbr>color</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="bitmap.html#create_bitmap" class="tsd-kind-icon">create_<wbr>bitmap</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="bitmap.html#create_bitmap_ex" class="tsd-kind-icon">create_<wbr>bitmap_<wbr>ex</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="bitmap.html#create_sub_bitmap" class="tsd-kind-icon">create_<wbr>sub_<wbr>bitmap</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="bitmap.html#create_system_bitmap" class="tsd-kind-icon">create_<wbr>system_<wbr>bitmap</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="bitmap.html#create_video_bitmap" class="tsd-kind-icon">create_<wbr>video_<wbr>bitmap</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="bitmap.html#destroy_bitmap" class="tsd-kind-icon">destroy_<wbr>bitmap</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="bitmap.html#get_clip_rect" class="tsd-kind-icon">get_<wbr>clip_<wbr>rect</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="bitmap.html#get_clip_state" class="tsd-kind-icon">get_<wbr>clip_<wbr>state</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="bitmap.html#is_inside_bitmap" class="tsd-kind-icon">is_<wbr>inside_<wbr>bitmap</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="bitmap.html#is_linear_bitmap" class="tsd-kind-icon">is_<wbr>linear_<wbr>bitmap</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="bitmap.html#is_memory_bitmap" class="tsd-kind-icon">is_<wbr>memory_<wbr>bitmap</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="bitmap.html#is_planar_bitmap" class="tsd-kind-icon">is_<wbr>planar_<wbr>bitmap</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="bitmap.html#is_same_bitmap" class="tsd-kind-icon">is_<wbr>same_<wbr>bitmap</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="bitmap.html#is_screen_bitmap" class="tsd-kind-icon">is_<wbr>screen_<wbr>bitmap</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="bitmap.html#is_sub_bitmap" class="tsd-kind-icon">is_<wbr>sub_<wbr>bitmap</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="bitmap.html#is_system_bitmap" class="tsd-kind-icon">is_<wbr>system_<wbr>bitmap</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="bitmap.html#is_video_bitmap" class="tsd-kind-icon">is_<wbr>video_<wbr>bitmap</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="bitmap.html#load_bitmap" class="tsd-kind-icon">load_<wbr>bitmap</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="bitmap.html#load_bmp" class="tsd-kind-icon">load_<wbr>bmp</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="bitmap.html#load_bmp_pf" class="tsd-kind-icon">load_<wbr>bmp_<wbr>pf</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="bitmap.html#load_lbm" class="tsd-kind-icon">load_<wbr>lbm</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="bitmap.html#load_pcx" class="tsd-kind-icon">load_<wbr>pcx</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="bitmap.html#load_pcx_pf" class="tsd-kind-icon">load_<wbr>pcx_<wbr>pf</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="bitmap.html#load_tga" class="tsd-kind-icon">load_<wbr>tga</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="bitmap.html#load_tga_pf" class="tsd-kind-icon">load_<wbr>tga_<wbr>pf</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="bitmap.html#loadpng_init" class="tsd-kind-icon">loadpng_<wbr>init</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="bitmap.html#lock_bitmap" class="tsd-kind-icon">lock_<wbr>bitmap</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="bitmap.html#register_bitmap_file_type" class="tsd-kind-icon">register_<wbr>bitmap_<wbr>file_<wbr>type</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="bitmap.html#release_bitmap" class="tsd-kind-icon">release_<wbr>bitmap</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="bitmap.html#release_screen" class="tsd-kind-icon">release_<wbr>screen</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="bitmap.html#save_bitmap" class="tsd-kind-icon">save_<wbr>bitmap</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="bitmap.html#save_bmp" class="tsd-kind-icon">save_<wbr>bmp</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="bitmap.html#save_bmp_pf" class="tsd-kind-icon">save_<wbr>bmp_<wbr>pf</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="bitmap.html#save_pcx" class="tsd-kind-icon">save_<wbr>pcx</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="bitmap.html#save_pcx_pf" class="tsd-kind-icon">save_<wbr>pcx_<wbr>pf</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="bitmap.html#save_tga" class="tsd-kind-icon">save_<wbr>tga</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="bitmap.html#save_tga_pf" class="tsd-kind-icon">save_<wbr>tga_<wbr>pf</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="bitmap.html#set_clip_rect" class="tsd-kind-icon">set_<wbr>clip_<wbr>rect</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="bitmap.html#set_clip_state" class="tsd-kind-icon">set_<wbr>clip_<wbr>state</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="bitmap.html#set_color_conversion" class="tsd-kind-icon">set_<wbr>color_<wbr>conversion</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>
