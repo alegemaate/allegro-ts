@@ -196,7 +196,7 @@ export function hook_config_section(
   section: string,
   intgetter: (name: string, def: number) => void,
   stringgetter: (name: string, def: string) => void,
-  stringsetter: (name: string, value: string) => void
+  stringsetter: (name: string, value: string) => void,
 ): void {
   void section;
   void intgetter;
@@ -236,7 +236,7 @@ export function config_is_hooked(section: number): boolean {
 export function get_config_string(
   section: string,
   name: string,
-  def: string
+  def: string,
 ): string {
   return config.data[section]?.[name] ?? def;
 }
@@ -257,7 +257,7 @@ export function get_config_string(
 export function get_config_int(
   section: string,
   name: string,
-  def: number
+  def: number,
 ): number {
   const data = config.data[section]?.[name];
   return typeof data === "string" ? parseInt(data, 10) : def;
@@ -279,7 +279,7 @@ export function get_config_int(
 export function get_config_hex(
   section: string,
   name: string,
-  def: number
+  def: number,
 ): number {
   const data = config.data[section]?.[name];
   return typeof data === "string" ? parseInt(data, 10) : def;
@@ -301,7 +301,7 @@ export function get_config_hex(
 export function get_config_float(
   section: string,
   name: string,
-  def: number
+  def: number,
 ): number {
   const data = config.data[section]?.[name];
   return typeof data === "string" ? parseFloat(data) : def;
@@ -323,7 +323,7 @@ export function get_config_float(
 export function get_config_id(
   section: string,
   name: string,
-  def: string
+  def: string,
 ): string {
   return config.data[section]?.[name] ?? def;
 }
@@ -375,7 +375,7 @@ export function get_config_text(msg: string): string {
 export function set_config_string(
   section: string,
   name: string,
-  val: string
+  val: string,
 ): void {
   if (!section) {
     config.data[section] = {};
@@ -398,7 +398,7 @@ export function set_config_string(
 export function set_config_int(
   section: string,
   name: string,
-  val: number
+  val: number,
 ): void {
   if (!section) {
     config.data[section] = {};
@@ -421,7 +421,7 @@ export function set_config_int(
 export function set_config_hex(
   section: string,
   name: string,
-  val: number
+  val: number,
 ): void {
   if (!section) {
     config.data[section] = {};
@@ -444,7 +444,7 @@ export function set_config_hex(
 export function set_config_float(
   section: string,
   name: string,
-  val: number
+  val: number,
 ): void {
   if (!section) {
     config.data[section] = {};
@@ -467,7 +467,7 @@ export function set_config_float(
 export function set_config_id(
   section: string,
   name: string,
-  val: number
+  val: number,
 ): void {
   if (!section) {
     config.data[section] = {};

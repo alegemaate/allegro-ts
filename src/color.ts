@@ -129,7 +129,7 @@ export function makecol_depth(
   color_depth: number,
   r: number,
   g: number,
-  b: number
+  b: number,
 ): number {
   switch (color_depth) {
     case 8:
@@ -160,7 +160,7 @@ export function makeacol_depth(
   r: number,
   g: number,
   b: number,
-  a: number
+  a: number,
 ): number {
   switch (color_depth) {
     case 8:
@@ -211,7 +211,7 @@ export function makecol15_dither(
   g: number,
   b: number,
   x: number,
-  y: number
+  y: number,
 ): number {
   void x;
   void y;

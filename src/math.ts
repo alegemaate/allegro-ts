@@ -88,7 +88,7 @@ export function scaleclamp(
   min: number,
   max: number,
   min2: number,
-  max2: number
+  max2: number,
 ): number {
   let cmp_val = min2 + ((value - min) / (max - min)) * (max2 - min2);
   if (max2 > min2) {

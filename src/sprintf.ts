@@ -11,7 +11,8 @@ const re = {
   not_json: /[^j]/u,
   text: /^[^\x25]+/u,
   modulo: /^\x25{2}/u,
-  placeholder: /^\x25(?:([1-9]\d*)\$|\(([^)]+)\))?(\+)?(0|'[^$])?(-)?(\d+)?(?:\.(\d+))?([b-gijostTuvxX])/u,
+  placeholder:
+    /^\x25(?:([1-9]\d*)\$|\(([^)]+)\))?(\+)?(0|'[^$])?(-)?(\d+)?(?:\.(\d+))?([b-gijostTuvxX])/u,
   key: /^([a-z_][a-z_\d]*)/i,
   key_access: /^\.([a-z_][a-z_\d]*)/iu,
   index_access: /^\[(\d+)\]/u,
@@ -54,8 +55,8 @@ function sprintf_format(parse_tree: any, argv: (number | string)[]) {
               sprintf(
                 '[sprintf] Cannot access property "%s" of undefined value "%s"',
                 ph.keys[k],
-                ph.keys[k - 1]
-              )
+                ph.keys[k - 1],
+              ),
             );
           }
           arg = arg[ph.keys[k]];
@@ -82,7 +83,7 @@ function sprintf_format(parse_tree: any, argv: (number | string)[]) {
         isNaN(arg)
       ) {
         throw new TypeError(
-          sprintf("[sprintf] expecting number but found %T", arg)
+          sprintf("[sprintf] expecting number but found %T", arg),
         );
       }
 
@@ -171,8 +172,8 @@ function sprintf_format(parse_tree: any, argv: (number | string)[]) {
         output += ph.align
           ? sign + arg + pad
           : pad_character === "0"
-          ? sign + pad + arg
-          : pad + sign + arg;
+            ? sign + pad + arg
+            : pad + sign + arg;
       }
     }
   }
@@ -205,7 +206,7 @@ function sprintf_parse(fmt: string) {
           field_list.push(field_match[1]);
           while (
             (replacement_field = replacement_field.substring(
-              field_match[0]?.length ?? 0
+              field_match[0]?.length ?? 0,
             )) !== ""
           ) {
             if (
@@ -218,7 +219,7 @@ function sprintf_parse(fmt: string) {
               field_list.push(field_match[1]);
             } else {
               throw new SyntaxError(
-                "[sprintf] failed to parse named argument key"
+                "[sprintf] failed to parse named argument key",
               );
             }
           }
@@ -231,7 +232,7 @@ function sprintf_parse(fmt: string) {
       }
       if (arg_names === 3) {
         throw new Error(
-          "[sprintf] mixing positional and named placeholders is not (yet) supported"
+          "[sprintf] mixing positional and named placeholders is not (yet) supported",
         );
       }
 

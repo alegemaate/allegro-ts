@@ -49,7 +49,7 @@ export const MIDI_DIGMID = 1;
 export function install_sound(
   digi: number,
   midi: number,
-  cfg_path?: string | null
+  cfg_path?: string | null,
 ): number {
   void digi;
   void midi;
@@ -207,7 +207,7 @@ export function play_sample(
   vol = 255,
   pan = 127,
   freq = 1000,
-  loop = false
+  loop = false,
 ): void {
   if (!_context) {
     return;
@@ -239,7 +239,7 @@ export function adjust_sample(
   vol: number,
   pan: number,
   freq: number,
-  loop: boolean
+  loop: boolean,
 ): void {
   sample.pan.pan.value = pan / 127.0 - 1.0;
   sample.gain.gain.value = vol / 255.0;

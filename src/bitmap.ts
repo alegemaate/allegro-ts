@@ -15,8 +15,8 @@ import { BITMAP, CLIPPING_RECTANGLE, PACKFILE, RGB } from "./types";
 export const screen: BITMAP = {
   w: 0,
   h: 0,
-  canvas: (null as unknown) as HTMLCanvasElement,
-  context: (null as unknown) as CanvasRenderingContext2D,
+  canvas: null as unknown as HTMLCanvasElement,
+  context: null as unknown as CanvasRenderingContext2D,
   ready: false,
   type: "bmp",
   clipping: false,
@@ -87,7 +87,7 @@ export function create_bitmap(width: number, height: number): BITMAP {
 export function create_bitmap_ex(
   color_depth: number,
   width: number,
-  height: number
+  height: number,
 ): BITMAP {
   void color_depth;
   return create_bitmap(width, height);
@@ -113,7 +113,7 @@ export function create_sub_bitmap(
   x: number,
   y: number,
   width: number,
-  height: number
+  height: number,
 ): BITMAP | null {
   if (!parent) {
     return null;
@@ -237,7 +237,7 @@ export function bitmap_mask_color(bmp: BITMAP | undefined): number {
  */
 export function is_same_bitmap(
   bmp1: BITMAP | undefined,
-  bmp2: BITMAP | undefined
+  bmp2: BITMAP | undefined,
 ): boolean {
   if (!bmp1 || !bmp2) {
     return false;
@@ -434,7 +434,7 @@ export function set_clip_rect(
   x1: number,
   y1: number,
   x2: number,
-  y2: number
+  y2: number,
 ): void {
   if (!bitmap) {
     return;
@@ -460,7 +460,7 @@ export function set_clip_rect(
  * @allegro 1.10.26
  */
 export function get_clip_rect(
-  bitmap: BITMAP | undefined
+  bitmap: BITMAP | undefined,
 ): CLIPPING_RECTANGLE | null {
   if (!bitmap) {
     return null;
@@ -490,7 +490,7 @@ export function add_clip_rect(
   x1: number,
   y1: number,
   x2: number,
-  y2: number
+  y2: number,
 ): void {
   if (!bitmap) {
     return;
@@ -516,7 +516,7 @@ export function add_clip_rect(
  */
 export function set_clip_state(
   bitmap: BITMAP | undefined,
-  state: boolean
+  state: boolean,
 ): void {
   if (!bitmap) {
     return;
@@ -565,7 +565,7 @@ export function is_inside_bitmap(
   bmp: BITMAP | undefined,
   x: number,
   y: number,
-  clip: number
+  clip: number,
 ): boolean {
   if (!bmp) {
     return false;
@@ -647,7 +647,7 @@ export function load_bitmap(filename: string, pal?: RGB): BITMAP {
       0,
       0,
       bmp.canvas.width,
-      bmp.canvas.height
+      bmp.canvas.height,
     );
     for (let i = 0; i < imageData.data.length; i += 4) {
       // MAGIC PINK DETECTED!
@@ -791,7 +791,7 @@ export function load_tga_pf(f: PACKFILE, pal?: RGB): void {
 export function save_bitmap(
   filename: string,
   bmp: BITMAP | undefined,
-  pal?: RGB
+  pal?: RGB,
 ): void {
   if (!bmp) {
     return;
@@ -820,7 +820,7 @@ export function save_bitmap(
 export function save_bmp(
   filename: string,
   bmp: BITMAP | undefined,
-  pal?: RGB
+  pal?: RGB,
 ): void {
   save_bitmap(filename, bmp, pal);
 }
@@ -842,7 +842,7 @@ export function save_bmp(
 export function save_bmp_pf(
   f: PACKFILE,
   bmp: BITMAP | undefined,
-  pal?: RGB
+  pal?: RGB,
 ): void {
   void f;
   void bmp;
@@ -864,7 +864,7 @@ export function save_bmp_pf(
 export function save_pcx(
   filename: string,
   bmp: BITMAP | undefined,
-  pal?: RGB
+  pal?: RGB,
 ): void {
   save_bitmap(filename, bmp, pal);
 }
@@ -886,7 +886,7 @@ export function save_pcx(
 export function save_pcx_pf(
   f: PACKFILE,
   bmp: BITMAP | undefined,
-  pal?: RGB
+  pal?: RGB,
 ): void {
   void f;
   void bmp;
@@ -908,7 +908,7 @@ export function save_pcx_pf(
 export function save_tga(
   filename: string,
   bmp: BITMAP | undefined,
-  pal?: RGB
+  pal?: RGB,
 ): void {
   save_bitmap(filename, bmp, pal);
 }
@@ -930,7 +930,7 @@ export function save_tga(
 export function save_tga_pf(
   f: PACKFILE,
   bmp: BITMAP | undefined,
-  pal?: RGB
+  pal?: RGB,
 ): void {
   void f;
   void bmp;
@@ -954,7 +954,7 @@ export function save_tga_pf(
 export function register_bitmap_file_type(
   ext: string,
   load: (filename: string, pal?: RGB) => BITMAP | undefined,
-  save: (filename: string, pal?: RGB) => number
+  save: (filename: string, pal?: RGB) => number,
 ): void {
   void ext;
   void load;

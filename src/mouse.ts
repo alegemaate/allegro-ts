@@ -182,7 +182,7 @@ export function select_mouse_cursor(cursor: number): void {
  */
 export function set_mouse_cursor_bitmap(
   cursor: number,
-  bmp: BITMAP | null
+  bmp: BITMAP | null,
 ): void {
   _cursors[cursor] = bmp;
 }
@@ -298,7 +298,7 @@ export function scare_mouse_area(
   x: number,
   y: number,
   w: number,
-  h: number
+  h: number,
 ): void {
   void x;
   void y;
@@ -396,7 +396,7 @@ export function set_mouse_range(
   x1: number,
   y1: number,
   x2: number,
-  y2: number
+  y2: number,
 ): void {
   void x1;
   void y1;
@@ -534,7 +534,7 @@ export function _mouse_loop_reset(): void {
         screen,
         cursor,
         mouse_x - _mouse_focus_x,
-        mouse_y - _mouse_focus_y
+        mouse_y - _mouse_focus_y,
       );
       screen.canvas.style.cursor = "none";
     } else {

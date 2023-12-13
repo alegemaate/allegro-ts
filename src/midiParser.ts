@@ -101,7 +101,7 @@ export const parseMidi = (buffer: ArrayBuffer): MidiData | null => {
 
   // 8 bits bytes file data array
   const file = new FileParser(
-    new DataView(uint8Data.buffer, uint8Data.byteOffset, uint8Data.byteLength)
+    new DataView(uint8Data.buffer, uint8Data.byteOffset, uint8Data.byteLength),
   );
 
   // Check header
@@ -110,8 +110,8 @@ export const parseMidi = (buffer: ArrayBuffer): MidiData | null => {
   if (headerValidation !== 0x4d546864) {
     log(
       `Header validation failed (not MIDI standard or file corrupt), code: 0x${headerValidation.toString(
-        16
-      )}`
+        16,
+      )}`,
     );
     return null;
   }
@@ -177,8 +177,8 @@ export const parseMidi = (buffer: ArrayBuffer): MidiData | null => {
     if (headerValidation !== 0x4d54726b) {
       log(
         `Header validation failed (not MIDI standard or file corrupt), code: 0x${headerValidation.toString(
-          16
-        )}`
+          16,
+        )}`,
       );
       return null;
     }
@@ -242,7 +242,7 @@ export const parseMidi = (buffer: ArrayBuffer): MidiData | null => {
         // Read event
         if (!getRegularData(type, channel, time, track, file)) {
           log(
-            `Unknown event 0x${type.toString(16)} detected! Reading cancelled!`
+            `Unknown event 0x${type.toString(16)} detected! Reading cancelled!`,
           );
           return null;
         }
@@ -264,7 +264,7 @@ function getRegularData(
   channel: number,
   time: number,
   track: MidiTrack,
-  file: FileParser
+  file: FileParser,
 ): boolean {
   switch (type) {
     // System Exclusive Events
@@ -340,7 +340,7 @@ function getMetaData(
   type: number,
   time: number,
   track: MidiTrack,
-  file: FileParser
+  file: FileParser,
 ): void {
   // Get meta event length
   const metaEventLength = file.readIntVLV();
@@ -439,7 +439,7 @@ function getMetaData(
     default:
       // Just move pointer
       log(
-        `Unimplemented meta event, 0x${type.toString(16)} detected! Skipped.`
+        `Unimplemented meta event, 0x${type.toString(16)} detected! Skipped.`,
       );
       file.movePointer(metaEventLength);
   }

@@ -81,7 +81,7 @@ export function remove_keyboard(): number {
  */
 export function install_keyboard_hooks(
   keypressed: () => void,
-  readkey: () => void
+  readkey: () => void,
 ): void {
   void keypressed;
   void readkey;

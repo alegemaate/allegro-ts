@@ -107,7 +107,7 @@ export function play_midi(midi: MIDI | null, loop: boolean): void {
 export function play_looped_midi(
   midi: MIDI,
   loop_start: number,
-  loop_end: number
+  loop_end: number,
 ): number {
   void midi;
   midi_loop_start = loop_start;
@@ -240,7 +240,7 @@ export let midi_loop_end = 0;
 export function midi_msg_callback(
   msg: number,
   byte1: number,
-  byte2: number
+  byte2: number,
 ): void {
   void msg;
   void byte1;
