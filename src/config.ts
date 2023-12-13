@@ -36,7 +36,7 @@ export function _set_loop_interval(interval: number): void {
 export function install_allegro(
   system_id: number,
   errno_ptr: number,
-  atexit_ptr: () => void
+  atexit_ptr: () => void,
 ): number {
   void system_id;
   void errno_ptr;

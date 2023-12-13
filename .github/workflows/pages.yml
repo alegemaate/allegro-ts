@@ -3,36 +3,38 @@ name: Deploy Site
 on:
   push:
     branches:
-      - master
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
 jobs:
   build:
     name: Deploy Site
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
-      - name: Restore node modules from cache
-        uses: actions/cache@v2
+      - uses: actions/configure-pages@v4
+
+      - uses: actions/setup-node@v4
         with:
-          path: ~/.cache/yarn
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: ${{ runner.os }}-yarn-
+          node-version: 20
+          cache: yarn
 
-      - name: Install Dependencies
-        run: yarn --frozen-lockfile
+      - run: yarn install --frozen-lockfile
 
-      - name: Create documents
-        run: yarn docs
+      - run: yarn docs
 
-      - name: Add no jekyll
-        run: touch docs/.nojekyll
-
-      - name: Deploy to Pages
-        uses: JamesIves/github-pages-deploy-action@3.7.1
+      - uses: actions/upload-pages-artifact@v2
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH: gh-pages
-          FOLDER: docs
-          SINGLE_COMMIT: true
+          path: ./docs
+
+      - uses: actions/deploy-pages@v3
+        id: deployment

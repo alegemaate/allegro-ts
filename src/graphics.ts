@@ -134,7 +134,7 @@ export function set_gfx_mode(
   w: number,
   h: number,
   v_w = 0,
-  v_h = 0
+  v_h = 0,
 ): number {
   // NOOP
   void v_w;
@@ -250,7 +250,7 @@ let _switch_mode = SWITCH_PAUSE;
  */
 export function set_display_switch_callback(
   dir: number,
-  cb: () => void
+  cb: () => void,
 ): number {
   // Limit at 8
   if (_switch_in_callbacks.length + _switch_out_callbacks.length >= 8) {
@@ -455,7 +455,7 @@ export function show_video_bitmap(bmp: BITMAP | undefined): void {
  * @allegro 1.9.19
  */
 export function request_video_bitmap(
-  bmp: BITMAP | undefined
+  bmp: BITMAP | undefined,
 ): BITMAP | undefined {
   return bmp;
 }

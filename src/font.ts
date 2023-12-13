@@ -22,7 +22,7 @@ let _num_fonts = 0;
  */
 export function register_font_file_type(
   ext: string,
-  load: (filename: string, pal: RGB, param: string) => void
+  load: (filename: string, pal: RGB, param: string) => void,
 ): void {
   void ext;
   void load;
@@ -302,7 +302,7 @@ export function textout_ex(
   x: number,
   y: number,
   colour: number,
-  bg: number
+  bg: number,
 ): void {
   _textout(bitmap, f, s, x, y, colour, bg, "left");
 }
@@ -330,7 +330,7 @@ export function textout_centre_ex(
   x: number,
   y: number,
   colour: number,
-  bg: number
+  bg: number,
 ): void {
   _textout(bitmap, f, s, x, y, colour, bg, "center");
 }
@@ -358,7 +358,7 @@ export function textout_right_ex(
   x: number,
   y: number,
   colour: number,
-  bg: number
+  bg: number,
 ): void {
   _textout(bitmap, f, s, x, y, colour, bg, "right");
 }
@@ -386,7 +386,7 @@ export function textout_justify_ex(
   x: number,
   y: number,
   colour: number,
-  bg: number
+  bg: number,
 ): void {
   _textout(bitmap, f, s, x, y, colour, bg, "center");
 }
@@ -536,7 +536,7 @@ function _textout(
   y: number,
   colour: number,
   bg: number,
-  text_align: "center" | "left" | "right"
+  text_align: "center" | "left" | "right",
 ): void {
   if (!bitmap) {
     return;
@@ -557,7 +557,7 @@ function _textout(
           y,
           x - length / 2 + length,
           y + height * 1.2,
-          bg
+          bg,
         );
         break;
       case "right":
@@ -567,7 +567,7 @@ function _textout(
           y,
           x - length + length,
           y + height * 1.2,
-          bg
+          bg,
         );
         break;
       case "left":

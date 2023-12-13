@@ -227,7 +227,7 @@ export function remove_int(proc: () => void): void {
 export function install_param_int(
   procedure: () => void,
   param: string,
-  speed: number
+  speed: number,
 ): void {
   install_param_int_ex(procedure, param, speed);
 }
@@ -249,7 +249,7 @@ export function install_param_int(
 export function install_param_int_ex(
   procedure: () => void,
   param: string,
-  speed: number
+  speed: number,
 ): void {
   void procedure;
   void param;
@@ -312,7 +312,7 @@ export async function rest(time: number): Promise<void> {
  */
 export async function rest_callback(
   time: number,
-  callback?: () => void
+  callback?: () => void,
 ): Promise<void> {
   if (!callback) {
     return rest(time);

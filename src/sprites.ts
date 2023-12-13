@@ -26,7 +26,7 @@ export function blit(
   dest_x: number,
   dest_y: number,
   width: number,
-  height: number
+  height: number,
 ): void {
   if (!source || !dest) {
     return;
@@ -40,7 +40,7 @@ export function blit(
     dest_x,
     dest_y,
     width,
-    height
+    height,
   );
 }
 
@@ -73,7 +73,7 @@ export function stretch_blit(
   dest_x: number,
   dest_y: number,
   dest_width: number,
-  dest_height: number
+  dest_height: number,
 ): void {
   if (!source || !dest) {
     return;
@@ -87,7 +87,7 @@ export function stretch_blit(
     dest_x,
     dest_y,
     dest_width,
-    dest_height
+    dest_height,
   );
 }
 
@@ -109,7 +109,7 @@ export function masked_blit(
   dest_x: number,
   dest_y: number,
   width: number,
-  height: number
+  height: number,
 ): void {
   void sprite;
   void dest;
@@ -141,7 +141,7 @@ export function masked_stretch_blit(
   dest_x: number,
   dest_y: number,
   dest_w: number,
-  dest_h: number
+  dest_h: number,
 ): void {
   void sprite;
   void dest;
@@ -172,7 +172,7 @@ export function draw_sprite(
   bmp: BITMAP | undefined,
   sprite: BITMAP | undefined,
   x: number,
-  y: number
+  y: number,
 ): void {
   if (!sprite || !bmp) {
     return;
@@ -201,7 +201,7 @@ export function stretch_sprite(
   x: number,
   y: number,
   w: number,
-  h: number
+  h: number,
 ): void {
   if (!bmp || !sprite) {
     return;
@@ -226,7 +226,7 @@ export function draw_sprite_v_flip(
   bmp: BITMAP | undefined,
   sprite: BITMAP | undefined,
   x: number,
-  y: number
+  y: number,
 ): void {
   if (!bmp || !sprite) {
     return;
@@ -256,7 +256,7 @@ export function draw_sprite_h_flip(
   bmp: BITMAP | undefined,
   sprite: BITMAP | undefined,
   x: number,
-  y: number
+  y: number,
 ): void {
   if (!bmp || !sprite) {
     return;
@@ -286,7 +286,7 @@ export function draw_sprite_vh_flip(
   bmp: BITMAP | undefined,
   sprite: BITMAP | undefined,
   x: number,
-  y: number
+  y: number,
 ): void {
   if (!bmp || !sprite) {
     return;
@@ -318,7 +318,7 @@ export function draw_trans_sprite(
   bmp: BITMAP | undefined,
   sprite: BITMAP | undefined,
   x: number,
-  y: number
+  y: number,
 ): void {
   draw_sprite(bmp, sprite, x, y);
 }
@@ -344,7 +344,7 @@ export function draw_lit_sprite(
   sprite: BITMAP | undefined,
   x: number,
   y: number,
-  color: number
+  color: number,
 ): void {
   void color;
   draw_sprite(bmp, sprite, x, y);
@@ -377,7 +377,7 @@ export function draw_gouraud_sprite(
   c1: number,
   c2: number,
   c3: number,
-  c4: number
+  c4: number,
 ): void {
   void c1;
   void c2;
@@ -402,7 +402,7 @@ export function draw_character_ex(
   x: number,
   y: number,
   color: number,
-  bg: number
+  bg: number,
 ): void {
   void color;
   void bg;
@@ -429,7 +429,7 @@ export function rotate_sprite(
   sprite: BITMAP | undefined,
   x: number,
   y: number,
-  angle: number
+  angle: number,
 ): void {
   if (!bmp || !sprite) {
     return;
@@ -463,7 +463,7 @@ export function rotate_sprite_v_flip(
   sprite: BITMAP | undefined,
   x: number,
   y: number,
-  angle: number
+  angle: number,
 ): void {
   if (!bmp || !sprite) {
     return;
@@ -503,7 +503,7 @@ export function rotate_scaled_sprite(
   x: number,
   y: number,
   angle: number,
-  scale: number
+  scale: number,
 ): void {
   if (!bmp || !sprite) {
     return;
@@ -540,7 +540,7 @@ export function rotate_scaled_sprite_v_flip(
   x: number,
   y: number,
   angle: number,
-  scale: number
+  scale: number,
 ): void {
   if (!bmp || !sprite) {
     return;
@@ -582,7 +582,7 @@ export function pivot_sprite(
   y: number,
   cx: number,
   cy: number,
-  angle: number
+  angle: number,
 ): void {
   if (!bmp || !sprite) {
     return;
@@ -619,7 +619,7 @@ export function pivot_sprite_v_flip(
   y: number,
   cx: number,
   cy: number,
-  angle: number
+  angle: number,
 ): void {
   if (!bmp || !sprite) {
     return;
@@ -660,7 +660,7 @@ export function pivot_scaled_sprite(
   cx: number,
   cy: number,
   angle: number,
-  scale: number
+  scale: number,
 ): void {
   if (!bmp || !sprite) {
     return;
@@ -701,7 +701,7 @@ export function pivot_scaled_sprite_v_flip(
   cx: number,
   cy: number,
   angle: number,
-  scale: number
+  scale: number,
 ): void {
   if (!bmp || !sprite) {
     return;

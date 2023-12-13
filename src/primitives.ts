@@ -31,7 +31,7 @@ export function clear_bitmap(bitmap: BITMAP | undefined): void {
  */
 export function clear_to_color(
   bitmap: BITMAP | undefined,
-  colour: number
+  colour: number,
 ): void {
   if (!bitmap) {
     return;
@@ -58,7 +58,7 @@ export function putpixel(
   bmp: BITMAP | undefined,
   x: number,
   y: number,
-  c: number
+  c: number,
 ): void {
   if (!bmp) {
     return;
@@ -84,7 +84,7 @@ export function _putpixel(
   bmp: BITMAP | undefined,
   x: number,
   y: number,
-  c: number
+  c: number,
 ): void {
   putpixel(bmp, x, y, c);
 }
@@ -106,7 +106,7 @@ export function _putpixel15(
   bmp: BITMAP | undefined,
   x: number,
   y: number,
-  c: number
+  c: number,
 ): void {
   putpixel(bmp, x, y, c);
 }
@@ -128,7 +128,7 @@ export function _putpixel16(
   bmp: BITMAP | undefined,
   x: number,
   y: number,
-  c: number
+  c: number,
 ): void {
   putpixel(bmp, x, y, c);
 }
@@ -150,7 +150,7 @@ export function _putpixel24(
   bmp: BITMAP | undefined,
   x: number,
   y: number,
-  c: number
+  c: number,
 ): void {
   putpixel(bmp, x, y, c);
 }
@@ -172,7 +172,7 @@ export function _putpixel32(
   bmp: BITMAP | undefined,
   x: number,
   y: number,
-  c: number
+  c: number,
 ): void {
   putpixel(bmp, x, y, c);
 }
@@ -194,7 +194,7 @@ export function _putpixel32(
 export function getpixel(
   bmp: BITMAP | undefined,
   x: number,
-  y: number
+  y: number,
 ): number {
   if (!bmp || x < 0 || y < 0 || x >= bmp.w || y >= bmp.h) {
     return -1;
@@ -226,7 +226,7 @@ export function getpixel(
 export function _getpixel(
   bmp: BITMAP | undefined,
   x: number,
-  y: number
+  y: number,
 ): number {
   return getpixel(bmp, x, y);
 }
@@ -248,7 +248,7 @@ export function _getpixel(
 export function _getpixel15(
   bmp: BITMAP | undefined,
   x: number,
-  y: number
+  y: number,
 ): number {
   return getpixel(bmp, x, y);
 }
@@ -270,7 +270,7 @@ export function _getpixel15(
 export function _getpixel16(
   bmp: BITMAP | undefined,
   x: number,
-  y: number
+  y: number,
 ): number {
   return getpixel(bmp, x, y);
 }
@@ -292,7 +292,7 @@ export function _getpixel16(
 export function _getpixel24(
   bmp: BITMAP | undefined,
   x: number,
-  y: number
+  y: number,
 ): number {
   return getpixel(bmp, x, y);
 }
@@ -314,7 +314,7 @@ export function _getpixel24(
 export function _getpixel32(
   bmp: BITMAP | undefined,
   x: number,
-  y: number
+  y: number,
 ): number {
   return getpixel(bmp, x, y);
 }
@@ -338,7 +338,7 @@ export function vline(
   x: number,
   y1: number,
   y2: number,
-  colour: number
+  colour: number,
 ): void {
   if (!bitmap) {
     return;
@@ -366,7 +366,7 @@ export function hline(
   x1: number,
   y: number,
   x2: number,
-  colour: number
+  colour: number,
 ): void {
   if (!bitmap) {
     return;
@@ -392,7 +392,7 @@ export function do_line(
   x2: number,
   y2: number,
   d: number,
-  proc: (bmp: BITMAP, x: number, y: number, d: number) => void
+  proc: (bmp: BITMAP, x: number, y: number, d: number) => void,
 ): void {
   void bitmap;
   void x1;
@@ -424,7 +424,7 @@ export function line(
   y1: number,
   x2: number,
   y2: number,
-  colour: number
+  colour: number,
 ): void {
   if (!bitmap) {
     return;
@@ -457,7 +457,7 @@ export function fastline(
   y1: number,
   x2: number,
   y2: number,
-  colour: number
+  colour: number,
 ): void {
   line(bitmap, x1, y1, x2, y2, colour);
 }
@@ -486,7 +486,7 @@ export function triangle(
   y2: number,
   x3: number,
   y3: number,
-  colour: number
+  colour: number,
 ): void {
   if (!bitmap) {
     return;
@@ -517,7 +517,7 @@ export function polygon(
   bitmap: BITMAP | undefined,
   vertices: number,
   points: number[],
-  colour: number
+  colour: number,
 ): void {
   if (!bitmap) {
     return;
@@ -553,7 +553,7 @@ export function rect(
   y1: number,
   x2: number,
   y2: number,
-  colour: number
+  colour: number,
 ): void {
   if (!bitmap) {
     return;
@@ -583,7 +583,7 @@ export function rectfill(
   y1: number,
   x2: number,
   y2: number,
-  colour: number
+  colour: number,
 ): void {
   if (!bitmap) {
     return;
@@ -608,7 +608,7 @@ export function do_circle(
   y: number,
   radius: number,
   d: number,
-  proc: (bmp: BITMAP, x: number, y: number, d: number) => void
+  proc: (bmp: BITMAP, x: number, y: number, d: number) => void,
 ): void {
   void bmp;
   void x;
@@ -637,7 +637,7 @@ export function circle(
   x: number,
   y: number,
   radius: number,
-  colour: number
+  colour: number,
 ): void {
   if (!bitmap) {
     return;
@@ -667,7 +667,7 @@ export function circlefill(
   x: number,
   y: number,
   radius: number,
-  colour: number
+  colour: number,
 ): void {
   if (!bitmap) {
     return;
@@ -702,7 +702,7 @@ export function do_ellipse(
   rx: number,
   ry: number,
   d: number,
-  proc: (bmp: BITMAP, x: number, y: number, d: number) => void
+  proc: (bmp: BITMAP, x: number, y: number, d: number) => void,
 ): void {
   void bitmap;
   void x;
@@ -734,7 +734,7 @@ export function ellipse(
   y: number,
   rx: number,
   ry: number,
-  colour: number
+  colour: number,
 ): void {
   if (!bitmap) {
     return;
@@ -770,7 +770,7 @@ export function ellipsefill(
   y: number,
   rx: number,
   ry: number,
-  colour: number
+  colour: number,
 ): void {
   if (!bitmap) {
     return;
@@ -812,7 +812,7 @@ export function do_arc(
   a2: number,
   r: number,
   d: number,
-  proc: (bmp: BITMAP, x: number, y: number, d: number) => void
+  proc: (bmp: BITMAP, x: number, y: number, d: number) => void,
 ): void {
   void bitmap;
   void x;
@@ -850,7 +850,7 @@ export function arc(
   ang1: number,
   ang2: number,
   r: number,
-  colour: number
+  colour: number,
 ): void {
   if (!bitmap) {
     return;
@@ -884,7 +884,7 @@ export function calc_spline(
   points: number[],
   npts: number,
   x: number,
-  y: number
+  y: number,
 ): void {
   void points;
   void npts;
@@ -908,7 +908,7 @@ export function calc_spline(
 export function spline(
   bmp: BITMAP | undefined,
   points: number[],
-  color: number
+  color: number,
 ): void {
   if (!bmp || points.length !== 8) {
     return;
@@ -928,7 +928,7 @@ export function spline(
       cp_x2,
       points[i + 3] ?? 0,
       points[i + 2] ?? 0,
-      points[i + 3] ?? 0
+      points[i + 3] ?? 0,
     );
   }
 
@@ -954,7 +954,7 @@ export function floodfill(
   bmp: BITMAP | undefined,
   x: number,
   y: number,
-  color: number
+  color: number,
 ): void {
   void bmp;
   void x;
@@ -977,7 +977,7 @@ export function _fillstyle(bitmap: BITMAP | undefined, colour: number): void {
     return;
   }
   bitmap.context.fillStyle = `rgba(${getr(colour)},${getg(colour)},${getb(
-    colour
+    colour,
   )},${(255 - geta(colour)) / 255})`;
 }
 
@@ -995,13 +995,13 @@ export function _fillstyle(bitmap: BITMAP | undefined, colour: number): void {
 export function _strokestyle(
   bitmap: BITMAP | undefined,
   colour: number,
-  width = 1
+  width = 1,
 ): void {
   if (!bitmap) {
     return;
   }
   bitmap.context.lineWidth = width;
   bitmap.context.strokeStyle = `rgba(${getr(colour)},${getg(colour)},${getb(
-    colour
+    colour,
   )},${(255 - geta(colour)) / 255})`;
 }

@@ -35,6 +35,7 @@
     "@typescript-eslint/consistent-type-imports": 0,
     "@typescript-eslint/no-use-before-define": 0,
     "@typescript-eslint/no-shadow": 0,
+    "@typescript-eslint/max-params": 0,
 
     "tsdoc/syntax": 1
   }

@@ -48,7 +48,7 @@ export async function _progress_check(): Promise<void> {
         `Loading complete! Took ${(
           (Date.now() - _loader_init_time) /
           1000
-        ).toFixed(1)} seconds!`
+        ).toFixed(1)} seconds!`,
       );
       clear_bitmap(screen);
       loaded = true;
@@ -72,7 +72,7 @@ export function loading_bar(progress: number): void {
     SCREEN_H - 50,
     SCREEN_W - 10,
     SCREEN_H - 10,
-    makecol(255, 255, 255)
+    makecol(255, 255, 255),
   );
   rectfill(
     screen,
@@ -80,7 +80,7 @@ export function loading_bar(progress: number): void {
     SCREEN_H - 45,
     SCREEN_W - 15,
     SCREEN_H - 15,
-    makecol(0, 0, 0)
+    makecol(0, 0, 0),
   );
   rectfill(
     screen,
@@ -88,14 +88,14 @@ export function loading_bar(progress: number): void {
     SCREEN_H - 40,
     scaleclamp(progress, 0, 1, 20, SCREEN_W - 20),
     SCREEN_H - 20,
-    makecol(255, 255, 255)
+    makecol(255, 255, 255),
   );
 }
 
 // Setup browser specific allegro functions
 export function init_allegro_ts(
   canvas_id: string,
-  main?: () => Promise<number>
+  main?: () => Promise<number>,
 ): void {
   // Get canvas from document
   const cv = document.getElementById(canvas_id) as
@@ -137,7 +137,7 @@ async function boot(main: () => Promise<number>): Promise<void> {
     makecol(255, 255, 255),
     -1,
     "Program ended with code %i",
-    code
+    code,
   );
 }
 
