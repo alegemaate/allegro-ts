@@ -20,7 +20,7 @@
     "build": "tsc",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "docs": "typedoc src --out docs --name allegro.ts --readme README.md"
+    "docs": "typedoc ./src/**/*.ts --out docs --name allegro.ts --readme README.md"
   },
   "devDependencies": {
     "@types/node": "^20.10.4",
