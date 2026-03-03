@@ -3,8 +3,8 @@ import { defineConfig } from "vitepress";
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   srcDir: "src",
-
   title: "allegro-ts",
+  base: "/allegro-ts/",
   description:
     "Allegro 4 brought to the browser — a TypeScript game library mapping the Allegro 4 API to HTML5 Canvas.",
 
