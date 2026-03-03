@@ -31,7 +31,9 @@ export const _sample_state: _SampleState = {
     });
     _sample_state.samples = [];
     if (_sample_state.context) {
-      _sample_state.context.close();
+      _sample_state.context.close().catch((err: unknown) => {
+        log(`Error closing audio context: ${err}`);
+      });
     }
     _sample_state.context = null;
     _sample_state.context_gain = null;

@@ -1,17 +1,12 @@
 import { makecol } from "./color";
 import { GFX_AUTODETECT_WINDOWED, set_gfx_mode } from "./graphics";
-import { _font_state, textprintf_centre_ex } from "./font";
+import { textprintf_centre_ex } from "./font";
 import { clear_to_color } from "./primitives";
 import { _bitmap_state } from "./bitmap";
 
-import { _debug_state, _error, log, enable_debug } from "./debug";
-import { _keyboard_loop, _keyboard_state } from "./keyboard";
-import { _mouse_loop, _mouse_loop_reset, _mouse_state } from "./mouse";
-import { _timer_state } from "./timer";
-import { _config_state } from "./config";
-import { _configuration_state } from "./configuration";
-import { _midi_state } from "./midi";
-import { _sample_state } from "./sample";
+import { _error, log, enable_debug } from "./debug";
+import { _keyboard_loop } from "./keyboard";
+import { _mouse_loop, _mouse_loop_reset } from "./mouse";
 
 // Internal state management
 interface _CoreState {

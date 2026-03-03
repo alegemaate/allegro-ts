@@ -250,8 +250,6 @@ export const parseMidi = (buffer: ArrayBuffer): MidiData | null => {
     }
   }
 
-  console.log(parsedMidi);
-
   return parsedMidi;
 };
 

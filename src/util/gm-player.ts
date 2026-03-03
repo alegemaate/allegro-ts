@@ -190,7 +190,7 @@ const GM_PRESETS: GmPreset[] = [
 
 // MIDI note number -> Hz
 function noteToFreq(note: number): number {
-  return 440 * Math.pow(2, (note - 69) / 12);
+  return 440 * 2 ** ((note - 69) / 12);
 }
 
 /**
@@ -469,7 +469,9 @@ export class MidiSequencer {
       return;
     }
 
-    this._timer = setTimeout(() => this._runScheduler(), SCHEDULER_INTERVAL);
+    this._timer = setTimeout(() => {
+      this._runScheduler();
+    }, SCHEDULER_INTERVAL);
   }
 
   private _scheduleEvent(ev: PlaybackEvent, audioTime: number): void {
@@ -489,6 +491,7 @@ export class MidiSequencer {
       this._stopVoice(key, audioTime);
 
       const program = this._channelPrograms.get(ev.channel) ?? 0;
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       const preset = GM_PRESETS[program] ?? GM_PRESETS[0]!;
 
       const osc = this.ctx.createOscillator();
@@ -513,6 +516,7 @@ export class MidiSequencer {
       osc.start(audioTime);
 
       this.voices.set(key, { osc, env, release: preset.release });
+      // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
     } else if (ev.type === "noteOff") {
       this._stopVoice(key, audioTime);
     }

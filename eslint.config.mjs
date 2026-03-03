@@ -3,6 +3,8 @@ import eslintConfigPrettier from "eslint-config-prettier";
 import { defineConfig } from "eslint/config";
 import tseslint from "typescript-eslint";
 
+const __dirname = new URL(".", import.meta.url).pathname;
+
 /**
  * A custom ESLint configuration for libraries that use Next.js.
  *
@@ -10,7 +12,7 @@ import tseslint from "typescript-eslint";
  * */
 export default defineConfig(
   {
-    ignores: ["node_modules/**", "eslint.config.mjs", "dist/**", "vite.config.ts"],
+    ignores: ["node_modules/**", "eslint.config.mjs", "dist/**", "vite.config.ts", "docs/**"],
   },
   js.configs.all,
   tseslint.configs.strictTypeChecked,
@@ -40,6 +42,8 @@ export default defineConfig(
       "no-inline-comments": "off",
       "no-underscore-dangle": "off",
       "no-void": "off",
+      "capitalized-comments": "off",
+      "init-declarations": "off",
 
       "max-classes-per-file": "off",
       "class-methods-use-this": "off",

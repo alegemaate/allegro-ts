@@ -1,7 +1,6 @@
 import { makecol } from "./color";
 import { blit } from "./sprites";
 
-import { _core_state } from "./core";
 import { _error, log } from "./debug";
 
 import { type BITMAP, type CLIPPING_RECTANGLE, type PACKFILE, type RGB } from "./types";

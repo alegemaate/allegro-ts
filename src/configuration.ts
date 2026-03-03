@@ -1,7 +1,5 @@
 import { _error, log } from "./debug";
 
-import { _core_state } from "./core";
-
 import { type CONFIG, type CONFIG_DATA } from "./types";
 
 interface _ConfigurationState {
