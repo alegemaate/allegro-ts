@@ -30,31 +30,6 @@ Build core
 npm run build
 ```
 
-### Generate docs
-
-```sh
-npm run docs
-```
-
 ### Examples
 
-#### Classics
-
-- [exaccel](https://alegemaate.com/allegro-ts/al_exaccel)
-- [exbitmap](https://alegemaate.com/allegro-ts/al_exbitmap)
-- [exbuf](https://alegemaate.com/allegro-ts/al_exbuf)
-- [exconfig](https://alegemaate.com/allegro-ts/al_exconfig)
-- [exmidi](https://alegemaate.com/allegro-ts/al_exmidi)
-- [exmouse](https://alegemaate.com/allegro-ts/al_exmouse)
-- [exsample](https://alegemaate.com/allegro-ts/al_exsample)
-- [extimer](https://alegemaate.com/allegro-ts/al_extimer)
-
-#### Other
-
-- [Simple Bitmap](https://alegemaate.com/allegro-ts/exbmp)
-- [Bouncing Ball](https://alegemaate.com/allegro-ts/exbounce)
-- [Simple Game](https://alegemaate.com/allegro-ts/exgame)
-- [Hello World!](https://alegemaate.com/allegro-ts/exhello)
-- [Python Turtle](https://alegemaate.com/allegro-ts/exturtle)
-- [Save Bitmap](https://alegemaate.com/allegro-ts/exsavebmp)
-- [Stress Test](https://alegemaate.com/allegro-ts/stress)
+- [View All](https://alegemaate.com/allegro-ts/examples/)

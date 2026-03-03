@@ -1,82 +1,82 @@
 [
   {
     "id": "al_exaccel",
-    "href": "/examples/al_exaccel"
+    "href": "/allegro-ts/examples/al_exaccel"
   },
   {
     "id": "al_exbitmap",
-    "href": "/examples/al_exbitmap"
+    "href": "/allegro-ts/examples/al_exbitmap"
   },
   {
     "id": "al_exbuf",
-    "href": "/examples/al_exbuf"
+    "href": "/allegro-ts/examples/al_exbuf"
   },
   {
     "id": "al_exconfig",
-    "href": "/examples/al_exconfig"
+    "href": "/allegro-ts/examples/al_exconfig"
   },
   {
     "id": "al_exflip",
-    "href": "/examples/al_exflip"
+    "href": "/allegro-ts/examples/al_exflip"
   },
   {
     "id": "al_exhello",
-    "href": "/examples/al_exhello"
+    "href": "/allegro-ts/examples/al_exhello"
   },
   {
     "id": "al_exkeys",
-    "href": "/examples/al_exkeys"
+    "href": "/allegro-ts/examples/al_exkeys"
   },
   {
     "id": "al_exmidi",
-    "href": "/examples/al_exmidi"
+    "href": "/allegro-ts/examples/al_exmidi"
   },
   {
     "id": "al_exmouse",
-    "href": "/examples/al_exmouse"
+    "href": "/allegro-ts/examples/al_exmouse"
   },
   {
     "id": "al_exsample",
-    "href": "/examples/al_exsample"
+    "href": "/allegro-ts/examples/al_exsample"
   },
   {
     "id": "al_extimer",
-    "href": "/examples/al_extimer"
+    "href": "/allegro-ts/examples/al_extimer"
   },
   {
     "id": "exbmp",
-    "href": "/examples/exbmp"
+    "href": "/allegro-ts/examples/exbmp"
   },
   {
     "id": "exbounce",
-    "href": "/examples/exbounce"
+    "href": "/allegro-ts/examples/exbounce"
   },
   {
     "id": "exgame",
-    "href": "/examples/exgame"
+    "href": "/allegro-ts/examples/exgame"
   },
   {
     "id": "exhello",
-    "href": "/examples/exhello"
+    "href": "/allegro-ts/examples/exhello"
   },
   {
     "id": "exprimitives",
-    "href": "/examples/exprimitives"
+    "href": "/allegro-ts/examples/exprimitives"
   },
   {
     "id": "exsavebmp",
-    "href": "/examples/exsavebmp"
+    "href": "/allegro-ts/examples/exsavebmp"
   },
   {
     "id": "exturtle",
-    "href": "/examples/exturtle"
+    "href": "/allegro-ts/examples/exturtle"
   },
   {
     "id": "midi_2",
-    "href": "/examples/midi_2"
+    "href": "/allegro-ts/examples/midi_2"
   },
   {
     "id": "stress",
-    "href": "/examples/stress"
+    "href": "/allegro-ts/examples/stress"
   }
 ]

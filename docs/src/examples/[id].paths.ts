@@ -41,7 +41,7 @@ export default defineRoutes({
     const items = files
       .map((file) => path.basename(file, ".ts"))
       .sort()
-      .map((id) => ({ id, href: `/examples/${id}` }));
+      .map((id) => ({ id, href: `/allegro-ts/examples/${id}` }));
 
     const out = path.resolve(__dirname, "../examples.manifest.json");
     await fs.writeFile(out, JSON.stringify(items, null, 2), "utf-8");
