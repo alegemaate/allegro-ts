@@ -15,6 +15,5 @@ export * from "./primitives";
 export * from "./sample";
 export * from "./sprites";
 export * from "./timer";
-export * from "./touch";
 export * from "./types";
 export * from "./unicode";

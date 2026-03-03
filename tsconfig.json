@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "module": "commonjs",
-    "moduleResolution": "node",
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "bundler",
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
@@ -13,10 +13,9 @@
     "forceConsistentCasingInFileNames": true,
     "downlevelIteration": true,
     "lib": ["ESNext", "DOM"],
-    "outDir": "lib",
+    "outDir": "dist",
     "sourceMap": true,
-    "declaration": true,
-    "removeComments": true
+    "declaration": true
   },
-  "include": ["src"]
+  "include": ["src/**/*"]
 }

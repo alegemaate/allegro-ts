@@ -1,6 +1,6 @@
 import { geta, getb, getg, getr } from "./color";
 import { PI2, fix_to_rad } from "./math";
-import { BITMAP } from "./types";
+import { type BITMAP } from "./types";
 
 /**
  * Clear Bitmap
@@ -29,11 +29,8 @@ export function clear_bitmap(bitmap: BITMAP | undefined): void {
  *
  * @allegro 1.14.2
  */
-export function clear_to_color(
-  bitmap: BITMAP | undefined,
-  colour: number,
-): void {
-  if (!bitmap) {
+export function clear_to_color(bitmap: BITMAP | undefined, colour: number): void {
+  if (!bitmap?.context) {
     return;
   }
   bitmap.context.clearRect(0, 0, bitmap.w, bitmap.h);
@@ -54,13 +51,8 @@ export function clear_to_color(
  *
  * @allegro 1.14.3
  */
-export function putpixel(
-  bmp: BITMAP | undefined,
-  x: number,
-  y: number,
-  c: number,
-): void {
-  if (!bmp) {
+export function putpixel(bmp: BITMAP | undefined, x: number, y: number, c: number): void {
+  if (!bmp?.context) {
     return;
   }
   _fillstyle(bmp, c);
@@ -80,12 +72,7 @@ export function putpixel(
  *
  * @allegro 1.14.4
  */
-export function _putpixel(
-  bmp: BITMAP | undefined,
-  x: number,
-  y: number,
-  c: number,
-): void {
+export function _putpixel(bmp: BITMAP | undefined, x: number, y: number, c: number): void {
   putpixel(bmp, x, y, c);
 }
 
@@ -102,12 +89,7 @@ export function _putpixel(
  *
  * @allegro 1.14.4
  */
-export function _putpixel15(
-  bmp: BITMAP | undefined,
-  x: number,
-  y: number,
-  c: number,
-): void {
+export function _putpixel15(bmp: BITMAP | undefined, x: number, y: number, c: number): void {
   putpixel(bmp, x, y, c);
 }
 
@@ -124,12 +106,7 @@ export function _putpixel15(
  *
  * @allegro 1.14.4
  */
-export function _putpixel16(
-  bmp: BITMAP | undefined,
-  x: number,
-  y: number,
-  c: number,
-): void {
+export function _putpixel16(bmp: BITMAP | undefined, x: number, y: number, c: number): void {
   putpixel(bmp, x, y, c);
 }
 
@@ -146,12 +123,7 @@ export function _putpixel16(
  *
  * @allegro 1.14.4
  */
-export function _putpixel24(
-  bmp: BITMAP | undefined,
-  x: number,
-  y: number,
-  c: number,
-): void {
+export function _putpixel24(bmp: BITMAP | undefined, x: number, y: number, c: number): void {
   putpixel(bmp, x, y, c);
 }
 
@@ -168,12 +140,7 @@ export function _putpixel24(
  *
  * @allegro 1.14.4
  */
-export function _putpixel32(
-  bmp: BITMAP | undefined,
-  x: number,
-  y: number,
-  c: number,
-): void {
+export function _putpixel32(bmp: BITMAP | undefined, x: number, y: number, c: number): void {
   putpixel(bmp, x, y, c);
 }
 
@@ -191,12 +158,8 @@ export function _putpixel32(
  *
  * @allegro 1.14.5
  */
-export function getpixel(
-  bmp: BITMAP | undefined,
-  x: number,
-  y: number,
-): number {
-  if (!bmp || x < 0 || y < 0 || x >= bmp.w || y >= bmp.h) {
+export function getpixel(bmp: BITMAP | undefined, x: number, y: number): number {
+  if (!bmp?.context || x < 0 || y < 0 || x >= bmp.w || y >= bmp.h) {
     return -1;
   }
   const { data } = bmp.context.getImageData(x, y, 1, 1);
@@ -223,11 +186,7 @@ export function getpixel(
  *
  * @allegro 1.14.5
  */
-export function _getpixel(
-  bmp: BITMAP | undefined,
-  x: number,
-  y: number,
-): number {
+export function _getpixel(bmp: BITMAP | undefined, x: number, y: number): number {
   return getpixel(bmp, x, y);
 }
 
@@ -245,11 +204,7 @@ export function _getpixel(
  *
  * @allegro 1.14.5
  */
-export function _getpixel15(
-  bmp: BITMAP | undefined,
-  x: number,
-  y: number,
-): number {
+export function _getpixel15(bmp: BITMAP | undefined, x: number, y: number): number {
   return getpixel(bmp, x, y);
 }
 
@@ -267,11 +222,7 @@ export function _getpixel15(
  *
  * @allegro 1.14.5
  */
-export function _getpixel16(
-  bmp: BITMAP | undefined,
-  x: number,
-  y: number,
-): number {
+export function _getpixel16(bmp: BITMAP | undefined, x: number, y: number): number {
   return getpixel(bmp, x, y);
 }
 
@@ -289,11 +240,7 @@ export function _getpixel16(
  *
  * @allegro 1.14.5
  */
-export function _getpixel24(
-  bmp: BITMAP | undefined,
-  x: number,
-  y: number,
-): number {
+export function _getpixel24(bmp: BITMAP | undefined, x: number, y: number): number {
   return getpixel(bmp, x, y);
 }
 
@@ -311,11 +258,7 @@ export function _getpixel24(
  *
  * @allegro 1.14.5
  */
-export function _getpixel32(
-  bmp: BITMAP | undefined,
-  x: number,
-  y: number,
-): number {
+export function _getpixel32(bmp: BITMAP | undefined, x: number, y: number): number {
   return getpixel(bmp, x, y);
 }
 
@@ -340,7 +283,7 @@ export function vline(
   y2: number,
   colour: number,
 ): void {
-  if (!bitmap) {
+  if (!bitmap?.context) {
     return;
   }
   _fillstyle(bitmap, colour);
@@ -368,7 +311,7 @@ export function hline(
   x2: number,
   colour: number,
 ): void {
-  if (!bitmap) {
+  if (!bitmap?.context) {
     return;
   }
   _fillstyle(bitmap, colour);
@@ -379,11 +322,10 @@ export function hline(
  * Do line
  *
  * @remarks
- * Not implemented
+ * Calculates all the points along a line from (x1, y1) to (x2, y2),
+ * calling proc for each one. Suitable for use with putpixel().
  *
  * @allegro 1.14.9
- *
- * @alpha
  */
 export function do_line(
   bitmap: BITMAP | undefined,
@@ -394,13 +336,31 @@ export function do_line(
   d: number,
   proc: (bmp: BITMAP, x: number, y: number, d: number) => void,
 ): void {
-  void bitmap;
-  void x1;
-  void y1;
-  void x2;
-  void y2;
-  void d;
-  void proc;
+  if (!bitmap) {
+    return;
+  }
+  let cx = Math.round(x1);
+  let cy = Math.round(y1);
+  const ex = Math.round(x2);
+  const ey = Math.round(y2);
+  const dx = Math.abs(ex - cx);
+  const dy = Math.abs(ey - cy);
+  const sx = cx < ex ? 1 : -1;
+  const sy = cy < ey ? 1 : -1;
+  let err = dx - dy;
+  for (;;) {
+    proc(bitmap, cx, cy, d);
+    if (cx === ex && cy === ey) break;
+    const e2 = 2 * err;
+    if (e2 > -dy) {
+      err -= dy;
+      cx += sx;
+    }
+    if (e2 < dx) {
+      err += dx;
+      cy += sy;
+    }
+  }
 }
 
 /**
@@ -426,7 +386,7 @@ export function line(
   y2: number,
   colour: number,
 ): void {
-  if (!bitmap) {
+  if (!bitmap?.context) {
     return;
   }
   _strokestyle(bitmap, colour);
@@ -488,7 +448,7 @@ export function triangle(
   y3: number,
   colour: number,
 ): void {
-  if (!bitmap) {
+  if (!bitmap?.context) {
     return;
   }
   _fillstyle(bitmap, colour);
@@ -519,7 +479,7 @@ export function polygon(
   points: number[],
   colour: number,
 ): void {
-  if (!bitmap) {
+  if (!bitmap?.context) {
     return;
   }
   _fillstyle(bitmap, colour);
@@ -555,7 +515,7 @@ export function rect(
   y2: number,
   colour: number,
 ): void {
-  if (!bitmap) {
+  if (!bitmap?.context) {
     return;
   }
   _strokestyle(bitmap, colour);
@@ -585,7 +545,7 @@ export function rectfill(
   y2: number,
   colour: number,
 ): void {
-  if (!bitmap) {
+  if (!bitmap?.context) {
     return;
   }
   _fillstyle(bitmap, colour);
@@ -596,11 +556,10 @@ export function rectfill(
  * Do Circle
  *
  * @remarks
- * Not implemented
+ * Calculates all the points in a circle around (x, y) with the given radius,
+ * calling proc for each one. Suitable for use with putpixel().
  *
  * @allegro 1.14.16
- *
- * @alpha
  */
 export function do_circle(
   bmp: BITMAP | undefined,
@@ -610,12 +569,32 @@ export function do_circle(
   d: number,
   proc: (bmp: BITMAP, x: number, y: number, d: number) => void,
 ): void {
-  void bmp;
-  void x;
-  void y;
-  void radius;
-  void d;
-  void proc;
+  if (!bmp) {
+    return;
+  }
+  const plot = (px: number, py: number) => {
+    proc(bmp, px, py, d);
+  };
+  let cx = 0;
+  let cy = Math.round(radius);
+  let p = 1 - Math.round(radius);
+  while (cx <= cy) {
+    plot(x + cx, y + cy);
+    plot(x - cx, y + cy);
+    plot(x + cx, y - cy);
+    plot(x - cx, y - cy);
+    plot(x + cy, y + cx);
+    plot(x - cy, y + cx);
+    plot(x + cy, y - cx);
+    plot(x - cy, y - cx);
+    cx++;
+    if (p < 0) {
+      p += 2 * cx + 1;
+    } else {
+      cy--;
+      p += 2 * (cx - cy) + 1;
+    }
+  }
 }
 
 /**
@@ -639,7 +618,7 @@ export function circle(
   radius: number,
   colour: number,
 ): void {
-  if (!bitmap) {
+  if (!bitmap?.context) {
     return;
   }
   _strokestyle(bitmap, colour);
@@ -669,7 +648,7 @@ export function circlefill(
   radius: number,
   colour: number,
 ): void {
-  if (!bitmap) {
+  if (!bitmap?.context) {
     return;
   }
   _fillstyle(bitmap, colour);
@@ -682,18 +661,19 @@ export function circlefill(
  * Do Ellipse
  *
  * @remarks
- * Not implemented
+ * Calculates all the points in an ellipse around (x, y) with radii rx and ry,
+ * calling proc for each one. Uses the midpoint ellipse algorithm.
+ * Suitable for use with putpixel().
  *
  * @param bitmap - bitmap to be drawn to
  * @param x - centre point x coordinates
  * @param y - centre point y coordinates
- * @param rx - radius in y direction
- * @param ry - radius in x direction
- * @param colour - colour in 0xAARRGGBB format
+ * @param rx - horizontal radius
+ * @param ry - vertical radius
+ * @param d - value passed through to proc
+ * @param proc - callback called for each point on the ellipse
  *
  * @allegro 1.14.19
- *
- * @alpha
  */
 export function do_ellipse(
   bitmap: BITMAP | undefined,
@@ -704,13 +684,48 @@ export function do_ellipse(
   d: number,
   proc: (bmp: BITMAP, x: number, y: number, d: number) => void,
 ): void {
-  void bitmap;
-  void x;
-  void y;
-  void rx;
-  void ry;
-  void d;
-  void proc;
+  if (!bitmap) {
+    return;
+  }
+
+  const plot = (px: number, py: number) => {
+    proc(bitmap, px, py, d);
+  };
+
+  const rx2 = rx * rx;
+  const ry2 = ry * ry;
+  let cx = 0;
+  let cy = Math.round(ry);
+  // Region 1
+  let p = Math.round(ry2 - rx2 * ry + rx2 / 4);
+  while (2 * ry2 * cx < 2 * rx2 * cy) {
+    plot(x + cx, y + cy);
+    plot(x - cx, y + cy);
+    plot(x + cx, y - cy);
+    plot(x - cx, y - cy);
+    cx++;
+    if (p < 0) {
+      p += 2 * ry2 * cx + ry2;
+    } else {
+      cy--;
+      p += 2 * ry2 * cx - 2 * rx2 * cy + ry2;
+    }
+  }
+  // Region 2
+  p = Math.round(ry2 * (cx + 0.5) * (cx + 0.5) + rx2 * (cy - 1) * (cy - 1) - rx2 * ry2);
+  while (cy >= 0) {
+    plot(x + cx, y + cy);
+    plot(x - cx, y + cy);
+    plot(x + cx, y - cy);
+    plot(x - cx, y - cy);
+    cy--;
+    if (p > 0) {
+      p -= 2 * rx2 * cy + rx2;
+    } else {
+      cx++;
+      p += 2 * ry2 * cx - 2 * rx2 * cy + rx2;
+    }
+  }
 }
 
 /**
@@ -736,7 +751,7 @@ export function ellipse(
   ry: number,
   colour: number,
 ): void {
-  if (!bitmap) {
+  if (!bitmap?.context) {
     return;
   }
   _strokestyle(bitmap, colour);
@@ -772,7 +787,7 @@ export function ellipsefill(
   ry: number,
   colour: number,
 ): void {
-  if (!bitmap) {
+  if (!bitmap?.context) {
     return;
   }
   _fillstyle(bitmap, colour);
@@ -789,20 +804,21 @@ export function ellipsefill(
  * Do Arc
  *
  * @remarks
- * Not implemented
+ * Calculates all the points in a circular arc around (x, y) with radius r,
+ * going anticlockwise from angle a1 to a2. Angles are in Allegro fixed-point
+ * format where 256 equals a full circle. Calls proc for each point.
+ * Suitable for use with putpixel().
  *
  * @param bitmap - bitmap to be drawn to
  * @param x - centre point x coordinates
  * @param y - centre point y coordinates
- * @param a1 - angle 1 of arc
- * @param a2 - angle 2 of arc
+ * @param a1 - start angle in Allegro fixed-point format (256 = full circle)
+ * @param a2 - end angle in Allegro fixed-point format
  * @param r - radius of arc
  * @param d - parameter to pass to proc
  * @param proc - procedure to call per point
  *
  * @allegro 1.14.22
- *
- * @alpha
  */
 export function do_arc(
   bitmap: BITMAP | undefined,
@@ -814,14 +830,22 @@ export function do_arc(
   d: number,
   proc: (bmp: BITMAP, x: number, y: number, d: number) => void,
 ): void {
-  void bitmap;
-  void x;
-  void y;
-  void a1;
-  void a2;
-  void r;
-  void d;
-  void proc;
+  if (!bitmap) {
+    return;
+  }
+  // Normalise so a2 >= a1 (arc goes anticlockwise = increasing allegro angle)
+  let end = a2;
+  if (end < a1) {
+    end += 256;
+  }
+  const arcUnits = end - a1;
+  const steps = Math.max(Math.ceil((arcUnits / 256) * PI2 * r), 1);
+  for (let i = 0; i <= steps; i++) {
+    const angle = fix_to_rad(a1 + (arcUnits * i) / steps);
+    const px = Math.round(x + r * Math.cos(angle));
+    const py = Math.round(y + r * Math.sin(angle));
+    proc(bitmap, px, py, d);
+  }
 }
 
 /**
@@ -852,7 +876,7 @@ export function arc(
   r: number,
   colour: number,
 ): void {
-  if (!bitmap) {
+  if (!bitmap?.context) {
     return;
   }
   _strokestyle(bitmap, colour);
@@ -880,12 +904,7 @@ export function arc(
  *
  * @alpha
  */
-export function calc_spline(
-  points: number[],
-  npts: number,
-  x: number,
-  y: number,
-): void {
+export function calc_spline(points: number[], npts: number, x: number, y: number): void {
   void points;
   void npts;
   void x;
@@ -905,12 +924,8 @@ export function calc_spline(
  *
  * @allegro 1.14.25
  */
-export function spline(
-  bmp: BITMAP | undefined,
-  points: number[],
-  color: number,
-): void {
-  if (!bmp || points.length !== 8) {
+export function spline(bmp: BITMAP | undefined, points: number[], color: number): void {
+  if (!bmp?.context || points.length !== 8) {
     return;
   }
 
@@ -924,12 +939,7 @@ export function spline(
     const cp_x1 = (x_mid + (points[i] ?? 0)) / 2;
     const cp_x2 = (x_mid + (points[i + 2] ?? 0)) / 2;
     bmp.context.quadraticCurveTo(cp_x1, points[i + 1] ?? 0, x_mid, y_mid);
-    bmp.context.quadraticCurveTo(
-      cp_x2,
-      points[i + 3] ?? 0,
-      points[i + 2] ?? 0,
-      points[i + 3] ?? 0,
-    );
+    bmp.context.quadraticCurveTo(cp_x2, points[i + 3] ?? 0, points[i + 2] ?? 0, points[i + 3] ?? 0);
   }
 
   bmp.context.stroke();
@@ -939,7 +949,8 @@ export function spline(
  * Flood fill area
  *
  * @remarks
- * Not implemented
+ * Floodfills an enclosed area starting at (x, y) with the specified color.
+ * Uses a BFS approach on the raw canvas pixel data.
  *
  * @param bmp - Bitmap to draw to
  * @param x - X position to start fill
@@ -947,19 +958,68 @@ export function spline(
  * @param color - Color of fill
  *
  * @allegro 1.14.26
- *
- * @alpha
  */
-export function floodfill(
-  bmp: BITMAP | undefined,
-  x: number,
-  y: number,
-  color: number,
-): void {
-  void bmp;
-  void x;
-  void y;
-  void color;
+export function floodfill(bmp: BITMAP | undefined, x: number, y: number, color: number): void {
+  if (!bmp?.context) {
+    return;
+  }
+  const ix = Math.round(x);
+  const iy = Math.round(y);
+  if (ix < 0 || ix >= bmp.w || iy < 0 || iy >= bmp.h) {
+    return;
+  }
+  const imageData = bmp.context.getImageData(0, 0, bmp.w, bmp.h);
+  const { data } = imageData;
+  const { w, h } = bmp;
+  // Read target color from canvas pixel data (RGBA, alpha 255 = fully opaque)
+  const ti = (iy * w + ix) * 4;
+  const tr = data[ti] ?? 0;
+  const tg = data[ti + 1] ?? 0;
+  const tb = data[ti + 2] ?? 0;
+  const ta = data[ti + 3] ?? 0;
+  // Fill color in canvas RGBA format (Allegro alpha: 0=opaque → canvas: 255=opaque)
+  const fr = getr(color);
+  const fg = getg(color);
+  const fb = getb(color);
+  const fa = 255 - geta(color);
+  if (tr === fr && tg === fg && tb === fb && ta === fa) {
+    return;
+  }
+  const visited = new Uint8Array(w * h);
+  const queue: number[] = [iy * w + ix];
+  while (queue.length > 0) {
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    const pos = queue.pop()!;
+    if (visited[pos]) {
+      continue;
+    }
+
+    const px = pos % w;
+    const py = Math.trunc(pos / w);
+    const idx = pos * 4;
+    if (data[idx] !== tr || data[idx + 1] !== tg || data[idx + 2] !== tb || data[idx + 3] !== ta) {
+      continue;
+    }
+
+    visited[pos] = 1;
+    data[idx] = fr;
+    data[idx + 1] = fg;
+    data[idx + 2] = fb;
+    data[idx + 3] = fa;
+    if (px > 0) {
+      queue.push(pos - 1);
+    }
+    if (px < w - 1) {
+      queue.push(pos + 1);
+    }
+    if (py > 0) {
+      queue.push(pos - w);
+    }
+    if (py < h - 1) {
+      queue.push(pos + w);
+    }
+  }
+  bmp.context.putImageData(imageData, 0, 0);
 }
 
 /**
@@ -973,7 +1033,7 @@ export function floodfill(
  *
  */
 export function _fillstyle(bitmap: BITMAP | undefined, colour: number): void {
-  if (!bitmap) {
+  if (!bitmap?.context) {
     return;
   }
   bitmap.context.fillStyle = `rgba(${getr(colour)},${getg(colour)},${getb(
@@ -992,12 +1052,8 @@ export function _fillstyle(bitmap: BITMAP | undefined, colour: number): void {
  * @param width - Width of stroke (usually 1)
  *
  */
-export function _strokestyle(
-  bitmap: BITMAP | undefined,
-  colour: number,
-  width = 1,
-): void {
-  if (!bitmap) {
+export function _strokestyle(bitmap: BITMAP | undefined, colour: number, width = 1): void {
+  if (!bitmap?.context) {
     return;
   }
   bitmap.context.lineWidth = width;

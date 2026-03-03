@@ -1,8 +1,35 @@
 import { log } from "./debug";
-import { TIMER } from "./types";
+import { type TIMER } from "./types";
+
+interface _TimerState {
+  timers: TIMER[];
+  controller: AbortController;
+  retrace_count: number;
+  init: () => void;
+  destroy: () => void;
+}
+
+export const _timer_state: _TimerState = {
+  timers: [],
+  controller: new AbortController(),
+  retrace_count: 0,
+  init: (): void => {
+    _timer_state.timers = [];
+    _timer_state.controller = new AbortController();
+    _timer_state.retrace_count = 0;
+  },
+  destroy: (): void => {
+    _timer_state.controller.abort();
+    _timer_state.controller = new AbortController();
+    _timer_state.timers.forEach((t) => {
+      window.clearInterval(t.id);
+    });
+    _timer_state.timers.length = 0;
+  },
+};
 
 /**
- * Timer driverr
+ * Timer driver
  *
  * @remarks
  * The driver we use for timer routines.
@@ -29,7 +56,7 @@ export const timer_driver = {
 export function install_timer(): number {
   // Setup retrace_counter
   install_int(() => {
-    retrace_count += 1;
+    _timer_state.retrace_count += 1;
   }, 1000 / 70);
 
   return 0;
@@ -144,8 +171,8 @@ export function BPM_TO_TIMER(bpm: number): number {
  */
 export function install_int_ex(proc: () => void, speed: number): void {
   const timer_id = window.setInterval(proc, speed);
-  _installed_timers.push({ timer: proc, id: timer_id });
-  log(`Added insterrupt #${timer_id} at ${speed}msec isntervals!`);
+  _timer_state.timers.push({ timer: proc, id: timer_id });
+  log(`Added interrupt #${timer_id} at ${speed}msec intervals!`);
 }
 
 /**
@@ -201,11 +228,11 @@ export function END_OF_FUNCTION(function_name: (...args: never) => void): void {
  * @allegro 1.6.8
  */
 export function remove_int(proc: () => void): void {
-  _installed_timers.forEach((timer, index) => {
+  _timer_state.timers.forEach((timer, index) => {
     if (timer.timer === proc) {
       log(`Removing interrupt ${timer.id}!`);
       window.clearInterval(timer.id);
-      _installed_timers.splice(index, 1);
+      _timer_state.timers.splice(index, 1);
     }
   });
 }
@@ -224,11 +251,7 @@ export function remove_int(proc: () => void): void {
  *
  * @alpha
  */
-export function install_param_int(
-  procedure: () => void,
-  param: string,
-  speed: number,
-): void {
+export function install_param_int(procedure: () => void, param: string, speed: number): void {
   install_param_int_ex(procedure, param, speed);
 }
 
@@ -246,11 +269,7 @@ export function install_param_int(
  *
  * @alpha
  */
-export function install_param_int_ex(
-  procedure: () => void,
-  param: string,
-  speed: number,
-): void {
+export function install_param_int_ex(procedure: () => void, param: string, speed: number): void {
   void procedure;
   void param;
   void speed;
@@ -280,7 +299,11 @@ export function remove_param_int(proc: () => void, param: string): void {
  *
  * @allegro 1.6.12
  */
-export let retrace_count = 0;
+export const retrace_count = {
+  get value(): number {
+    return _timer_state.retrace_count;
+  },
+};
 
 /**
  * Rest
@@ -294,8 +317,22 @@ export let retrace_count = 0;
  * @allegro 1.6.13
  */
 export async function rest(time: number): Promise<void> {
-  return new Promise((resolve) => {
-    setTimeout(resolve, time);
+  const { signal } = _timer_state.controller;
+
+  if (signal.aborted) {
+    throw new DOMException("Aborted", "AbortError");
+  }
+
+  return new Promise((resolve, reject) => {
+    const id = setTimeout(resolve, time);
+    signal.addEventListener(
+      "abort",
+      () => {
+        clearTimeout(id);
+        reject(new DOMException("Aborted", "AbortError"));
+      },
+      { once: true },
+    );
   });
 }
 
@@ -310,10 +347,7 @@ export async function rest(time: number): Promise<void> {
  *
  * @alpha
  */
-export async function rest_callback(
-  time: number,
-  callback?: () => void,
-): Promise<void> {
+export async function rest_callback(time: number, callback?: () => void): Promise<void> {
   if (!callback) {
     return rest(time);
   }
@@ -321,27 +355,3 @@ export async function rest_callback(
     setTimeout(resolve, time);
   });
 }
-
-/**
- * Timer Lookup
- *
- * @remarks
- * Look up timer by function
- *
- * @param proc - Procedure to lookup
- *
- * @internal
- */
-export function _timer_lookup(proc: () => void): TIMER | -1 {
-  return _installed_timers.find((t) => t.timer === proc) ?? -1;
-}
-
-/**
- * Installed timers
- *
- * @remarks
- * Internal list of installed timers
- *
- * @internal
- */
-const _installed_timers: TIMER[] = [];

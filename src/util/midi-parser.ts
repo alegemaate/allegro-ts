@@ -6,10 +6,8 @@
  *  Description  : MidiParser library reads .MID binary files, Base64 encoded MIDI Data,
  *  or UInt8 Arrays, and outputs as a readable and structured JS object.
  */
-import { log } from "./debug";
-import { FileParser } from "./FileParser";
-
-/* eslint-disable complexity */
+import { log } from "../debug";
+import { FileParser } from "./file-parser";
 
 interface MidiTrackEvent {
   time: number;
@@ -192,10 +190,14 @@ export const parseMidi = (buffer: ArrayBuffer): MidiData | null => {
     // Keep track of status bytes
     let lastStatusByte = -1;
 
+    // Accumulate absolute tick position from delta times
+    let currentTick = 0;
+
     // Loop until file has been parsed
     while (!endOfTrack) {
-      // Read time
-      const time = file.readIntVLV();
+      // Read delta time and accumulate to get absolute tick
+      currentTick += file.readIntVLV();
+      const time = currentTick;
 
       // Read status byte
       let statusByte = file.readInt(1);
@@ -241,14 +243,14 @@ export const parseMidi = (buffer: ArrayBuffer): MidiData | null => {
 
         // Read event
         if (!getRegularData(type, channel, time, track, file)) {
-          log(
-            `Unknown event 0x${type.toString(16)} detected! Reading cancelled!`,
-          );
+          log(`Unknown event 0x${type.toString(16)} detected! Reading cancelled!`);
           return null;
         }
       }
     }
   }
+
+  console.log(parsedMidi);
 
   return parsedMidi;
 };
@@ -288,7 +290,7 @@ function getRegularData(
     case 0x9:
       track.notes.push({
         time,
-        on: false,
+        on: true,
         note: file.readInt(1),
         velocity: file.readInt(1),
         channel,
@@ -336,12 +338,7 @@ function getRegularData(
  * @param trackEvent - Current track event
  * @param file - File parser
  */
-function getMetaData(
-  type: number,
-  time: number,
-  track: MidiTrack,
-  file: FileParser,
-): void {
+function getMetaData(type: number, time: number, track: MidiTrack, file: FileParser): void {
   // Get meta event length
   const metaEventLength = file.readIntVLV();
 
@@ -438,9 +435,7 @@ function getMetaData(
     // Not implemented
     default:
       // Just move pointer
-      log(
-        `Unimplemented meta event, 0x${type.toString(16)} detected! Skipped.`,
-      );
+      log(`Unimplemented meta event, 0x${type.toString(16)} detected! Skipped.`);
       file.movePointer(metaEventLength);
   }
 }

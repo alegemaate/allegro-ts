@@ -8,7 +8,7 @@
 
 ## An HTML5 game making library
 
-## [GitHub](https://github.com/alegemaate/allegro-ts) - [API](https://alegemaate.com/allegro-ts/) - [Examples](https://github.com/alegemaate/allegro-ts-examples/) - [Emscripten](https://github.com/alegemaate/allegro-ts-emscripten/)
+## [GitHub](https://github.com/alegemaate/allegro-ts) - [API](https://alegemaate.com/allegro-ts/) - [Emscripten](https://github.com/alegemaate/allegro-ts-emscripten/)
 
 ### What is allegro.ts?
 
@@ -21,17 +21,40 @@ This is based on [allegro.js](https://github.com/TheSos/allegrojs) an earlier pr
 Install packages
 
 ```sh
-yarn
+npm install
 ```
 
 Build core
 
 ```sh
-yarn build
+npm run build
 ```
 
 ### Generate docs
 
 ```sh
-yarn docs
+npm run docs
 ```
+
+### Examples
+
+#### Classics
+
+- [exaccel](https://alegemaate.com/allegro-ts/al_exaccel)
+- [exbitmap](https://alegemaate.com/allegro-ts/al_exbitmap)
+- [exbuf](https://alegemaate.com/allegro-ts/al_exbuf)
+- [exconfig](https://alegemaate.com/allegro-ts/al_exconfig)
+- [exmidi](https://alegemaate.com/allegro-ts/al_exmidi)
+- [exmouse](https://alegemaate.com/allegro-ts/al_exmouse)
+- [exsample](https://alegemaate.com/allegro-ts/al_exsample)
+- [extimer](https://alegemaate.com/allegro-ts/al_extimer)
+
+#### Other
+
+- [Simple Bitmap](https://alegemaate.com/allegro-ts/exbmp)
+- [Bouncing Ball](https://alegemaate.com/allegro-ts/exbounce)
+- [Simple Game](https://alegemaate.com/allegro-ts/exgame)
+- [Hello World!](https://alegemaate.com/allegro-ts/exhello)
+- [Python Turtle](https://alegemaate.com/allegro-ts/exturtle)
+- [Save Bitmap](https://alegemaate.com/allegro-ts/exsavebmp)
+- [Stress Test](https://alegemaate.com/allegro-ts/stress)

@@ -1,4 +1,4 @@
-import { MidiData } from "./midiParser";
+import { type MidiData } from "./util/midi-parser";
 
 // Special types
 export type CONFIG_DATA = Record<string, Record<string, string>>;
@@ -12,7 +12,6 @@ export type CONFIG_DATA = Record<string, Record<string, string>>;
 export interface CONFIG {
   file: string;
   data: CONFIG_DATA;
-  ready: boolean;
   type: "config";
 }
 
@@ -72,9 +71,8 @@ export type fixed = number;
 export interface BITMAP {
   w: number;
   h: number;
-  canvas: HTMLCanvasElement;
-  context: CanvasRenderingContext2D;
-  ready: boolean;
+  canvas: HTMLCanvasElement | null;
+  context: CanvasRenderingContext2D | null;
   type: "bmp";
   clipping_rect: CLIPPING_RECTANGLE;
   clipping: boolean;
@@ -478,7 +476,6 @@ export interface SAMPLE {
   gain: GainNode;
   buffer: AudioBuffer | null;
   pan: StereoPannerNode;
-  ready: boolean;
   type: "snd";
 }
 
@@ -491,7 +488,6 @@ export interface SAMPLE {
  */
 export interface MIDI {
   file: string;
-  ready: boolean;
   type: "midi";
   data: MidiData;
 }

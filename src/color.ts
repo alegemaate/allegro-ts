@@ -1,5 +1,5 @@
 // Internal color depth set to 32
-const _color_depth = 32;
+const _COLOR_DEPTH = 32;
 
 /**
  * Create packed color format from rgb in 8bit
@@ -114,7 +114,7 @@ export function makeacol32(r: number, g: number, b: number, a: number): number {
  * @allegro 1.13.3
  */
 export function makecol(r: number, g: number, b: number): number {
-  return makecol_depth(_color_depth, r, g, b);
+  return makecol_depth(_COLOR_DEPTH, r, g, b);
 }
 
 /**
@@ -125,12 +125,7 @@ export function makecol(r: number, g: number, b: number): number {
  *
  * @allegro 1.13.4
  */
-export function makecol_depth(
-  color_depth: number,
-  r: number,
-  g: number,
-  b: number,
-): number {
+export function makecol_depth(color_depth: number, r: number, g: number, b: number): number {
   switch (color_depth) {
     case 8:
       return makecol8(r, g, b);
@@ -193,7 +188,7 @@ export function makeacol_depth(
  * @allegro 1.13.5
  */
 export function makeacol(r: number, g: number, b: number, a: number): number {
-  return makeacol_depth(_color_depth, r, g, b, a);
+  return makeacol_depth(_COLOR_DEPTH, r, g, b, a);
 }
 
 /**
@@ -206,13 +201,7 @@ export function makeacol(r: number, g: number, b: number, a: number): number {
  *
  * @alpha
  */
-export function makecol15_dither(
-  r: number,
-  g: number,
-  b: number,
-  x: number,
-  y: number,
-): number {
+export function makecol15_dither(r: number, g: number, b: number, x: number, y: number): number {
   void x;
   void y;
   return makecol32(r, g, b);
@@ -375,7 +364,7 @@ export function geta32(c: number): number {
  * @allegro 1.13.9
  */
 export function getr(c: number): number {
-  return getr_depth(_color_depth, c);
+  return getr_depth(_COLOR_DEPTH, c);
 }
 
 /**
@@ -389,7 +378,7 @@ export function getr(c: number): number {
  * @allegro 1.13.9
  */
 export function getg(c: number): number {
-  return getg_depth(_color_depth, c);
+  return getg_depth(_COLOR_DEPTH, c);
 }
 
 /**
@@ -403,7 +392,7 @@ export function getg(c: number): number {
  * @allegro 1.13.9
  */
 export function getb(c: number): number {
-  return getb_depth(_color_depth, c);
+  return getb_depth(_COLOR_DEPTH, c);
 }
 
 /**
@@ -417,7 +406,7 @@ export function getb(c: number): number {
  * @allegro 1.13.9
  */
 export function geta(c: number): number {
-  return geta_depth(_color_depth, c);
+  return geta_depth(_COLOR_DEPTH, c);
 }
 
 /**

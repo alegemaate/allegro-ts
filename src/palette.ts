@@ -1,4 +1,4 @@
-import { PALETTE, RGB } from "./types";
+import { type PALETTE, type RGB } from "./types";
 
 /**
  * Set palette

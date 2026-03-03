@@ -1,8 +1,42 @@
 import { log } from "./debug";
-import { SAMPLE } from "./types";
 
-let _volume = 1.0;
-let _midi_volume = 1.0;
+import { type SAMPLE } from "./types";
+
+interface _SampleState {
+  volume: number;
+  midi_volume: number;
+  samples: SAMPLE[];
+  context: AudioContext | null;
+  context_gain: GainNode | null;
+  init: () => void;
+  destroy: () => void;
+}
+
+export const _sample_state: _SampleState = {
+  volume: 0,
+  midi_volume: 0,
+  samples: [],
+  context: null,
+  context_gain: null,
+  init: (): void => {
+    _sample_state.volume = 255;
+    _sample_state.midi_volume = 255;
+    _sample_state.samples = [];
+    _sample_state.context = null;
+    _sample_state.context_gain = null;
+  },
+  destroy: (): void => {
+    _sample_state.samples.forEach((s) => {
+      s.source.disconnect();
+    });
+    _sample_state.samples = [];
+    if (_sample_state.context) {
+      _sample_state.context.close();
+    }
+    _sample_state.context = null;
+    _sample_state.context_gain = null;
+  },
+};
 
 export const digi_driver = {
   id: 0,
@@ -10,20 +44,6 @@ export const digi_driver = {
   desc: "Browser DIGI",
   ascii_name: "Browser DIGI",
 };
-
-/**
- * Samples
- *
- * @remarks
- * Internal samples array
- *
- * @internal
- */
-const _samples: SAMPLE[] = [];
-
-// Audio context
-let _context: AudioContext | null = null;
-let _context_gain: GainNode | null = null;
 
 // Constants
 export const DIGI_AUTODETECT = -1;
@@ -46,18 +66,14 @@ export const MIDI_DIGMID = 1;
  *
  * @allegro 1.25.5
  */
-export function install_sound(
-  digi: number,
-  midi: number,
-  cfg_path?: string | null,
-): number {
+export function install_sound(digi: number, midi: number, cfg_path?: string | null): number {
   void digi;
   void midi;
   void cfg_path;
 
-  _context = new window.AudioContext();
-  _context_gain = _context.createGain();
-  _context_gain.connect(_context.destination);
+  _sample_state.context = new window.AudioContext();
+  _sample_state.context_gain = _sample_state.context.createGain();
+  _sample_state.context_gain.connect(_sample_state.context.destination);
 
   return 0;
 }
@@ -88,21 +104,21 @@ export function remove_sound(): void {
 export function set_volume(digi_volume: number, midi_volume: number): void {
   // Bound check
   if (digi_volume > 255) {
-    _volume = 255;
+    _sample_state.volume = 255;
   } else if (digi_volume >= 0) {
-    _volume = digi_volume;
+    _sample_state.volume = digi_volume;
   }
 
   // Bound check
   if (midi_volume > 255) {
-    _midi_volume = 255;
+    _sample_state.midi_volume = 255;
   } else if (midi_volume >= 0) {
-    _midi_volume = midi_volume;
+    _sample_state.midi_volume = midi_volume;
   }
 
   // Loop over samples
-  if (_context_gain) {
-    _context_gain.gain.value = _volume / 255;
+  if (_sample_state.context_gain) {
+    _sample_state.context_gain.gain.value = _sample_state.volume / 255;
   }
 }
 
@@ -116,7 +132,10 @@ export function set_volume(digi_volume: number, midi_volume: number): void {
  * @returns Object containing digi_volume and midi_volume
  */
 export function get_volume(): { digi_volume: number; midi_volume: number } {
-  return { digi_volume: _volume, midi_volume: _midi_volume };
+  return {
+    digi_volume: _sample_state.volume,
+    midi_volume: _sample_state.midi_volume,
+  };
 }
 
 /**
@@ -131,7 +150,7 @@ export function get_volume(): { digi_volume: number; midi_volume: number } {
  * @allegro 1.27.1
  */
 export async function load_sample(filename: string): Promise<SAMPLE> {
-  if (!_context || !_context_gain) {
+  if (!_sample_state.context || !_sample_state.context_gain) {
     throw new Error("Can not load audio without audio context");
   }
 
@@ -139,18 +158,17 @@ export async function load_sample(filename: string): Promise<SAMPLE> {
 
   const sample: SAMPLE = {
     file: filename,
-    source: _context.createBufferSource(),
-    gain: _context.createGain(),
+    source: _sample_state.context.createBufferSource(),
+    gain: _sample_state.context.createGain(),
     buffer: null,
-    pan: _context.createStereoPanner(),
-    ready: false,
+    pan: _sample_state.context.createStereoPanner(),
     type: "snd",
   };
 
   // Fetch sound
   const buffer = await fetch(filename)
     .then(async (response) => response.arrayBuffer())
-    .then(async (buffer) => _context?.decodeAudioData(buffer));
+    .then(async (buffer) => _sample_state.context?.decodeAudioData(buffer));
 
   if (!buffer) {
     throw new Error("Could not load sample");
@@ -159,8 +177,7 @@ export async function load_sample(filename: string): Promise<SAMPLE> {
   // Set it up
   sample.buffer = buffer;
   sample.pan.connect(sample.gain);
-  sample.gain.connect(_context_gain);
-  sample.ready = true;
+  sample.gain.connect(_sample_state.context_gain);
 
   log(`Sample ${filename} loaded!`);
 
@@ -178,11 +195,11 @@ export async function load_sample(filename: string): Promise<SAMPLE> {
  * @allegro 1.27.8
  */
 export function destroy_sample(spl: SAMPLE): void {
-  const index = _samples.findIndex((s) => s === spl);
+  const index = _sample_state.samples.indexOf(spl);
   if (index !== -1) {
     log(`Sample destroyed at index ${index}`);
     spl.source.disconnect();
-    _samples.splice(index, 1);
+    _sample_state.samples.splice(index, 1);
   }
 }
 
@@ -202,18 +219,12 @@ export function destroy_sample(spl: SAMPLE): void {
  *
  * @allegro 1.27.11
  */
-export function play_sample(
-  sample: SAMPLE,
-  vol = 255,
-  pan = 127,
-  freq = 1000,
-  loop = false,
-): void {
-  if (!_context) {
+export function play_sample(sample: SAMPLE, vol = 255, pan = 127, freq = 1000, loop = false): void {
+  if (!_sample_state.context) {
     return;
   }
 
-  sample.source = _context.createBufferSource();
+  sample.source = _sample_state.context.createBufferSource();
   sample.source.buffer = sample.buffer;
   sample.source.connect(sample.pan);
   adjust_sample(sample, vol, pan, freq, loop);
@@ -241,10 +252,10 @@ export function adjust_sample(
   freq: number,
   loop: boolean,
 ): void {
-  sample.pan.pan.value = pan / 127.0 - 1.0;
-  sample.gain.gain.value = vol / 255.0;
+  sample.pan.pan.value = pan / 127 - 1;
+  sample.gain.gain.value = vol / 255;
   sample.source.loop = loop;
-  sample.source.playbackRate.value = freq / 1000.0;
+  sample.source.playbackRate.value = freq / 1000;
 }
 
 /**

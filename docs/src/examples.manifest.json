@@ -1,0 +1,82 @@
+[
+  {
+    "id": "al_exaccel",
+    "href": "/examples/al_exaccel"
+  },
+  {
+    "id": "al_exbitmap",
+    "href": "/examples/al_exbitmap"
+  },
+  {
+    "id": "al_exbuf",
+    "href": "/examples/al_exbuf"
+  },
+  {
+    "id": "al_exconfig",
+    "href": "/examples/al_exconfig"
+  },
+  {
+    "id": "al_exflip",
+    "href": "/examples/al_exflip"
+  },
+  {
+    "id": "al_exhello",
+    "href": "/examples/al_exhello"
+  },
+  {
+    "id": "al_exkeys",
+    "href": "/examples/al_exkeys"
+  },
+  {
+    "id": "al_exmidi",
+    "href": "/examples/al_exmidi"
+  },
+  {
+    "id": "al_exmouse",
+    "href": "/examples/al_exmouse"
+  },
+  {
+    "id": "al_exsample",
+    "href": "/examples/al_exsample"
+  },
+  {
+    "id": "al_extimer",
+    "href": "/examples/al_extimer"
+  },
+  {
+    "id": "exbmp",
+    "href": "/examples/exbmp"
+  },
+  {
+    "id": "exbounce",
+    "href": "/examples/exbounce"
+  },
+  {
+    "id": "exgame",
+    "href": "/examples/exgame"
+  },
+  {
+    "id": "exhello",
+    "href": "/examples/exhello"
+  },
+  {
+    "id": "exprimitives",
+    "href": "/examples/exprimitives"
+  },
+  {
+    "id": "exsavebmp",
+    "href": "/examples/exsavebmp"
+  },
+  {
+    "id": "exturtle",
+    "href": "/examples/exturtle"
+  },
+  {
+    "id": "midi_2",
+    "href": "/examples/midi_2"
+  },
+  {
+    "id": "stress",
+    "href": "/examples/stress"
+  }
+]

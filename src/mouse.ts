@@ -1,7 +1,92 @@
-import { _allog, _error, log } from "./debug";
-import { screen } from "./bitmap";
-import { BITMAP } from "./types";
+import { _error, log } from "./debug";
+import { _bitmap_state } from ".";
+
 import { draw_sprite } from "./sprites";
+
+import { type BITMAP } from "./types";
+
+// Global state
+interface _MouseState {
+  // Is mouse installed?
+  installed: boolean;
+
+  // Cursor focus
+  focus_x: number;
+  focus_y: number;
+
+  // Custom cursors
+  hardware_cursor: boolean;
+  selected_cursor: number;
+  cursors: Record<number, BITMAP | null>;
+
+  // Mouse position
+  x: number;
+  y: number;
+  z: number;
+  w: number;
+  b: number;
+
+  // Motion
+  mx: number;
+  my: number;
+  mz: number;
+
+  // Last mouse x position
+  last_mouse_x: number;
+
+  // Last mouse y position
+  last_mouse_y: number;
+
+  // Last mouse wheel position
+  last_mouse_z: number;
+
+  // Is menu suppressed?
+  menu_supress: boolean;
+
+  // Initializes mouse state
+  init: () => void;
+}
+
+export const _mouse_state: _MouseState = {
+  installed: false,
+  focus_x: 0,
+  focus_y: 0,
+  hardware_cursor: false,
+  selected_cursor: 0,
+  cursors: {},
+  x: 0,
+  y: 0,
+  z: 0,
+  w: 0,
+  b: 0,
+  mx: 0,
+  my: 0,
+  mz: 0,
+  last_mouse_x: -1,
+  last_mouse_y: -1,
+  last_mouse_z: -1,
+  menu_supress: false,
+  init: (): void => {
+    _mouse_state.installed = false;
+    _mouse_state.focus_x = 0;
+    _mouse_state.focus_y = 0;
+    _mouse_state.hardware_cursor = false;
+    _mouse_state.selected_cursor = 0;
+    _mouse_state.cursors = {};
+    _mouse_state.x = 0;
+    _mouse_state.y = 0;
+    _mouse_state.z = 0;
+    _mouse_state.w = 0;
+    _mouse_state.b = 0;
+    _mouse_state.mx = 0;
+    _mouse_state.my = 0;
+    _mouse_state.mz = 0;
+    _mouse_state.last_mouse_x = -1;
+    _mouse_state.last_mouse_y = -1;
+    _mouse_state.last_mouse_z = -1;
+    _mouse_state.menu_supress = false;
+  },
+};
 
 // Types
 export const MOUSE_CURSOR_NONE = 0;
@@ -29,21 +114,6 @@ export const mouse_driver: MOUSE_DRIVER = {
   ascii_name: "No mouse",
 };
 
-// Cursors
-let _mouse_focus_x = 0;
-let _mouse_focus_y = 0;
-let _hardware_cursor = false;
-let _selected_cursor = MOUSE_CURSOR_ALLEGRO;
-
-const _cursors: Record<number, BITMAP | null> = {
-  [MOUSE_CURSOR_ALLEGRO]: null,
-  [MOUSE_CURSOR_ARROW]: null,
-  [MOUSE_CURSOR_BUSY]: null,
-  [MOUSE_CURSOR_EDIT]: null,
-  [MOUSE_CURSOR_NONE]: null,
-  [MOUSE_CURSOR_QUESTION]: null,
-};
-
 /**
  * Installs mouse handlers.
  *
@@ -55,8 +125,13 @@ const _cursors: Record<number, BITMAP | null> = {
  * @allegro 1.5.1
  */
 export function install_mouse(menu = false): number {
-  if (_mouse_installed) {
-    _allog("Mouse already installed");
+  if (_mouse_state.installed) {
+    log("Mouse already installed");
+    return -1;
+  }
+
+  if (!_bitmap_state.screen.canvas) {
+    _error("Screen canvas not found, cannot install mouse!");
     return -1;
   }
 
@@ -65,18 +140,22 @@ export function install_mouse(menu = false): number {
   mouse_driver.desc = "Allegro Browser Handler";
   mouse_driver.ascii_name = "Browser Mouse";
 
-  screen.canvas.addEventListener("mouseup", _mouseup);
-  screen.canvas.addEventListener("mousedown", _mousedown);
-  screen.canvas.addEventListener("mousemove", _mousemove);
-  screen.canvas.addEventListener("wheel", _mousewheel);
+  _bitmap_state.screen.canvas.addEventListener("mouseup", _mouseup);
+  _bitmap_state.screen.canvas.addEventListener("mousedown", _mousedown);
+  _bitmap_state.screen.canvas.addEventListener("mousemove", _mousemove);
+  _bitmap_state.screen.canvas.addEventListener("wheel", _mousewheel);
+
   if (menu) {
-    _menu_supress = true;
+    _mouse_state.menu_supress = true;
   } else {
-    screen.canvas.addEventListener("contextmenu", _mousemenu);
-    _menu_supress = false;
+    _bitmap_state.screen.canvas.addEventListener("contextmenu", _mousemenu);
+    _mouse_state.menu_supress = false;
   }
-  _mouse_installed = true;
+
+  _mouse_state.installed = true;
+
   log("Mouse installed!");
+
   return 0;
 }
 
@@ -89,17 +168,24 @@ export function install_mouse(menu = false): number {
  * @allegro 1.5.2
  */
 export function remove_mouse(): number {
-  if (!_mouse_installed) {
+  if (!_mouse_state.installed) {
     _error("You must call install_mouse before remove_mouse");
     return -1;
   }
-  screen.canvas.removeEventListener("mouseup", _mouseup);
-  screen.canvas.removeEventListener("mousedown", _mousedown);
-  screen.canvas.removeEventListener("mousemove", _mousemove);
-  screen.canvas.removeEventListener("wheel", _mousewheel);
-  if (_menu_supress)
-    screen.canvas.removeEventListener("contextmenu", _mousemenu);
-  _mouse_installed = false;
+
+  if (!_bitmap_state.screen.canvas) {
+    _error("Screen canvas not found, cannot remove mouse!");
+    return -1;
+  }
+
+  _bitmap_state.screen.canvas.removeEventListener("mouseup", _mouseup);
+  _bitmap_state.screen.canvas.removeEventListener("mousedown", _mousedown);
+  _bitmap_state.screen.canvas.removeEventListener("mousemove", _mousemove);
+  _bitmap_state.screen.canvas.removeEventListener("wheel", _mousewheel);
+  if (_mouse_state.menu_supress) {
+    _bitmap_state.screen.canvas.removeEventListener("contextmenu", _mousemenu);
+  }
+  _mouse_state.installed = false;
   log("Mouse removed!");
   return 0;
 }
@@ -137,7 +223,7 @@ export function mouse_needs_poll(): boolean {
  * @allegro 1.5.5
  */
 export function enable_hardware_cursor(): void {
-  _hardware_cursor = true;
+  _mouse_state.hardware_cursor = true;
 }
 
 /**
@@ -149,7 +235,7 @@ export function enable_hardware_cursor(): void {
  * @allegro 1.5.6
  */
 export function disable_hardware_cursor(): void {
-  _hardware_cursor = false;
+  _mouse_state.hardware_cursor = false;
 }
 
 /**
@@ -163,8 +249,8 @@ export function disable_hardware_cursor(): void {
  * @allegro 1.5.7
  */
 export function select_mouse_cursor(cursor: number): void {
-  _selected_cursor = cursor;
-  if (_hardware_cursor) {
+  _mouse_state.selected_cursor = cursor;
+  if (_mouse_state.hardware_cursor) {
     show_os_cursor(cursor);
   }
 }
@@ -180,11 +266,8 @@ export function select_mouse_cursor(cursor: number): void {
  *
  * @allegro 1.5.8
  */
-export function set_mouse_cursor_bitmap(
-  cursor: number,
-  bmp: BITMAP | null,
-): void {
-  _cursors[cursor] = bmp;
+export function set_mouse_cursor_bitmap(cursor: number, bmp: BITMAP | null): void {
+  _mouse_state.cursors[cursor] = bmp;
 }
 
 /**
@@ -192,14 +275,22 @@ export function set_mouse_cursor_bitmap(
  *
  * @allegro 1.5.9
  */
-export let mouse_x = -1;
+export const mouse_x = {
+  get value(): number {
+    return _mouse_state.x;
+  },
+};
 
 /**
  * Mouse Y position within the canvas
  *
  * @allegro 1.5.9
  */
-export let mouse_y = -1;
+export const mouse_y = {
+  get value(): number {
+    return _mouse_state.y;
+  },
+};
 
 /**
  * Mouse wheel position within the canvas
@@ -209,14 +300,22 @@ export let mouse_y = -1;
  *
  * @allegro 1.5.9
  */
-export let mouse_z = -1;
+export const mouse_z = {
+  get value(): number {
+    return _mouse_state.z;
+  },
+};
 
 /**
  * Mouse fourth axis position
  *
  * @allegro 1.5.9
  */
-export const mouse_w = -1;
+export const mouse_w = {
+  get value(): number {
+    return _mouse_state.w;
+  },
+};
 
 /**
  * Mouse button bitmask.
@@ -229,7 +328,11 @@ export const mouse_w = -1;
  *
  * @allegro 1.5.9
  */
-export let mouse_b = 0;
+export const mouse_b = {
+  get value(): number {
+    return _mouse_state.b;
+  },
+};
 
 /**
  * Current mouse sprite
@@ -249,14 +352,20 @@ export const mouse_sprite: BITMAP | null = null;
  * @allegro 1.5.11
  */
 export function show_mouse(bmp: BITMAP | null): number {
-  if (!_mouse_installed) {
+  if (!_mouse_state.installed) {
     _error("You must call install_mouse before show_mouse");
     return -1;
   }
+
+  if (!_bitmap_state.screen.canvas) {
+    _error("Screen canvas not found, cannot show mouse!");
+    return -1;
+  }
+
   if (bmp) {
-    screen.canvas.style.cursor = "auto";
+    _bitmap_state.screen.canvas.style.cursor = "auto";
   } else {
-    screen.canvas.style.cursor = "none";
+    _bitmap_state.screen.canvas.style.cursor = "none";
   }
   return 0;
 }
@@ -273,11 +382,18 @@ export function show_mouse(bmp: BITMAP | null): number {
  * @allegro 1.5.12
  */
 export function scare_mouse(): number {
-  if (!_mouse_installed) {
+  if (!_mouse_state.installed) {
     _error("You must call install_mouse before hide_mouse");
     return -1;
   }
-  screen.canvas.style.cursor = "none";
+
+  if (!_bitmap_state.screen.canvas) {
+    _error("Screen canvas not found, cannot scare mouse!");
+    return -1;
+  }
+
+  _bitmap_state.screen.canvas.style.cursor = "none";
+
   return 0;
 }
 
@@ -294,12 +410,7 @@ export function scare_mouse(): number {
  *
  * @allegro 1.5.13
  */
-export function scare_mouse_area(
-  x: number,
-  y: number,
-  w: number,
-  h: number,
-): void {
+export function scare_mouse_area(x: number, y: number, w: number, h: number): void {
   void x;
   void y;
   void w;
@@ -317,33 +428,37 @@ export function scare_mouse_area(
  * @allegro 1.5.15
  */
 export function show_os_cursor(cursor: number): void {
+  if (!_bitmap_state.screen.canvas) {
+    return;
+  }
+
   switch (cursor) {
     case MOUSE_CURSOR_ALLEGRO:
-      screen.canvas.style.cursor = "auto";
+      _bitmap_state.screen.canvas.style.cursor = "auto";
       break;
     case MOUSE_CURSOR_ARROW:
-      screen.canvas.style.cursor = "move";
+      _bitmap_state.screen.canvas.style.cursor = "move";
       break;
     case MOUSE_CURSOR_BUSY:
-      screen.canvas.style.cursor = "wait";
+      _bitmap_state.screen.canvas.style.cursor = "wait";
       break;
     case MOUSE_CURSOR_EDIT:
-      screen.canvas.style.cursor = "crosshair";
+      _bitmap_state.screen.canvas.style.cursor = "crosshair";
       break;
     case MOUSE_CURSOR_NONE:
-      screen.canvas.style.cursor = "auto";
+      _bitmap_state.screen.canvas.style.cursor = "auto";
       break;
     case MOUSE_CURSOR_QUESTION:
-      screen.canvas.style.cursor = "help";
+      _bitmap_state.screen.canvas.style.cursor = "help";
       break;
     default:
-      screen.canvas.style.cursor = "auto";
+      _bitmap_state.screen.canvas.style.cursor = "auto";
       break;
   }
 }
 
 /**
- * Freeze mouse flaga
+ * Freeze mouse flag
  *
  * @remarks
  * Not implemented
@@ -364,8 +479,8 @@ export const freeze_mouse_flag = false;
  * @allegro 1.5.17
  */
 export function position_mouse(x: number, y: number): void {
-  mouse_x = x;
-  mouse_y = y;
+  _mouse_state.x = x;
+  _mouse_state.y = y;
 }
 
 /**
@@ -376,7 +491,7 @@ export function position_mouse(x: number, y: number): void {
  * @allegro 1.5.18
  */
 export function position_mouse_z(z: number): void {
-  mouse_z = z;
+  _mouse_state.z = z;
 }
 
 /**
@@ -392,12 +507,7 @@ export function position_mouse_z(z: number): void {
  *
  * @allegro 1.5.19
  */
-export function set_mouse_range(
-  x1: number,
-  y1: number,
-  x2: number,
-  y2: number,
-): void {
+export function set_mouse_range(x1: number, y1: number, x2: number, y2: number): void {
   void x1;
   void y1;
   void x2;
@@ -433,7 +543,7 @@ export function set_mouse_speed(xspeed: number, yspeed: number): void {
  * @allegro 1.5.21
  */
 export function set_mouse_sprite(sprite: BITMAP | null): void {
-  _cursors[MOUSE_CURSOR_ALLEGRO] = sprite;
+  _mouse_state.cursors[MOUSE_CURSOR_ALLEGRO] = sprite;
 }
 
 /**
@@ -442,14 +552,14 @@ export function set_mouse_sprite(sprite: BITMAP | null): void {
  * @remarks
  * Not implemented
  *
- * @param x - Focus x poisiton
+ * @param x - Focus x position
  * @param y - Focus y position
  *
  * @allegro 1.5.22
  */
 export function set_mouse_sprite_focus(x: number, y: number): void {
-  _mouse_focus_x = x;
-  _mouse_focus_y = y;
+  _mouse_state.focus_x = x;
+  _mouse_state.focus_y = y;
 }
 
 /**
@@ -482,93 +592,89 @@ export function mouse_callback(flags: number): void {
 // Internal
 
 // Mouse mickey, X position since last loop().
-export let mouse_mx = 0;
+export const mouse_mx = {
+  get value(): number {
+    return _mouse_state.mx;
+  },
+};
 
 // Mouse mickey, Y position since last loop().
-export let mouse_my = 0;
+export const mouse_my = {
+  get value(): number {
+    return _mouse_state.my;
+  },
+};
 
 // Mouse mickey, wheel position since last loop().
-export let mouse_mz = 0;
-
-// Checks if mouse was installed
-export let _mouse_installed = false;
-
-// Last mouse x position
-export let _last_mouse_x = -1;
-
-// Last mouse y position
-export let _last_mouse_y = -1;
-
-// Last mouse wheel position
-export let _last_mouse_z = -1;
-
-// Is context menu enabled?
-export const _menu = false;
-
-// Is menu supressed?
-export let _menu_supress = false;
+export const mouse_mz = {
+  get value(): number {
+    return _mouse_state.mz;
+  },
+};
 
 // Simple internal mouse loop
 export function _mouse_loop(): void {
-  if (_mouse_installed) {
-    mouse_mx = mouse_x - _last_mouse_x;
-    mouse_my = mouse_y - _last_mouse_y;
-    mouse_mz = mouse_z - _last_mouse_z;
+  if (_mouse_state.installed) {
+    _mouse_state.mx = _mouse_state.x - _mouse_state.last_mouse_x;
+    _mouse_state.my = _mouse_state.y - _mouse_state.last_mouse_y;
+    _mouse_state.mz = _mouse_state.z - _mouse_state.last_mouse_z;
   }
 }
 
 // Mouse reset loop
 export function _mouse_loop_reset(): void {
-  if (_mouse_installed) {
-    mouse_mx = 0;
-    mouse_my = 0;
-    mouse_mz = 0;
-    _last_mouse_x = mouse_x;
-    _last_mouse_y = mouse_y;
-    _last_mouse_z = mouse_z;
+  if (_mouse_state.installed) {
+    _mouse_state.mx = 0;
+    _mouse_state.my = 0;
+    _mouse_state.mz = 0;
+    _mouse_state.last_mouse_x = _mouse_state.x;
+    _mouse_state.last_mouse_y = _mouse_state.y;
+    _mouse_state.last_mouse_z = _mouse_state.z;
 
     // Draw cursor
-    const cursor = _cursors[_selected_cursor];
-    if (cursor && !_hardware_cursor) {
+    const cursor = _mouse_state.cursors[_mouse_state.selected_cursor];
+    if (cursor && !_mouse_state.hardware_cursor) {
       draw_sprite(
-        screen,
+        _bitmap_state.screen,
         cursor,
-        mouse_x - _mouse_focus_x,
-        mouse_y - _mouse_focus_y,
+        _mouse_state.x - _mouse_state.focus_x,
+        _mouse_state.y - _mouse_state.focus_y,
       );
-      screen.canvas.style.cursor = "none";
+      if (_bitmap_state.screen.canvas) {
+        _bitmap_state.screen.canvas.style.cursor = "none";
+      }
     } else {
-      show_os_cursor(_selected_cursor);
+      show_os_cursor(_mouse_state.selected_cursor);
     }
   }
 }
 
 // Mouse context menu suppressor
-export function _mousemenu(e: MouseEvent): void {
+function _mousemenu(e: MouseEvent): void {
   e.preventDefault();
 }
 
 // Mouse up event handler
-export function _mouseup(e: MouseEvent): void {
-  mouse_b &= ~(1 << e.button);
+function _mouseup(e: MouseEvent): void {
+  _mouse_state.b &= ~(1 << e.button);
   e.preventDefault();
 }
 
 // Mouse down event handler
-export function _mousedown(e: MouseEvent): void {
-  mouse_b |= 1 << e.button;
+function _mousedown(e: MouseEvent): void {
+  _mouse_state.b |= 1 << e.button;
   e.preventDefault();
 }
 
 // Mouse move event handler
-export function _mousemove(e: MouseEvent): void {
-  mouse_x = e.offsetX;
-  mouse_y = e.offsetY;
+function _mousemove(e: MouseEvent): void {
+  _mouse_state.x = e.offsetX;
+  _mouse_state.y = e.offsetY;
   e.preventDefault();
 }
 
 // Mouse wheel event handler
-export function _mousewheel(e: WheelEvent): void {
-  mouse_z += e.deltaY;
+function _mousewheel(e: WheelEvent): void {
+  _mouse_state.z += e.deltaY;
   e.preventDefault();
 }

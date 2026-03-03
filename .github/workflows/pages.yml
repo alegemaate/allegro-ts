@@ -25,16 +25,23 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
-          cache: yarn
+          node-version: 24
+          cache: npm
 
-      - run: yarn install --frozen-lockfile
+      - name: Setup allegro-ts
+        run: |
+          npm ci
+          npm run build
 
-      - run: yarn docs
+      - name: Setup site
+        working-directory: ./docs
+        run: |
+          npm ci
+          npm run build
 
       - uses: actions/upload-pages-artifact@v2
         with:
-          path: ./docs
+          path: ./docs/.vitepress/dist
 
       - uses: actions/deploy-pages@v3
         id: deployment

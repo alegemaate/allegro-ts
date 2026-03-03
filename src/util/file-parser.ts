@@ -63,15 +63,12 @@ export class FileParser {
   public readStr(bytes: number): string {
     // Read as ASCII chars, the followoing bytes
     let text = "";
-    for (let char = 1; char <= bytes; char += 1)
-      text += String.fromCharCode(this.readInt(1));
+    for (let char = 1; char <= bytes; char += 1) text += String.fromCharCode(this.readInt(1));
     return text;
   }
 
   /**
    * Read a variable length value
-   *
-   * @param bytes - Number of bytes to read
    */
   public readIntVLV(): number {
     // Read a variable length value

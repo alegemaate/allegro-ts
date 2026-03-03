@@ -1,21 +1,59 @@
 import { gfx_driver } from "./graphics";
-import { _uberloop } from "./core";
-import { log } from "./debug";
-import { vsprintf } from "./sprintf";
+import { _debug_state, log } from "./debug";
+import { vsprintf } from "./util/sprintf";
+
+import { _core_state, _uberloop } from "./core";
+import { _bitmap_state } from "./bitmap";
+import { _configuration_state } from "./configuration";
+import { _font_state } from "./font";
+import { _keyboard_state } from "./keyboard";
+import { _midi_state } from "./midi";
+import { _mouse_state } from "./mouse";
+import { _sample_state } from "./sample";
+import { _timer_state } from "./timer";
+
+interface _ConfigState {
+  loop_interval: number;
+  cpu: {
+    vendor: string;
+    family: string;
+    model: string;
+    capabilities: number;
+  };
+  init: () => void;
+}
+
+export const _config_state: _ConfigState = {
+  loop_interval: -1,
+  cpu: {
+    vendor: "",
+    family: "",
+    model: "",
+    capabilities: 0,
+  },
+  init: (): void => {
+    _config_state.loop_interval = -1;
+    _config_state.cpu = {
+      vendor: "",
+      family: "",
+      model: "",
+      capabilities: 0,
+    };
+  },
+};
 
 /**
  * Loop interval for pausing
  *
  * @internal
  */
-let _loop_interval = -1;
-
-export function _set_loop_interval(interval: number): void {
-  if (_loop_interval !== -1) {
-    window.clearInterval(_loop_interval);
+export function _set_loop_interval(interval_ms: number): void {
+  if (_config_state.loop_interval !== -1) {
+    window.clearInterval(_config_state.loop_interval);
   }
-  if (interval !== -1) {
-    _loop_interval = interval;
+
+  if (interval_ms !== -1) {
+    _config_state.loop_interval = window.setInterval(_uberloop, interval_ms);
   }
 }
 
@@ -41,9 +79,20 @@ export function install_allegro(
   void system_id;
   void errno_ptr;
   void atexit_ptr;
+
+  _config_state.init();
+  _configuration_state.init();
+  _debug_state.init();
+  _font_state.init();
+  _keyboard_state.init();
+  _midi_state.init();
+  _mouse_state.init();
+  _sample_state.init();
+  _timer_state.init();
+
   check_cpu();
   log("Allegro installed!");
-  _set_loop_interval(window.setInterval(_uberloop, 16.6));
+  _set_loop_interval(16.6);
   log("Game loop initialised!");
 
   return 0;
@@ -79,6 +128,16 @@ export function atexit(): void {
  * @allegro 1.1.3
  */
 export function allegro_exit(): void {
+  if (_core_state.load_listener) {
+    window.removeEventListener("load", _core_state.load_listener);
+    _core_state.load_listener = null;
+  }
+
+  // Reset screen
+  _bitmap_state.destroy();
+  _sample_state.destroy();
+  _timer_state.destroy();
+
   log("Allegro exited.");
 }
 
@@ -87,7 +146,7 @@ export function allegro_exit(): void {
  *
  * @remarks
  * Macro to be placed after the end of main()
- * This does nothing, it is only here for comaptibility
+ * This does nothing, it is only here for compatibility with allegro.
  *
  * @allegro 1.1.4
  */
@@ -164,7 +223,7 @@ export const ALLEGRO_VERSION_STR = "4.1.16";
  *
  * @allegro 1.1.11
  */
-export const ALLEGRO_DATE_STR = "2021";
+export const ALLEGRO_DATE_STR = "2026";
 
 /**
  * Allegro date
@@ -188,10 +247,7 @@ export const ALLEGRO_DATE = 0;
  */
 export function AL_ID(a: string, b: string, c: string, d: string): number {
   return (
-    (a.charCodeAt(0) << 24) +
-    (b.charCodeAt(0) << 16) +
-    (c.charCodeAt(0) << 8) +
-    d.charCodeAt(0)
+    (a.charCodeAt(0) << 24) + (b.charCodeAt(0) << 16) + (c.charCodeAt(0) << 8) + d.charCodeAt(0)
   );
 }
 
@@ -249,10 +305,7 @@ export const os_multitasking = true;
  *
  * @allegro 1.1.18
  */
-export function allegro_message(
-  text_format: string,
-  ...args: (number | string)[]
-): void {
+export function allegro_message(text_format: string, ...args: (number | string)[]): void {
   // eslint-disable-next-line no-alert
   alert(vsprintf(text_format, args));
 }
@@ -318,10 +371,10 @@ export function get_desktop_resolution(): { width: number; height: number } {
  * @allegro 1.1.23
  */
 export function check_cpu(): void {
-  cpu_vendor = "Browser CPU";
-  cpu_family = "Browser CPU Family";
-  cpu_model = "Browser CPU Model";
-  cpu_capabilities = 0;
+  _config_state.cpu.vendor = "Browser CPU";
+  _config_state.cpu.family = "Browser CPU Family";
+  _config_state.cpu.model = "Browser CPU Model";
+  _config_state.cpu.capabilities = 0;
 }
 
 /**
@@ -332,7 +385,11 @@ export function check_cpu(): void {
  *
  * @allegro 1.1.24
  */
-export let cpu_vendor = "";
+export const cpu_vendor = {
+  get value(): string {
+    return _config_state.cpu.vendor;
+  },
+};
 
 /**
  * Cpu family
@@ -342,7 +399,11 @@ export let cpu_vendor = "";
  *
  * @allegro 1.1.25
  */
-export let cpu_family = "";
+export const cpu_family = {
+  get value(): string {
+    return _config_state.cpu.family;
+  },
+};
 
 /**
  * Cpu model
@@ -352,7 +413,11 @@ export let cpu_family = "";
  *
  * @allegro 1.1.26
  */
-export let cpu_model = "";
+export const cpu_model = {
+  get value(): string {
+    return _config_state.cpu.model;
+  },
+};
 
 /**
  * Packed list of cpu capabilities
@@ -362,4 +427,8 @@ export let cpu_model = "";
  *
  * @allegro 1.1.27
  */
-export let cpu_capabilities = 0;
+export const cpu_capabilities = {
+  get value(): number {
+    return _config_state.cpu.capabilities;
+  },
+};

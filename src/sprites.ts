@@ -1,5 +1,5 @@
-import { BITMAP } from "./types";
 import { fix_to_rad } from "./math";
+import { type BITMAP } from "./types";
 
 /**
  * Blit
@@ -28,7 +28,7 @@ export function blit(
   width: number,
   height: number,
 ): void {
-  if (!source || !dest) {
+  if (!source?.canvas || !dest?.context) {
     return;
   }
   dest.context.drawImage(
@@ -75,7 +75,7 @@ export function stretch_blit(
   dest_width: number,
   dest_height: number,
 ): void {
-  if (!source || !dest) {
+  if (!source?.canvas || !dest?.context) {
     return;
   }
   dest.context.drawImage(
@@ -95,11 +95,10 @@ export function stretch_blit(
  * Masked blit
  *
  * @remarks
- * Not implemented
+ * Like blit(), but skips transparent pixels. Since canvas bitmaps use alpha
+ * channels for transparency, this is equivalent to blit() in truecolor mode.
  *
  * @allegro 1.15.3
- *
- * @alpha
  */
 export function masked_blit(
   sprite: BITMAP | undefined,
@@ -111,25 +110,17 @@ export function masked_blit(
   width: number,
   height: number,
 ): void {
-  void sprite;
-  void dest;
-  void source_x;
-  void source_y;
-  void dest_x;
-  void dest_y;
-  void width;
-  void height;
+  blit(sprite, dest, source_x, source_y, dest_x, dest_y, width, height);
 }
 
 /**
- * Masked streth blit
+ * Masked stretch blit
  *
  * @remarks
- * Not implemented
+ * Like masked_blit(), but can scale images so source and destination
+ * rectangles don't need to be the same size.
  *
  * @allegro 1.15.4
- *
- * @alpha
  */
 export function masked_stretch_blit(
   sprite: BITMAP | undefined,
@@ -143,16 +134,18 @@ export function masked_stretch_blit(
   dest_w: number,
   dest_h: number,
 ): void {
-  void sprite;
-  void dest;
-  void source_x;
-  void source_y;
-  void source_w;
-  void source_h;
-  void dest_x;
-  void dest_y;
-  void dest_w;
-  void dest_h;
+  stretch_blit(
+    sprite,
+    dest,
+    source_x,
+    source_y,
+    source_w,
+    source_h,
+    dest_x,
+    dest_y,
+    dest_w,
+    dest_h,
+  );
 }
 
 /**
@@ -174,7 +167,7 @@ export function draw_sprite(
   x: number,
   y: number,
 ): void {
-  if (!sprite || !bmp) {
+  if (!sprite?.canvas || !bmp?.context) {
     return;
   }
   bmp.context.drawImage(sprite.canvas, x, y);
@@ -203,7 +196,7 @@ export function stretch_sprite(
   w: number,
   h: number,
 ): void {
-  if (!bmp || !sprite) {
+  if (!bmp?.context || !sprite?.canvas) {
     return;
   }
   bmp.context.drawImage(sprite.canvas, x, y, w, h);
@@ -228,7 +221,7 @@ export function draw_sprite_v_flip(
   x: number,
   y: number,
 ): void {
-  if (!bmp || !sprite) {
+  if (!bmp?.context || !sprite?.canvas) {
     return;
   }
   bmp.context.save();
@@ -258,7 +251,7 @@ export function draw_sprite_h_flip(
   x: number,
   y: number,
 ): void {
-  if (!bmp || !sprite) {
+  if (!bmp?.context || !sprite?.canvas) {
     return;
   }
   bmp.context.save();
@@ -288,7 +281,7 @@ export function draw_sprite_vh_flip(
   x: number,
   y: number,
 ): void {
-  if (!bmp || !sprite) {
+  if (!bmp?.context || !sprite?.canvas) {
     return;
   }
   bmp.context.save();
@@ -327,17 +320,18 @@ export function draw_trans_sprite(
  * Draw lit sprite
  *
  * @remarks
- * Not implemented
+ * In truecolor mode, lights the sprite using the alpha level specified by
+ * color (0-255), where 0 means no change and 255 means fully lit (white).
+ * Uses a temporary canvas with source-atop compositing to apply the light
+ * only to non-transparent pixels.
  *
  * @param bmp - target bitmap
  * @param sprite - sprite bitmap
  * @param x - x position
  * @param y - y position
- * @param color - color tint
+ * @param color - light level from 0 (no light) to 255 (fully white)
  *
  * @allegro 1.15.9
- *
- * @alpha
  */
 export function draw_lit_sprite(
   bmp: BITMAP | undefined,
@@ -346,8 +340,22 @@ export function draw_lit_sprite(
   y: number,
   color: number,
 ): void {
-  void color;
-  draw_sprite(bmp, sprite, x, y);
+  if (!bmp?.context || !sprite?.canvas) {
+    return;
+  }
+  const tmp = document.createElement("canvas");
+  tmp.width = sprite.w;
+  tmp.height = sprite.h;
+  const ctx = tmp.getContext("2d");
+  if (!ctx) {
+    return;
+  }
+  ctx.drawImage(sprite.canvas, 0, 0);
+  ctx.globalCompositeOperation = "source-atop";
+  ctx.globalAlpha = color / 255;
+  ctx.fillStyle = "white";
+  ctx.fillRect(0, 0, sprite.w, sprite.h);
+  bmp.context.drawImage(tmp, x, y);
 }
 
 /**
@@ -431,7 +439,7 @@ export function rotate_sprite(
   y: number,
   angle: number,
 ): void {
-  if (!bmp || !sprite) {
+  if (!bmp?.context || !sprite?.canvas) {
     return;
   }
   const u = sprite.w / 2;
@@ -465,7 +473,7 @@ export function rotate_sprite_v_flip(
   y: number,
   angle: number,
 ): void {
-  if (!bmp || !sprite) {
+  if (!bmp?.context || !sprite?.canvas) {
     return;
   }
   const u = sprite.w / 2;
@@ -505,7 +513,7 @@ export function rotate_scaled_sprite(
   angle: number,
   scale: number,
 ): void {
-  if (!bmp || !sprite) {
+  if (!bmp?.context || !sprite?.canvas) {
     return;
   }
   const u = sprite.w / 2;
@@ -542,7 +550,7 @@ export function rotate_scaled_sprite_v_flip(
   angle: number,
   scale: number,
 ): void {
-  if (!bmp || !sprite) {
+  if (!bmp?.context || !sprite?.canvas) {
     return;
   }
   const u = sprite.w / 2;
@@ -584,7 +592,7 @@ export function pivot_sprite(
   cy: number,
   angle: number,
 ): void {
-  if (!bmp || !sprite) {
+  if (!bmp?.context || !sprite?.canvas) {
     return;
   }
   bmp.context.save();
@@ -621,7 +629,7 @@ export function pivot_sprite_v_flip(
   cy: number,
   angle: number,
 ): void {
-  if (!bmp || !sprite) {
+  if (!bmp?.context || !sprite?.canvas) {
     return;
   }
   bmp.context.save();
@@ -662,9 +670,10 @@ export function pivot_scaled_sprite(
   angle: number,
   scale: number,
 ): void {
-  if (!bmp || !sprite) {
+  if (!bmp?.context || !sprite?.canvas) {
     return;
   }
+
   const u = scale * cx;
   const v = scale * cy;
   bmp.context.save();
@@ -703,11 +712,12 @@ export function pivot_scaled_sprite_v_flip(
   angle: number,
   scale: number,
 ): void {
-  if (!bmp || !sprite) {
+  if (!bmp?.context || !sprite?.canvas) {
     return;
   }
   const u = scale * cx;
   const v = scale * cy;
+
   bmp.context.save();
   bmp.context.translate(x, y);
   bmp.context.rotate(fix_to_rad(angle));

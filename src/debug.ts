@@ -1,12 +1,17 @@
-let _debug_enabled = false;
-let _debug_element: HTMLElement | null = null;
+interface _DebugState {
+  enabled: boolean;
+  element: HTMLElement | null;
+  init: () => void;
+}
 
-/**
- * Set this to true if you want to debug to browser console.
- * Setting this will make log() log to browser debugger console using console.log().
- */
-// eslint-disable-next-line prefer-const
-let ALLEGRO_CONSOLE = true;
+export const _debug_state: _DebugState = {
+  enabled: false,
+  element: null,
+  init: (): void => {
+    _debug_state.enabled = false;
+    _debug_state.element = null;
+  },
+};
 
 // Fatal error displays alert and logs to console
 export function _error(string: string): void {
@@ -27,9 +32,11 @@ export function _onerror(e: ErrorEvent): void {
  * @param id - id of the element to be the console
  */
 export function enable_debug(id: string): void {
-  _debug_element = document.getElementById(id);
+  _debug_state.element = document.getElementById(id);
   window.addEventListener("error", _onerror);
-  if (_debug_element) _debug_enabled = true;
+  if (_debug_state.element) {
+    _debug_state.enabled = true;
+  }
 }
 
 /**
@@ -39,21 +46,12 @@ export function enable_debug(id: string): void {
  */
 export function log(string: string): void {
   // eslint-disable-next-line no-console
-  if (ALLEGRO_CONSOLE) console.log(string);
-  if (!_debug_enabled || !_debug_element) return;
-  _debug_element.innerHTML = `${_debug_element.innerHTML + string}<br/>`;
-}
+  console.log(string);
 
-/**
- * Logs to console
- * Only works after enable_debug() has been called. Will append <br/> newline tag. You can use html inside your logs too.
- * @param string - text to log
- */
-export function _allog(string: string): void {
-  // eslint-disable-next-line no-console
-  if (ALLEGRO_CONSOLE) console.log(string);
-  if (!_debug_enabled || !_debug_element) return;
-  _debug_element.innerHTML = `${_debug_element.innerHTML + string}<br/>`;
+  if (!_debug_state.enabled || !_debug_state.element) {
+    return;
+  }
+  _debug_state.element.innerHTML = `${_debug_state.element.innerHTML + string}<br/>`;
 }
 
 /**
@@ -61,6 +59,8 @@ export function _allog(string: string): void {
  * Clears the debug element of any text. Useful if you want to track changing values in real time without clogging the browser. Just call it at the beginning every loop()!
  */
 export function wipe_log(): void {
-  if (!_debug_enabled || !_debug_element) return;
-  _debug_element.innerHTML = "";
+  if (!_debug_state.enabled || !_debug_state.element) {
+    return;
+  }
+  _debug_state.element.innerHTML = "";
 }

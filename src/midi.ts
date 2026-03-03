@@ -1,13 +1,29 @@
 import { log } from "./debug";
-import { parseMidi } from "./midiParser";
-import { MIDI } from "./types";
+import { parseMidi } from "./util/midi-parser";
+import { MidiSequencer } from "./util/gm-player";
 
-/**
- * Current midi file used
- *
- * @internal
- */
-let _current_midi: MIDI | null = null;
+import { type MIDI } from "./types";
+
+interface _MidiState {
+  current: MIDI | null;
+  midi_loop_start: number;
+  midi_loop_end: number;
+  sequencer: MidiSequencer | null;
+  init: () => void;
+}
+
+export const _midi_state: _MidiState = {
+  current: null,
+  midi_loop_start: 0,
+  midi_loop_end: 0,
+  sequencer: null,
+  init: (): void => {
+    _midi_state.current = null;
+    _midi_state.midi_loop_start = 0;
+    _midi_state.midi_loop_end = 0;
+    _midi_state.sequencer = new MidiSequencer();
+  },
+};
 
 /**
  * Midi driver
@@ -17,9 +33,9 @@ let _current_midi: MIDI | null = null;
  */
 export const midi_driver = {
   id: 0,
-  name: "Browser MIDI",
-  description: "Browser MIDI",
-  ascii_name: "Browser MIDI",
+  name: "Allegro TS MIDI",
+  description: "Allegro TS MIDI",
+  ascii_name: "Allegro TS MIDI",
 };
 
 /**
@@ -34,12 +50,8 @@ export const midi_driver = {
 export async function load_midi(filename: string): Promise<MIDI | null> {
   log(`Loading midi ${filename}...`);
 
-  // Fetch sound
-  const fileData = await fetch(filename)
-    .then(async (response) => response.arrayBuffer())
-    .then((buffer) => buffer);
-
-  const data = parseMidi(fileData);
+  const buffer = await fetch(filename).then((r) => r.arrayBuffer());
+  const data = parseMidi(buffer);
 
   if (!data) {
     return null;
@@ -47,14 +59,7 @@ export async function load_midi(filename: string): Promise<MIDI | null> {
 
   log(`MIDI ${filename} loaded!`);
 
-  const midi: MIDI = {
-    file: filename,
-    ready: true,
-    type: "midi",
-    data,
-  };
-
-  return midi;
+  return { file: filename, type: "midi", data };
 }
 
 /**
@@ -87,13 +92,12 @@ export function lock_midi(midi: MIDI): void {
  * @allegro 1.28.4
  */
 export function play_midi(midi: MIDI | null, loop: boolean): void {
-  void loop;
-  if (_current_midi) {
-    // Nothing
-  }
+  _midi_state.sequencer?.stop();
+  _midi_state.current = midi;
 
   if (midi) {
-    _current_midi = midi;
+    _midi_state.sequencer?.load(midi.data);
+    _midi_state.sequencer?.play(loop);
   }
 }
 
@@ -104,14 +108,10 @@ export function play_midi(midi: MIDI | null, loop: boolean): void {
  *
  * @allegro 1.28.5
  */
-export function play_looped_midi(
-  midi: MIDI,
-  loop_start: number,
-  loop_end: number,
-): number {
-  void midi;
-  midi_loop_start = loop_start;
-  midi_loop_end = loop_end;
+export function play_looped_midi(midi: MIDI, loop_start: number, loop_end: number): number {
+  _midi_state.midi_loop_start = loop_start;
+  _midi_state.midi_loop_end = loop_end;
+  play_midi(midi, true);
   return 0;
 }
 
@@ -134,8 +134,8 @@ export function stop_midi(): void {
  * @allegro 1.28.7
  */
 export function midi_pause(): void {
-  if (_current_midi) {
-    // Player.pause();
+  if (_midi_state.current && _midi_state.sequencer) {
+    _midi_state.sequencer.pause();
   }
 }
 
@@ -147,8 +147,8 @@ export function midi_pause(): void {
  * @allegro 1.28.8
  */
 export function midi_resume(): void {
-  if (_current_midi) {
-    // Player.play();
+  if (_midi_state.current && _midi_state.sequencer) {
+    _midi_state.sequencer.resume();
   }
 }
 
@@ -160,23 +160,38 @@ export function midi_resume(): void {
  * @allegro 1.28.9
  */
 export function midi_seek(target: number): void {
-  if (_current_midi) {
-    // Player.seek(target / 1000);
-    void target;
+  if (_midi_state.current && _midi_state.sequencer) {
+    _midi_state.sequencer.seek(target);
   }
 }
 
 /**
  * Get length of midi
  *
+ *
  * @remarks
+ * This function will simulate playing the given MIDI, from start to end, to de-
+ * termine how long it takes to play. After calling this function, midi pos will
+ * contain the negative number of beats, and midi time the length of the midi, in
+ * seconds.
+ * Note that any currently playing midi is stopped when you call this function.
+ * Usually you would call it before play midi, to get the length of the midi to be
+ * played, like in this example
  *
  * @allegro 1.28.10
  */
 export function get_midi_length(midi: MIDI): number {
-  void midi;
-  // Player.duration;
-  return 0;
+  if (_midi_state.current) {
+    stop_midi();
+  }
+
+  const seq = _midi_state.sequencer;
+  if (!seq) {
+    return 0;
+  }
+  seq.load(midi.data);
+
+  return seq.duration;
 }
 
 /**
@@ -203,22 +218,36 @@ export function load_midi_patches(): void {
 }
 
 /**
- * Current midi position
+ * Current midi position in beats
  *
  * @remarks
  *
  * @allegro 1.28.13
  */
-export const midi_pos = 0;
+export const midi_pos = {
+  get value(): number {
+    if (!_midi_state.sequencer) {
+      return 0;
+    }
+
+    return _midi_state.sequencer.isPlaying
+      ? _midi_state.sequencer.currentBeat
+      : -_midi_state.sequencer.beats;
+  },
+};
 
 /**
- * Current midi time
+ * Current midi time in seconds
  *
  * @remarks
  *
  * @allegro 1.28.14
  */
-export const midi_time = 0;
+export const midi_time = {
+  get value(): number {
+    return _midi_state.sequencer?.currentTime ?? 0;
+  },
+};
 
 /**
  * Midi loop markers
@@ -227,8 +256,17 @@ export const midi_time = 0;
  *
  * @allegro 1.28.15
  */
-export let midi_loop_start = 0;
-export let midi_loop_end = 0;
+export const midi_loop_start = {
+  get value(): number {
+    return _midi_state.midi_loop_start;
+  },
+};
+
+export const midi_loop_end = {
+  get value(): number {
+    return _midi_state.midi_loop_end;
+  },
+};
 
 /**
  * Callback on midi message
@@ -237,11 +275,7 @@ export let midi_loop_end = 0;
  *
  * @allegro 1.28.16
  */
-export function midi_msg_callback(
-  msg: number,
-  byte1: number,
-  byte2: number,
-): void {
+export function midi_msg_callback(msg: number, byte1: number, byte2: number): void {
   void msg;
   void byte1;
   void byte2;

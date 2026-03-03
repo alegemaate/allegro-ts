@@ -1,0 +1,20 @@
+{
+  "name": "allegro-ts-docs",
+  "version": "1.0.0",
+  "description": "Docs for allegro ts",
+  "main": "index.js",
+  "author": "Allan Legemaate <alegemaate@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vitepress dev",
+    "build": "vitepress build",
+    "preview": "vitepress preview"
+  },
+  "dependencies": {
+    "allegro-ts": "file:../"
+  },
+  "devDependencies": {
+    "vitepress": "^2.0.0-alpha.16",
+    "vue": "^3.5.29"
+  }
+}

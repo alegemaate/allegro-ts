@@ -9,31 +9,45 @@
     "game",
     "library"
   ],
+  "files": [
+    "dist"
+  ],
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "default": "./dist/index.mjs"
+    },
+    "./global": {
+      "types": "./dist/global.d.ts",
+      "import": "./dist/global.mjs",
+      "default": "./dist/global.mjs"
+    }
+  },
   "author": "Allan Legemaate <alegemaate@gmail.com>",
   "license": "MIT",
   "private": false,
-  "main": "lib/allegro.js",
+  "main": "./dist/index.mjs",
   "scripts": {
-    "prepare": "yarn build",
-    "prepublishOnly": "yarn lint",
-    "preversion": "yarn lint",
-    "build": "tsc",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm run lint",
+    "preversion": "npm run lint",
+    "build": "vite build && cp ./src/global-types.d.ts ./dist/global.d.ts",
     "lint": "eslint .",
-    "format": "prettier --write .",
-    "docs": "typedoc ./src/**/*.ts --out docs --name allegro.ts --readme README.md"
+    "format": "prettier --write ."
   },
   "devDependencies": {
-    "@types/node": "^20.10.4",
-    "@typescript-eslint/eslint-plugin": "^6.14.0",
-    "@typescript-eslint/parser": "^6.14.0",
-    "eslint": "^8.55.0",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-tsdoc": "^0.2.17",
-    "prettier": "^3.1.1",
-    "typedoc": "^0.25.4",
-    "typescript": "^5.3.3"
-  },
-  "files": [
-    "lib"
-  ]
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^24.0.0",
+    "eslint": "^10.0.2",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-tsdoc": "^0.5.2",
+    "prettier": "^3.8.1",
+    "typedoc": "^0.28.17",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.56.1",
+    "vite": "^7.3.1",
+    "vite-plugin-dts": "^4.5.4"
+  }
 }

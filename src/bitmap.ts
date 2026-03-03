@@ -1,29 +1,85 @@
 import { makecol } from "./color";
-import { _downloadables } from "./core";
-import { log } from "./debug";
 import { blit } from "./sprites";
-import { BITMAP, CLIPPING_RECTANGLE, PACKFILE, RGB } from "./types";
+
+import { _core_state } from "./core";
+import { _error, log } from "./debug";
+
+import { type BITMAP, type CLIPPING_RECTANGLE, type PACKFILE, type RGB } from "./types";
+
+interface _BitmapState {
+  screen: BITMAP;
+  init: (canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D) => void;
+  destroy: () => void;
+}
+
+export const _bitmap_state: _BitmapState = {
+  screen: {
+    w: 0,
+    h: 0,
+    canvas: null,
+    context: null,
+    type: "bmp",
+    clipping: false,
+    clipping_rect: { x1: 0, y1: 0, x2: 0, y2: 0 },
+    is_screen: true,
+    mem_type: "video",
+    parent: null,
+  },
+  init: (canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D): void => {
+    _bitmap_state.screen.canvas = canvas;
+    _bitmap_state.screen.context = ctx;
+  },
+  destroy: (): void => {
+    destroy_bitmap(_bitmap_state.screen);
+    _bitmap_state.screen = {
+      w: 0,
+      h: 0,
+      canvas: null,
+      context: null,
+      type: "bmp",
+      clipping: false,
+      clipping_rect: { x1: 0, y1: 0, x2: 0, y2: 0 },
+      is_screen: true,
+      mem_type: "video",
+      parent: null,
+    };
+  },
+};
 
 /**
- * Global screen poiner
+ * Global screen pointer
  *
  * @remarks
  * Stores the canvas bitmap object for drawing to screen
  *
  * @allegro 1.10.1
  */
-export const screen: BITMAP = {
-  w: 0,
-  h: 0,
-  canvas: null as unknown as HTMLCanvasElement,
-  context: null as unknown as CanvasRenderingContext2D,
-  ready: false,
-  type: "bmp",
-  clipping: false,
-  clipping_rect: { x1: 0, y1: 0, x2: 0, y2: 0 },
-  is_screen: true,
-  mem_type: "video",
-  parent: null,
+export const screen = {
+  get value(): BITMAP {
+    return _bitmap_state.screen;
+  },
+};
+
+/**
+ * Screen bitmap width in pixels
+ *
+ * @allegro 1.10.2
+ */
+export const SCREEN_W = {
+  get value(): number {
+    return _bitmap_state.screen.w;
+  },
+};
+
+/**
+ * Screen bitmap height in pixels
+ *
+ * @allegro 1.10.3
+ */
+export const SCREEN_H = {
+  get value(): number {
+    return _bitmap_state.screen.h;
+  },
 };
 
 /**
@@ -56,7 +112,6 @@ export function create_bitmap(width: number, height: number): BITMAP {
     h: height,
     canvas: cv,
     context: ctx,
-    ready: true,
     type: "bmp",
     clipping: true,
     clipping_rect: {
@@ -84,11 +139,7 @@ export function create_bitmap(width: number, height: number): BITMAP {
  *
  * @allegro 1.10.5
  */
-export function create_bitmap_ex(
-  color_depth: number,
-  width: number,
-  height: number,
-): BITMAP {
+export function create_bitmap_ex(color_depth: number, width: number, height: number): BITMAP {
   void color_depth;
   return create_bitmap(width, height);
 }
@@ -176,8 +227,9 @@ export function destroy_bitmap(bitmap: BITMAP | undefined): void {
   if (!bitmap) {
     return;
   }
-  bitmap.canvas.remove();
-  bitmap.ready = false;
+  bitmap.canvas?.remove();
+  bitmap.canvas = null;
+  bitmap.context = null;
 }
 
 /**
@@ -235,17 +287,11 @@ export function bitmap_mask_color(bmp: BITMAP | undefined): number {
  *
  * @allegro 1.10.13
  */
-export function is_same_bitmap(
-  bmp1: BITMAP | undefined,
-  bmp2: BITMAP | undefined,
-): boolean {
+export function is_same_bitmap(bmp1: BITMAP | undefined, bmp2: BITMAP | undefined): boolean {
   if (!bmp1 || !bmp2) {
     return false;
   }
-  return (
-    bmp1 === bmp2 ||
-    (typeof bmp1.parent !== "undefined" && bmp1.parent === bmp2.parent)
-  );
+  return bmp1 === bmp2 || (typeof bmp1.parent !== "undefined" && bmp1.parent === bmp2.parent);
 }
 
 /**
@@ -400,7 +446,7 @@ export function release_bitmap(bmp: BITMAP | undefined): void {
  * @allegro 1.10.23
  */
 export function acquire_screen(): void {
-  acquire_bitmap(screen);
+  acquire_bitmap(screen.value);
 }
 
 /**
@@ -412,7 +458,7 @@ export function acquire_screen(): void {
  * @allegro 1.10.24
  */
 export function release_screen(): void {
-  release_bitmap(screen);
+  release_bitmap(screen.value);
 }
 
 /**
@@ -459,9 +505,7 @@ export function set_clip_rect(
  *
  * @allegro 1.10.26
  */
-export function get_clip_rect(
-  bitmap: BITMAP | undefined,
-): CLIPPING_RECTANGLE | null {
+export function get_clip_rect(bitmap: BITMAP | undefined): CLIPPING_RECTANGLE | null {
   if (!bitmap) {
     return null;
   }
@@ -514,10 +558,7 @@ export function add_clip_rect(
  *
  * @allegro 1.10.28
  */
-export function set_clip_state(
-  bitmap: BITMAP | undefined,
-  state: boolean,
-): void {
+export function set_clip_state(bitmap: BITMAP | undefined, state: boolean): void {
   if (!bitmap) {
     return;
   }
@@ -598,7 +639,7 @@ export function is_inside_bitmap(
  *
  * @allegro 1.11.1
  */
-export function load_bitmap(filename: string, pal?: RGB): BITMAP {
+export async function load_bitmap(filename: string, pal?: RGB): Promise<BITMAP> {
   void pal;
 
   log(`Loading bitmap ${filename}...`);
@@ -618,7 +659,6 @@ export function load_bitmap(filename: string, pal?: RGB): BITMAP {
     context: ctx,
     w: -1,
     h: -1,
-    ready: false,
     type: "bmp",
     clipping: true,
     clipping_rect: { x1: 0, y1: 0, x2: 0, y2: 0 },
@@ -627,46 +667,39 @@ export function load_bitmap(filename: string, pal?: RGB): BITMAP {
     parent: null,
   };
 
-  _downloadables.push(bmp);
-  img.onload = (): void => {
-    log(`Bitmap ${filename} loaded, size: ${img.width} x ${img.height}!`);
-    bmp.canvas.width = img.width;
-    bmp.canvas.height = img.height;
-    bmp.context.drawImage(img, 0, 0);
-    bmp.w = img.width;
-    bmp.h = img.height;
-    bmp.clipping_rect = {
-      x1: 0,
-      y1: 0,
-      x2: bmp.w,
-      y2: bmp.h,
-    };
-
-    // Replace magic pink
-    const imageData = bmp.context.getImageData(
-      0,
-      0,
-      bmp.canvas.width,
-      bmp.canvas.height,
-    );
-    for (let i = 0; i < imageData.data.length; i += 4) {
-      // MAGIC PINK DETECTED!
-      if (
-        imageData.data[i] === 255 &&
-        imageData.data[i + 1] === 0 &&
-        imageData.data[i + 2] === 255 &&
-        imageData.data[i + 3] === 255
-      ) {
-        // Alpha hack
-        imageData.data[i + 3] = 0;
+  return new Promise((resolve) => {
+    img.onload = (): void => {
+      if (!bmp.canvas || !bmp.context) {
+        _error(`Bitmap ${filename} has no canvas or context!`);
+        return;
       }
-    }
-    ctx.putImageData(imageData, 0, 0);
 
-    bmp.ready = true;
-  };
+      log(`Bitmap ${filename} loaded, size: ${img.width} x ${img.height}!`);
+      bmp.canvas.width = img.width;
+      bmp.canvas.height = img.height;
+      bmp.context.drawImage(img, 0, 0);
+      bmp.w = img.width;
+      bmp.h = img.height;
+      bmp.clipping_rect = { x1: 0, y1: 0, x2: bmp.w, y2: bmp.h };
 
-  return bmp;
+      // Replace magic pink
+      const imageData = bmp.context.getImageData(0, 0, bmp.canvas.width, bmp.canvas.height);
+      for (let i = 0; i < imageData.data.length; i += 4) {
+        // MAGIC PINK DETECTED!
+        if (
+          imageData.data[i] === 255 &&
+          imageData.data[i + 1] === 0 &&
+          imageData.data[i + 2] === 255 &&
+          imageData.data[i + 3] === 255
+        ) {
+          // Alpha hack
+          imageData.data[i + 3] = 0;
+        }
+      }
+      ctx.putImageData(imageData, 0, 0);
+      resolve(bmp);
+    };
+  });
 }
 
 /**
@@ -679,7 +712,7 @@ export function load_bitmap(filename: string, pal?: RGB): BITMAP {
  *
  * @allegro 1.11.2
  */
-export function load_bmp(filename: string): BITMAP {
+export async function load_bmp(filename: string): Promise<BITMAP> {
   return load_bitmap(filename);
 }
 
@@ -710,7 +743,7 @@ export function load_bmp_pf(f: PACKFILE, pal?: RGB): void {
  *
  * @allegro 1.11.4
  */
-export function load_lbm(filename: string, pal?: RGB): BITMAP {
+export async function load_lbm(filename: string, pal?: RGB): Promise<BITMAP> {
   return load_bitmap(filename, pal);
 }
 
@@ -725,7 +758,7 @@ export function load_lbm(filename: string, pal?: RGB): BITMAP {
  *
  * @allegro 1.11.5
  */
-export function load_pcx(filename: string, pal?: RGB): BITMAP {
+export async function load_pcx(filename: string, pal?: RGB): Promise<BITMAP> {
   return load_bitmap(filename, pal);
 }
 
@@ -756,7 +789,7 @@ export function load_pcx_pf(f: PACKFILE, pal?: RGB): void {
  *
  * @allegro 1.11.7
  */
-export function load_tga(filename: string, pal?: RGB): BITMAP {
+export async function load_tga(filename: string, pal?: RGB): Promise<BITMAP> {
   return load_bitmap(filename, pal);
 }
 
@@ -788,15 +821,17 @@ export function load_tga_pf(f: PACKFILE, pal?: RGB): void {
  *
  * @allegro 1.11.9
  */
-export function save_bitmap(
-  filename: string,
-  bmp: BITMAP | undefined,
-  pal?: RGB,
-): void {
+export function save_bitmap(filename: string, bmp: BITMAP | undefined, pal?: RGB): void {
   if (!bmp) {
     return;
   }
   void pal;
+
+  if (!bmp.canvas) {
+    _error(`Bitmap ${filename} has no canvas!`);
+    return;
+  }
+
   const image = bmp.canvas.toDataURL("image/png", 1.0);
   const a = document.createElement("a");
   a.href = image;
@@ -817,11 +852,7 @@ export function save_bitmap(
  *
  * @allegro 1.11.10
  */
-export function save_bmp(
-  filename: string,
-  bmp: BITMAP | undefined,
-  pal?: RGB,
-): void {
+export function save_bmp(filename: string, bmp: BITMAP | undefined, pal?: RGB): void {
   save_bitmap(filename, bmp, pal);
 }
 
@@ -839,11 +870,7 @@ export function save_bmp(
  *
  * @alpha
  */
-export function save_bmp_pf(
-  f: PACKFILE,
-  bmp: BITMAP | undefined,
-  pal?: RGB,
-): void {
+export function save_bmp_pf(f: PACKFILE, bmp: BITMAP | undefined, pal?: RGB): void {
   void f;
   void bmp;
   void pal;
@@ -861,11 +888,7 @@ export function save_bmp_pf(
  *
  * @allegro 1.11.12
  */
-export function save_pcx(
-  filename: string,
-  bmp: BITMAP | undefined,
-  pal?: RGB,
-): void {
+export function save_pcx(filename: string, bmp: BITMAP | undefined, pal?: RGB): void {
   save_bitmap(filename, bmp, pal);
 }
 
@@ -883,11 +906,7 @@ export function save_pcx(
  *
  * @alpha
  */
-export function save_pcx_pf(
-  f: PACKFILE,
-  bmp: BITMAP | undefined,
-  pal?: RGB,
-): void {
+export function save_pcx_pf(f: PACKFILE, bmp: BITMAP | undefined, pal?: RGB): void {
   void f;
   void bmp;
   void pal;
@@ -905,11 +924,7 @@ export function save_pcx_pf(
  *
  * @allegro 1.11.14
  */
-export function save_tga(
-  filename: string,
-  bmp: BITMAP | undefined,
-  pal?: RGB,
-): void {
+export function save_tga(filename: string, bmp: BITMAP | undefined, pal?: RGB): void {
   save_bitmap(filename, bmp, pal);
 }
 
@@ -927,11 +942,7 @@ export function save_tga(
  *
  * @alpha
  */
-export function save_tga_pf(
-  f: PACKFILE,
-  bmp: BITMAP | undefined,
-  pal?: RGB,
-): void {
+export function save_tga_pf(f: PACKFILE, bmp: BITMAP | undefined, pal?: RGB): void {
   void f;
   void bmp;
   void pal;

@@ -1,5 +1,23 @@
-import { _allog, log } from "./debug";
+import { log } from "./debug";
 import { rest } from "./timer";
+
+interface _KeyboardState {
+  installed: boolean;
+  enabled_keys: number[];
+  key_shifts: number;
+  init: () => void;
+}
+
+export const _keyboard_state: _KeyboardState = {
+  installed: false,
+  enabled_keys: [],
+  key_shifts: 0,
+  init: (): void => {
+    _keyboard_state.installed = false;
+    _keyboard_state.enabled_keys = [];
+    _keyboard_state.key_shifts = 0;
+  },
+};
 
 /**
  * Keyboard driverr
@@ -27,21 +45,37 @@ export const keyboard_driver = {
  * @allegro 1.7.1
  */
 export function install_keyboard(enable_keys?: number[]): number {
-  if (_keyboard_installed) {
-    _allog("Keyboard already installed");
+  if (_keyboard_state.installed) {
+    log("Keyboard already installed");
     return -1;
   }
   if (enable_keys) {
-    _enabled_keys = enable_keys;
+    _keyboard_state.enabled_keys = enable_keys;
   } else {
-    _enabled_keys = _default_enabled_keys;
+    const default_enabled_keys = [
+      KEY_F1,
+      KEY_F2,
+      KEY_F3,
+      KEY_F4,
+      KEY_F5,
+      KEY_F6,
+      KEY_F7,
+      KEY_F8,
+      KEY_F9,
+      KEY_F10,
+      KEY_F11,
+      KEY_F12,
+      KEY_ESC,
+    ];
+
+    _keyboard_state.enabled_keys = default_enabled_keys;
   }
   for (let c = 0; c < 0x80; c += 1) {
     key[c] = false;
   }
   document.addEventListener("keyup", _keyup);
   document.addEventListener("keydown", _keydown);
-  _keyboard_installed = true;
+  _keyboard_state.installed = true;
   log("Keyboard installed!");
   return 0;
 }
@@ -55,13 +89,13 @@ export function install_keyboard(enable_keys?: number[]): number {
  * @allegro 1.7.2
  */
 export function remove_keyboard(): number {
-  if (!_keyboard_installed) {
-    _allog("Keyboard not installed");
+  if (!_keyboard_state.installed) {
+    log("Keyboard not installed");
     return -1;
   }
   document.removeEventListener("keyup", _keyup);
   document.removeEventListener("keydown", _keydown);
-  _keyboard_installed = false;
+  _keyboard_state.installed = false;
   log("Keyboard removed!");
   return 0;
 }
@@ -79,10 +113,7 @@ export function remove_keyboard(): number {
  *
  * @alpha
  */
-export function install_keyboard_hooks(
-  keypressed: () => void,
-  readkey: () => void,
-): void {
+export function install_keyboard_hooks(keypressed: () => void, readkey: () => void): void {
   void keypressed;
   void readkey;
 }
@@ -141,7 +172,11 @@ export const key_buffer: number[] = [];
  *
  * @allegro 1.7.7
  */
-export let key_shifts = 0;
+export const key_shifts = {
+  get value(): number {
+    return _keyboard_state.key_shifts;
+  },
+};
 
 /**
  * Check if any key has been pressed
@@ -384,171 +419,127 @@ export const key_led_flag = false;
  * These should be identical to allegro key codes
  *
  */
-export const KEY_0 = 0x30,
-  KEY_0_PAD = 0x60,
-  KEY_1 = 0x31,
-  KEY_1_PAD = 0x61,
-  KEY_2 = 0x32,
-  KEY_2_PAD = 0x62,
-  KEY_3 = 0x33,
-  KEY_3_PAD = 0x63,
-  KEY_4 = 0x34,
-  KEY_4_PAD = 0x64,
-  KEY_5 = 0x35,
-  KEY_5_PAD = 0x65,
-  KEY_6 = 0x36,
-  KEY_6_PAD = 0x66,
-  KEY_7 = 0x37,
-  KEY_7_PAD = 0x67,
-  KEY_8 = 0x38,
-  KEY_8_PAD = 0x68,
-  KEY_9 = 0x39,
-  KEY_9_PAD = 0x69,
-  KEY_A = 0x41,
-  KEY_ALT = 0x12,
-  KEY_ALTGR = 0x12,
-  KEY_ASTERISK = 0x6a,
-  KEY_B = 0x42,
-  KEY_BACKSLASH = 0xdc,
-  KEY_BACKSPACE = 0x08,
-  KEY_C = 0x43,
-  KEY_CAPSLOCK = 0x14,
-  KEY_CLOSEBRACE = 0xdd,
-  KEY_COLON = 0xba,
-  KEY_COMMA = 0xbc,
-  KEY_D = 0x44,
-  KEY_DEL = 0x2e,
-  KEY_DOWN = 0x28,
-  KEY_E = 0x45,
-  KEY_END = 0x23,
-  KEY_ENTER = 0x0d,
-  KEY_ENTER_PAD = 0x0d,
-  KEY_EQUALS = 0xbb,
-  KEY_EQUALS_PAD = 0x0c,
-  KEY_ESC = 0x1b,
-  KEY_F = 0x46,
-  KEY_F1 = 0x70,
-  KEY_F10 = 0x79,
-  KEY_F11 = 0x7a,
-  KEY_F12 = 0x7b,
-  KEY_F2 = 0x71,
-  KEY_F3 = 0x72,
-  KEY_F4 = 0x73,
-  KEY_F5 = 0x74,
-  KEY_F6 = 0x75,
-  KEY_F7 = 0x76,
-  KEY_F8 = 0x77,
-  KEY_F9 = 0x78,
-  KEY_G = 0x47,
-  KEY_H = 0x48,
-  KEY_HOME = 0x24,
-  KEY_I = 0x49,
-  KEY_INSERT = 0x2d,
-  KEY_J = 0x4a,
-  KEY_K = 0x4b,
-  KEY_L = 0x4c,
-  KEY_LCONTROL = 0x11,
-  KEY_LEFT = 0x25,
-  KEY_LSHIFT = 0x10,
-  KEY_LWIN = 0x5b,
-  KEY_M = 0x4d,
-  KEY_MAX = 0xdf,
-  KEY_MENU = 0x5d,
-  KEY_MINUS = 0xbd,
-  KEY_MINUS_PAD = 0x6d,
-  KEY_N = 0x4e,
-  KEY_NUMLOCK = 0x90,
-  KEY_O = 0x4f,
-  KEY_OPENBRACE = 0xdb,
-  KEY_P = 0x50,
-  KEY_PAUSE = 0x13,
-  KEY_PGDN = 0x22,
-  KEY_PGUP = 0x21,
-  KEY_PLUS_PAD = 0x6b,
-  KEY_PRTSCR = 0x2c,
-  KEY_Q = 0x51,
-  KEY_QUOTE = 0xde,
-  KEY_R = 0x52,
-  KEY_RCONTROL = 0x11,
-  KEY_RIGHT = 0x27,
-  KEY_RSHIFT = 0x10,
-  KEY_RWIN = 0x5c,
-  KEY_S = 0x53,
-  KEY_SCRLOCK = 0x9d,
-  KEY_SLASH = 0xbf,
-  KEY_SLASH_PAD = 0x6f,
-  KEY_SPACE = 0x20,
-  KEY_STOP = 0xbe,
-  KEY_T = 0x54,
-  KEY_TAB = 0x09,
-  KEY_TILDE = 0xc0,
-  KEY_U = 0x55,
-  KEY_UP = 0x26,
-  KEY_V = 0x56,
-  KEY_W = 0x57,
-  KEY_X = 0x58,
-  KEY_Y = 0x59,
-  KEY_Z = 0x5a;
+export const KEY_0 = 0x30;
+export const KEY_0_PAD = 0x60;
+export const KEY_1 = 0x31;
+export const KEY_1_PAD = 0x61;
+export const KEY_2 = 0x32;
+export const KEY_2_PAD = 0x62;
+export const KEY_3 = 0x33;
+export const KEY_3_PAD = 0x63;
+export const KEY_4 = 0x34;
+export const KEY_4_PAD = 0x64;
+export const KEY_5 = 0x35;
+export const KEY_5_PAD = 0x65;
+export const KEY_6 = 0x36;
+export const KEY_6_PAD = 0x66;
+export const KEY_7 = 0x37;
+export const KEY_7_PAD = 0x67;
+export const KEY_8 = 0x38;
+export const KEY_8_PAD = 0x68;
+export const KEY_9 = 0x39;
+export const KEY_9_PAD = 0x69;
+export const KEY_A = 0x41;
+export const KEY_ALT = 0x12;
+export const KEY_ALTGR = 0x12;
+export const KEY_ASTERISK = 0x6a;
+export const KEY_B = 0x42;
+export const KEY_BACKSLASH = 0xdc;
+export const KEY_BACKSPACE = 0x08;
+export const KEY_C = 0x43;
+export const KEY_CAPSLOCK = 0x14;
+export const KEY_CLOSEBRACE = 0xdd;
+export const KEY_COLON = 0xba;
+export const KEY_COMMA = 0xbc;
+export const KEY_D = 0x44;
+export const KEY_DEL = 0x2e;
+export const KEY_DOWN = 0x28;
+export const KEY_E = 0x45;
+export const KEY_END = 0x23;
+export const KEY_ENTER = 0x0d;
+export const KEY_ENTER_PAD = 0x0d;
+export const KEY_EQUALS = 0xbb;
+export const KEY_EQUALS_PAD = 0x0c;
+export const KEY_ESC = 0x1b;
+export const KEY_F = 0x46;
+export const KEY_F1 = 0x70;
+export const KEY_F10 = 0x79;
+export const KEY_F11 = 0x7a;
+export const KEY_F12 = 0x7b;
+export const KEY_F2 = 0x71;
+export const KEY_F3 = 0x72;
+export const KEY_F4 = 0x73;
+export const KEY_F5 = 0x74;
+export const KEY_F6 = 0x75;
+export const KEY_F7 = 0x76;
+export const KEY_F8 = 0x77;
+export const KEY_F9 = 0x78;
+export const KEY_G = 0x47;
+export const KEY_H = 0x48;
+export const KEY_HOME = 0x24;
+export const KEY_I = 0x49;
+export const KEY_INSERT = 0x2d;
+export const KEY_J = 0x4a;
+export const KEY_K = 0x4b;
+export const KEY_L = 0x4c;
+export const KEY_LCONTROL = 0x11;
+export const KEY_LEFT = 0x25;
+export const KEY_LSHIFT = 0x10;
+export const KEY_LWIN = 0x5b;
+export const KEY_M = 0x4d;
+export const KEY_MAX = 0xdf;
+export const KEY_MENU = 0x5d;
+export const KEY_MINUS = 0xbd;
+export const KEY_MINUS_PAD = 0x6d;
+export const KEY_N = 0x4e;
+export const KEY_NUMLOCK = 0x90;
+export const KEY_O = 0x4f;
+export const KEY_OPENBRACE = 0xdb;
+export const KEY_P = 0x50;
+export const KEY_PAUSE = 0x13;
+export const KEY_PGDN = 0x22;
+export const KEY_PGUP = 0x21;
+export const KEY_PLUS_PAD = 0x6b;
+export const KEY_PRTSCR = 0x2c;
+export const KEY_Q = 0x51;
+export const KEY_QUOTE = 0xde;
+export const KEY_R = 0x52;
+export const KEY_RCONTROL = 0x11;
+export const KEY_RIGHT = 0x27;
+export const KEY_RSHIFT = 0x10;
+export const KEY_RWIN = 0x5c;
+export const KEY_S = 0x53;
+export const KEY_SCRLOCK = 0x9d;
+export const KEY_SLASH = 0xbf;
+export const KEY_SLASH_PAD = 0x6f;
+export const KEY_SPACE = 0x20;
+export const KEY_STOP = 0xbe;
+export const KEY_T = 0x54;
+export const KEY_TAB = 0x09;
+export const KEY_TILDE = 0xc0;
+export const KEY_U = 0x55;
+export const KEY_UP = 0x26;
+export const KEY_V = 0x56;
+export const KEY_W = 0x57;
+export const KEY_X = 0x58;
+export const KEY_Y = 0x59;
+export const KEY_Z = 0x5a;
 
-export const KB_ACCENT1_FLAG = 0x1000,
-  KB_ACCENT2_FLAG = 0x2000,
-  KB_ACCENT3_FLAG = 0x4000,
-  KB_ACCENT4_FLAG = 0x8000,
-  KB_ALT_FLAG = 0x0004,
-  KB_CAPSLOCK_FLAG = 0x0400,
-  KB_COMMAND_FLAG = 0x0040,
-  KB_CTRL_FLAG = 0x0002,
-  KB_INALTSEQ_FLAG = 0x0800,
-  KB_LWIN_FLAG = 0x0008,
-  KB_MENU_FLAG = 0x0020,
-  KB_NUMLOCK_FLAG = 0x0200,
-  KB_RWIN_FLAG = 0x0010,
-  KB_SCROLOCK_FLAG = 0x0100,
-  KB_SHIFT_FLAG = 0x0001;
-
-/**
- * Is keyboard installed
- *
- * @remarks
- * Flag for if keyboard has been installed yet
- *
- * @internal
- */
-export let _keyboard_installed = false;
-
-/**
- * Default unsupressed keys
- *
- * @remarks
- * Default internal keys which represent what not to supress in browser
- *
- * @internal
- */
-export const _default_enabled_keys = [
-  KEY_F1,
-  KEY_F2,
-  KEY_F3,
-  KEY_F4,
-  KEY_F5,
-  KEY_F6,
-  KEY_F7,
-  KEY_F8,
-  KEY_F9,
-  KEY_F10,
-  KEY_F11,
-  KEY_F12,
-  KEY_ESC,
-];
-
-/**
- * Unsupressed keys
- *
- * @remarks
- * Internal keys which represent what not to supress in browser
- *
- * @internal
- */
-let _enabled_keys: number[] = [];
+export const KB_ACCENT1_FLAG = 0x1000;
+export const KB_ACCENT2_FLAG = 0x2000;
+export const KB_ACCENT3_FLAG = 0x4000;
+export const KB_ACCENT4_FLAG = 0x8000;
+export const KB_ALT_FLAG = 0x0004;
+export const KB_CAPSLOCK_FLAG = 0x0400;
+export const KB_COMMAND_FLAG = 0x0040;
+export const KB_CTRL_FLAG = 0x0002;
+export const KB_INALTSEQ_FLAG = 0x0800;
+export const KB_LWIN_FLAG = 0x0008;
+export const KB_MENU_FLAG = 0x0020;
+export const KB_NUMLOCK_FLAG = 0x0200;
+export const KB_RWIN_FLAG = 0x0010;
+export const KB_SCROLOCK_FLAG = 0x0100;
+export const KB_SHIFT_FLAG = 0x0001;
 
 /**
  * Internal Keyboard loop
@@ -559,7 +550,7 @@ let _enabled_keys: number[] = [];
  * @internal
  */
 export function _keyboard_loop(): void {
-  if (_keyboard_installed) {
+  if (_keyboard_state.installed) {
     // Nothing
   }
 }
@@ -574,7 +565,9 @@ export function _keyboard_loop(): void {
  */
 function _keydown(e: KeyboardEvent): void {
   _keydown_handler(e.keyCode);
-  if (!_enabled_keys.includes(e.keyCode)) e.preventDefault();
+  if (!_keyboard_state.enabled_keys.includes(e.keyCode)) {
+    e.preventDefault();
+  }
 }
 
 /**
@@ -587,36 +580,36 @@ function _keydown(e: KeyboardEvent): void {
  */
 function _keydown_handler(keyCode: number): void {
   key[keyCode] = true;
-  key_buffer.push(keyCode << 8);
+  key_buffer.push(keyCode);
   switch (keyCode) {
     case KEY_LSHIFT:
     case KEY_RSHIFT:
-      key_shifts |= KB_SHIFT_FLAG;
+      _keyboard_state.key_shifts |= KB_SHIFT_FLAG;
       break;
     case KEY_LCONTROL:
     case KEY_RCONTROL:
-      key_shifts |= KB_CTRL_FLAG;
+      _keyboard_state.key_shifts |= KB_CTRL_FLAG;
       break;
     case KEY_ALT:
-      key_shifts |= KB_ALT_FLAG;
+      _keyboard_state.key_shifts |= KB_ALT_FLAG;
       break;
     case KEY_LWIN:
-      key_shifts |= KB_LWIN_FLAG;
+      _keyboard_state.key_shifts |= KB_LWIN_FLAG;
       break;
     case KEY_RWIN:
-      key_shifts |= KB_RWIN_FLAG;
+      _keyboard_state.key_shifts |= KB_RWIN_FLAG;
       break;
     case KEY_MENU:
-      key_shifts |= KB_MENU_FLAG;
+      _keyboard_state.key_shifts |= KB_MENU_FLAG;
       break;
     case KEY_SCRLOCK:
-      key_shifts |= KB_SCROLOCK_FLAG;
+      _keyboard_state.key_shifts |= KB_SCROLOCK_FLAG;
       break;
     case KEY_NUMLOCK:
-      key_shifts |= KB_NUMLOCK_FLAG;
+      _keyboard_state.key_shifts |= KB_NUMLOCK_FLAG;
       break;
     case KEY_CAPSLOCK:
-      key_shifts |= KB_CAPSLOCK_FLAG;
+      _keyboard_state.key_shifts |= KB_CAPSLOCK_FLAG;
       break;
     default:
       break;
@@ -633,7 +626,9 @@ function _keydown_handler(keyCode: number): void {
  */
 function _keyup(e: KeyboardEvent): void {
   _keyup_handler(e.keyCode);
-  if (!_enabled_keys.includes(e.keyCode)) e.preventDefault();
+  if (!_keyboard_state.enabled_keys.includes(e.keyCode)) {
+    e.preventDefault();
+  }
 }
 
 /**
@@ -649,32 +644,32 @@ function _keyup_handler(keyCode: number): void {
   switch (keyCode) {
     case KEY_LSHIFT:
     case KEY_RSHIFT:
-      key_shifts ^= KB_SHIFT_FLAG;
+      _keyboard_state.key_shifts ^= KB_SHIFT_FLAG;
       break;
     case KEY_LCONTROL:
     case KEY_RCONTROL:
-      key_shifts ^= KB_CTRL_FLAG;
+      _keyboard_state.key_shifts ^= KB_CTRL_FLAG;
       break;
     case KEY_ALT:
-      key_shifts ^= KB_ALT_FLAG;
+      _keyboard_state.key_shifts ^= KB_ALT_FLAG;
       break;
     case KEY_LWIN:
-      key_shifts ^= KB_LWIN_FLAG;
+      _keyboard_state.key_shifts ^= KB_LWIN_FLAG;
       break;
     case KEY_RWIN:
-      key_shifts ^= KB_RWIN_FLAG;
+      _keyboard_state.key_shifts ^= KB_RWIN_FLAG;
       break;
     case KEY_MENU:
-      key_shifts ^= KB_MENU_FLAG;
+      _keyboard_state.key_shifts ^= KB_MENU_FLAG;
       break;
     case KEY_SCRLOCK:
-      key_shifts ^= KB_SCROLOCK_FLAG;
+      _keyboard_state.key_shifts ^= KB_SCROLOCK_FLAG;
       break;
     case KEY_NUMLOCK:
-      key_shifts ^= KB_NUMLOCK_FLAG;
+      _keyboard_state.key_shifts ^= KB_NUMLOCK_FLAG;
       break;
     case KEY_CAPSLOCK:
-      key_shifts ^= KB_CAPSLOCK_FLAG;
+      _keyboard_state.key_shifts ^= KB_CAPSLOCK_FLAG;
       break;
     default:
       break;

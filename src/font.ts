@@ -1,11 +1,25 @@
-import { _fillstyle, rectfill } from "./primitives";
-import { BITMAP, FONT, RGB } from "./types";
-import { vsprintf } from "./sprintf";
+import { vsprintf } from "./util/sprintf";
 import { create_bitmap } from "./bitmap";
 
-let _text_len_canvas: BITMAP | null = null;
+import { _fillstyle, rectfill } from "./primitives";
+import { _error } from "./debug";
 
-let _num_fonts = 0;
+import { type BITMAP, type FONT, type RGB } from "./types";
+
+interface _FontState {
+  font_canvas: BITMAP | null;
+  num_fonts: number;
+  init: () => void;
+}
+
+export const _font_state: _FontState = {
+  font_canvas: null,
+  num_fonts: 0,
+  init: (): void => {
+    _font_state.font_canvas = null;
+    _font_state.num_fonts = 0;
+  },
+};
 
 /**
  * Register font file type
@@ -44,10 +58,9 @@ export function register_font_file_type(
  */
 export function load_font(filename: string, size = 12): FONT {
   const s = document.createElement("style");
-  _num_fonts += 1;
-  const fontname = `font${_num_fonts}`;
+  _font_state.num_fonts += 1;
+  const fontname = `font${_font_state.num_fonts}`;
   s.id = fontname;
-  s.type = "text/css";
   document.head.appendChild(s);
   s.textContent = `@font-face { font-family: ${fontname}; src:url('${filename}');}`;
   return { element: s, file: filename, name: fontname, size, type: "fnt" };
@@ -256,11 +269,16 @@ export const allegro_404_char = "^";
  * @allegro 1.19.3
  */
 export function text_length(f: FONT, str: string): number {
-  if (!_text_len_canvas) {
-    _text_len_canvas = create_bitmap(0, 0);
+  _font_state.font_canvas ??= create_bitmap(0, 0);
+
+  if (!_font_state.font_canvas.context) {
+    _error("Text length canvas context not found, cannot calculate text length!");
+    return 0;
   }
-  _text_len_canvas.context.font = `${f.size}px ${f.name}`;
-  const metrics = _text_len_canvas.context.measureText(str);
+
+  _font_state.font_canvas.context.font = `${f.size}px ${f.name}`;
+  const metrics = _font_state.font_canvas.context.measureText(str);
+
   return metrics.width;
 }
 
@@ -538,7 +556,7 @@ function _textout(
   bg: number,
   text_align: "center" | "left" | "right",
 ): void {
-  if (!bitmap) {
+  if (!bitmap?.context) {
     return;
   }
 
@@ -551,24 +569,10 @@ function _textout(
     const height = text_height(f);
     switch (text_align) {
       case "center":
-        rectfill(
-          bitmap,
-          x - length / 2,
-          y,
-          x - length / 2 + length,
-          y + height * 1.2,
-          bg,
-        );
+        rectfill(bitmap, x - length / 2, y, x - length / 2 + length, y + height * 1.2, bg);
         break;
       case "right":
-        rectfill(
-          bitmap,
-          x - length,
-          y,
-          x - length + length,
-          y + height * 1.2,
-          bg,
-        );
+        rectfill(bitmap, x - length, y, x - length + length, y + height * 1.2, bg);
         break;
       case "left":
       default:
