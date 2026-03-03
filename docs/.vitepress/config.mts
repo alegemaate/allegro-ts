@@ -14,6 +14,7 @@ export default defineConfig({
       { text: "Guide", link: "/guide/" },
       { text: "API", link: "/api/" },
       { text: "Examples", link: "/examples/" },
+      { text: "Emscripten", link: "/emscripten/" },
     ],
 
     sidebar: {
@@ -76,6 +77,12 @@ export default defineConfig({
         {
           text: "Examples",
           items: [{ text: "All Examples", link: "/examples/" }],
+        },
+      ],
+      "/emscripten/": [
+        {
+          text: "Emscripten",
+          items: [{ text: "Overview", link: "/emscripten/" }],
         },
       ],
     },

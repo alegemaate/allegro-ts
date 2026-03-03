@@ -15,6 +15,9 @@ hero:
     - theme: alt
       text: Examples
       link: /examples/
+    - theme: alt
+      text: Emscripten
+      link: /emscripten/
 
 features:
   - title: Familiar API

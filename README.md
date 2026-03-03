@@ -8,13 +8,17 @@
 
 ## An HTML5 game making library
 
-## [GitHub](https://github.com/alegemaate/allegro-ts) - [API](https://alegemaate.com/allegro-ts/) - [Emscripten](https://github.com/alegemaate/allegro-ts-emscripten/)
+## [GitHub](https://github.com/alegemaate/allegro-ts) - [Docs](https://alegemaate.com/allegro-ts/) - [Emscripten](https://github.com/alegemaate/allegro-ts-emscripten/)
 
 ### What is allegro.ts?
 
 _allegro.ts_ is a project which attempts to map the entire Allegro 4 API to Javascript in as close of a manner as possible.
 
 This is based on [allegro.js](https://github.com/TheSos/allegrojs) an earlier project to bring the Allegro 4 library to the browser.
+
+### I want to compile Allegro 4 code to the web, how do I use this?
+
+If you want to compile an existing Allegro 4 codebase to the web, you can use [allegro-ts-emscripten](https://github.com/alegemaate/allegro-ts-emscripten/) which binds the Allegro 4 C API to the _allegro.ts_ library. This allows you to compile your existing C codebase to WebAssembly and run it in the browser with minimal changes.
 
 ### Building
 

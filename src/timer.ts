@@ -3,7 +3,7 @@ import { type TIMER } from "./types";
 
 interface _TimerState {
   timers: TIMER[];
-  controller: AbortController;
+  controller: AbortController | null;
   retrace_count: number;
   init: () => void;
   destroy: () => void;
@@ -11,7 +11,7 @@ interface _TimerState {
 
 export const _timer_state: _TimerState = {
   timers: [],
-  controller: new AbortController(),
+  controller: null,
   retrace_count: 0,
   init: (): void => {
     _timer_state.timers = [];
@@ -19,8 +19,8 @@ export const _timer_state: _TimerState = {
     _timer_state.retrace_count = 0;
   },
   destroy: (): void => {
-    _timer_state.controller.abort();
-    _timer_state.controller = new AbortController();
+    _timer_state.controller?.abort();
+    _timer_state.controller = null;
     _timer_state.timers.forEach((t) => {
       window.clearInterval(t.id);
     });
@@ -317,15 +317,15 @@ export const retrace_count = {
  * @allegro 1.6.13
  */
 export async function rest(time: number): Promise<void> {
-  const { signal } = _timer_state.controller;
+  const signal = _timer_state.controller?.signal;
 
-  if (signal.aborted) {
+  if (signal?.aborted) {
     throw new DOMException("Aborted", "AbortError");
   }
 
   return new Promise((resolve, reject) => {
     const id = setTimeout(resolve, time);
-    signal.addEventListener(
+    signal?.addEventListener(
       "abort",
       () => {
         clearTimeout(id);
