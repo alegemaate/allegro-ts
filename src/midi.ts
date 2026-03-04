@@ -10,6 +10,7 @@ interface _MidiState {
   midi_loop_end: number;
   sequencer: MidiSequencer | null;
   init: () => void;
+  destroy: () => void;
 }
 
 export const _midi_state: _MidiState = {
@@ -22,6 +23,15 @@ export const _midi_state: _MidiState = {
     _midi_state.midi_loop_start = 0;
     _midi_state.midi_loop_end = 0;
     _midi_state.sequencer = new MidiSequencer();
+  },
+  destroy: (): void => {
+    _midi_state.current = null;
+    _midi_state.midi_loop_start = 0;
+    _midi_state.midi_loop_end = 0;
+    if (_midi_state.sequencer) {
+      _midi_state.sequencer.stop();
+      _midi_state.sequencer = null;
+    }
   },
 };
 

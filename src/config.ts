@@ -1,5 +1,5 @@
 import { gfx_driver } from "./graphics";
-import { _debug_state, log } from "./debug";
+import { log } from "./debug";
 import { vsprintf } from "./util/sprintf";
 
 import { _core_state, _uberloop } from "./core";
@@ -82,7 +82,6 @@ export function install_allegro(
 
   _config_state.init();
   _configuration_state.init();
-  _debug_state.init();
   _font_state.init();
   _keyboard_state.init();
   _midi_state.init();
@@ -134,9 +133,12 @@ export function allegro_exit(): void {
   }
 
   // Reset screen
-  _bitmap_state.destroy();
-  _sample_state.destroy();
   _timer_state.destroy();
+  _sample_state.destroy();
+  _mouse_state.destroy();
+  _midi_state.destroy();
+  _keyboard_state.destroy();
+  _bitmap_state.destroy();
 
   log("Allegro exited.");
 }

@@ -1,11 +1,12 @@
 import { log } from "./debug";
-import { rest } from "./timer";
 
 interface _KeyboardState {
   installed: boolean;
   enabled_keys: number[];
   key_shifts: number;
   init: () => void;
+  destroy: () => void;
+  resolvers: ((k: number) => void)[];
 }
 
 export const _keyboard_state: _KeyboardState = {
@@ -17,6 +18,14 @@ export const _keyboard_state: _KeyboardState = {
     _keyboard_state.enabled_keys = [];
     _keyboard_state.key_shifts = 0;
   },
+  destroy: (): void => {
+    if (_keyboard_state.installed) {
+      remove_keyboard();
+    }
+    _keyboard_state.installed = false;
+    _keyboard_state.resolvers = [];
+  },
+  resolvers: [],
 };
 
 /**
@@ -65,7 +74,6 @@ export function install_keyboard(enable_keys?: number[]): number {
       KEY_F10,
       KEY_F11,
       KEY_F12,
-      KEY_ESC,
     ];
 
     _keyboard_state.enabled_keys = default_enabled_keys;
@@ -73,8 +81,9 @@ export function install_keyboard(enable_keys?: number[]): number {
   for (let c = 0; c < 0x80; c += 1) {
     key[c] = false;
   }
-  document.addEventListener("keyup", _keyup);
-  document.addEventListener("keydown", _keydown);
+  window.addEventListener("keyup", _keyup);
+  window.addEventListener("keydown", _keydown);
+  window.addEventListener("blur", _reset_keys);
   _keyboard_state.installed = true;
   log("Keyboard installed!");
   return 0;
@@ -84,7 +93,7 @@ export function install_keyboard(enable_keys?: number[]): number {
  * Uninstalls keyboard
  *
  * @remarks
- * Simply removes event listeners from document
+ * Simply removes event listeners from window
  *
  * @allegro 1.7.2
  */
@@ -93,8 +102,9 @@ export function remove_keyboard(): number {
     log("Keyboard not installed");
     return -1;
   }
-  document.removeEventListener("keyup", _keyup);
-  document.removeEventListener("keydown", _keydown);
+  window.removeEventListener("keyup", _keyup);
+  window.removeEventListener("keydown", _keydown);
+  window.removeEventListener("blur", _reset_keys);
   _keyboard_state.installed = false;
   log("Keyboard removed!");
   return 0;
@@ -197,18 +207,19 @@ export function keypressed(): boolean {
  * This function is a promise that resolves when a key has been put in the keybuffer.
  * Once one has beeen found, it pops the key off the top off the key_buffer stack and returns it.
  *
+ * Returns the next character from the keyboard buffer, in ASCII format. If the buffer is empty,
+ * it waits until a key is pressed. You can see if there are queued keypresses with keypressed().
+ *
  * @allegro 1.7.9
  */
-export async function readkey(): Promise<number> {
-  while (key_buffer.length === 0) {
-    // eslint-disable-next-line no-await-in-loop
-    await rest(5);
+export function readkey(): Promise<number> {
+  if (key_buffer.length > 0) {
+    const top = key_buffer.shift();
+    return Promise.resolve(typeof top === "number" ? top : -1);
   }
-  const top = key_buffer.pop();
-  if (typeof top === "number") {
-    return top;
-  }
-  return -1;
+  return new Promise((resolve) => {
+    _keyboard_state.resolvers.push(resolve);
+  });
 }
 
 /**
@@ -556,6 +567,21 @@ export function _keyboard_loop(): void {
 }
 
 /**
+ * Internal blur handler
+ *
+ * @remarks
+ * Resets all key states when the window loses focus to prevent stuck keys
+ *
+ * @internal
+ */
+function _reset_keys(): void {
+  for (let c = 0; c < 0x80; c += 1) {
+    key[c] = false;
+  }
+  _keyboard_state.key_shifts = 0;
+}
+
+/**
  * Internal keydown listener
  *
  * @remarks
@@ -564,7 +590,9 @@ export function _keyboard_loop(): void {
  * @internal
  */
 function _keydown(e: KeyboardEvent): void {
-  _keydown_handler(e.keyCode);
+  if (!e.repeat) {
+    _keydown_handler(e.keyCode, e.key);
+  }
   if (!_keyboard_state.enabled_keys.includes(e.keyCode)) {
     e.preventDefault();
   }
@@ -576,12 +604,26 @@ function _keydown(e: KeyboardEvent): void {
  * @remarks
  * Set keycodes and add to keybuffer
  *
+ * Notes on Scancodes and ASCII codes:
+ * The low byte of the return value contains the ASCII code of the key, and the high byte the scancode.
+ * The scancode remains the same whatever the state of the shift, ctrl and alt keys, while the
+ * ASCII code is affected by shift and ctrl in the normal way (shift changes case, ctrl+letter gives
+ * the position of that letter in the alphabet, eg. ctrl+A = 1, ctrl+B = 2, etc). Pressing alt+key
+ * returns only the scancode, with a zero ASCII code in the low byte. For example:
+ *
  * @internal
  */
-function _keydown_handler(keyCode: number): void {
-  key[keyCode] = true;
-  key_buffer.push(keyCode);
-  switch (keyCode) {
+function _keydown_handler(scanCode: number, ascii?: string): void {
+  key[scanCode] = true;
+
+  key_buffer.push((scanCode << 8) | (ascii?.length === 1 ? ascii.charCodeAt(0) : 0));
+
+  // If there are any resolvers waiting for a key, resolve the oldest one with the new key
+  if (_keyboard_state.resolvers.length > 0) {
+    _keyboard_state.resolvers.shift()?.(key_buffer.shift() ?? -1);
+  }
+
+  switch (scanCode) {
     case KEY_LSHIFT:
     case KEY_RSHIFT:
       _keyboard_state.key_shifts |= KB_SHIFT_FLAG;
@@ -639,37 +681,38 @@ function _keyup(e: KeyboardEvent): void {
  *
  * @internal
  */
-function _keyup_handler(keyCode: number): void {
-  key[keyCode] = false;
-  switch (keyCode) {
+function _keyup_handler(scanCode: number): void {
+  key[scanCode] = false;
+
+  switch (scanCode) {
     case KEY_LSHIFT:
     case KEY_RSHIFT:
-      _keyboard_state.key_shifts ^= KB_SHIFT_FLAG;
+      _keyboard_state.key_shifts &= ~KB_SHIFT_FLAG;
       break;
     case KEY_LCONTROL:
     case KEY_RCONTROL:
-      _keyboard_state.key_shifts ^= KB_CTRL_FLAG;
+      _keyboard_state.key_shifts &= ~KB_CTRL_FLAG;
       break;
     case KEY_ALT:
-      _keyboard_state.key_shifts ^= KB_ALT_FLAG;
+      _keyboard_state.key_shifts &= ~KB_ALT_FLAG;
       break;
     case KEY_LWIN:
-      _keyboard_state.key_shifts ^= KB_LWIN_FLAG;
+      _keyboard_state.key_shifts &= ~KB_LWIN_FLAG;
       break;
     case KEY_RWIN:
-      _keyboard_state.key_shifts ^= KB_RWIN_FLAG;
+      _keyboard_state.key_shifts &= ~KB_RWIN_FLAG;
       break;
     case KEY_MENU:
-      _keyboard_state.key_shifts ^= KB_MENU_FLAG;
+      _keyboard_state.key_shifts &= ~KB_MENU_FLAG;
       break;
     case KEY_SCRLOCK:
-      _keyboard_state.key_shifts ^= KB_SCROLOCK_FLAG;
+      _keyboard_state.key_shifts &= ~KB_SCROLOCK_FLAG;
       break;
     case KEY_NUMLOCK:
-      _keyboard_state.key_shifts ^= KB_NUMLOCK_FLAG;
+      _keyboard_state.key_shifts &= ~KB_NUMLOCK_FLAG;
       break;
     case KEY_CAPSLOCK:
-      _keyboard_state.key_shifts ^= KB_CAPSLOCK_FLAG;
+      _keyboard_state.key_shifts &= ~KB_CAPSLOCK_FLAG;
       break;
     default:
       break;

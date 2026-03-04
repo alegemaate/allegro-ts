@@ -4,7 +4,7 @@ import { textprintf_centre_ex } from "./font";
 import { clear_to_color } from "./primitives";
 import { _bitmap_state } from "./bitmap";
 
-import { _error, log, enable_debug } from "./debug";
+import { _error, log, enable_debug, _debug_state } from "./debug";
 import { _keyboard_loop } from "./keyboard";
 import { _mouse_loop, _mouse_loop_reset } from "./mouse";
 
@@ -76,6 +76,9 @@ export function init_allegro_ts(
 
   // Init screen with basic canvas
   _bitmap_state.init(cv, ctx);
+
+  // Init debug
+  _debug_state.init();
 
   // Enable debug if specified in options
   if (options?.debug_element) {

@@ -45,6 +45,8 @@ interface _MouseState {
 
   // Initializes mouse state
   init: () => void;
+
+  destroy: () => void;
 }
 
 export const _mouse_state: _MouseState = {
@@ -85,6 +87,13 @@ export const _mouse_state: _MouseState = {
     _mouse_state.last_mouse_y = -1;
     _mouse_state.last_mouse_z = -1;
     _mouse_state.menu_supress = false;
+  },
+  destroy: (): void => {
+    if (_mouse_state.installed) {
+      remove_mouse();
+    }
+    _mouse_state.installed = false;
+    _mouse_state.cursors = {};
   },
 };
 
